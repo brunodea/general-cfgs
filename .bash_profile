@@ -10,5 +10,4 @@ else
     export TERM='xterm-color'
 fi
 
-export PATH=$PATH:/home/bruno/.cargo/bin
 export RUST_SRC_PATH="/usr/src/rust/src/"
