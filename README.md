@@ -1,4 +1,4 @@
-# Linux Configurations
+# General Configurations Repository
 
-Repository for dumping general configuration files for linux, such as .vimrc, .bashrc, .bash_profile, etc.
+Repository for dumping general configuration files, such as .vimrc, .bashrc, .bash_profile, etc.
 
