@@ -1,1 +1,36 @@
-/home/bruno/.vimrc
+execute pathogen#infect()
+syntax enable
+filetype plugin indent on
+
+"As per :help 'expandtab
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+"Set vim theme
+set t_Co=256
+"let g:solarized_termcolors = &t_Co
+"let g:solarized_termtrans = 1
+colorscheme OceanicNext
+set background=dark
+
+"View line numbers
+set number
+
+"Toggle line number style
+let g:NumberToggleTrigger="<F2>"
+
+"Toggle NERDTree window with ctrl+w
+map <C-d> :NERDTreeToggle<CR>
+
+"To enable airline (it only starts working after the window is split
+set laststatus=2
+"needs devicons
+let g:airline_powerline_fonts = 1
+
+"devicons config
+set encoding=utf8
+set guifont=DrodSansMonoForPowerlineFontMono\ 11
+
+"rust auto complete
+set hidden
+let g:racer_cmd = "/usr/src/racer/target/release/racer"
+let $RUST_SRC_PATH="/usr/src/rust/src/"

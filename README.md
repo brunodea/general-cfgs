@@ -4,4 +4,4 @@ Repository for dumping general configuration files, such as .vimrc, .bashrc, .ba
 
 ## Notes
 
-* Some files in this repo (e.g., .vimrc) should be just a soft link to the ones in use.
+* The files being used should point to the ones in this repo (e.g., via soft link).
