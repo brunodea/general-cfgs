@@ -11,4 +11,4 @@
 
 # Notes
 
-* For installing racer (not the vim plugin), use: https://github.com/phildawes/racer
+* For installing racer (not the vim plugin), use: https://github.com/phildawes/racer or, on Arch, `yaourt rust-racer`.

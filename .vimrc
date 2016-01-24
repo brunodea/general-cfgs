@@ -30,5 +30,5 @@ set guifont=DrodSansMonoForPowerlineFontMono\ 11
 
 "rust auto complete
 set hidden
-let g:racer_cmd = "/usr/src/racer/target/release/racer"
+let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH="/usr/src/rust/src/"
