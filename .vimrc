@@ -5,10 +5,8 @@ filetype plugin indent on
 "As per :help 'expandtab
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
-"Set vim theme
+"Set vim color theme
 set t_Co=256
-"let g:solarized_termcolors = &t_Co
-"let g:solarized_termtrans = 1
 colorscheme OceanicNext
 set background=dark
 
