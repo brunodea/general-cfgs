@@ -32,3 +32,10 @@ set guifont=DrodSansMonoForPowerlineFontMono\ 11
 set hidden
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH="/usr/src/rust/src/"
+
+
+"zeal commands (for documentation)
+nmap gzz <Plug>Zeavim           " <leader>z (NORMAL mode)
+vmap gzz <Plug>ZVVisSelection   " <leader>z (VISUAL mode)
+nmap gz <Plug>ZVMotion         " gz{motion} (NORMAL mode)
+nmap gZ <Plug>ZVKeyDocset      " <leader><leader>z
