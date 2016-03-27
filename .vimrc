@@ -68,3 +68,6 @@ nnoremap <C-t>     :tabnew<CR>
 inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
+
+"YcmCompleter remaps
+nnoremap gd :YcmCompleter GoToDefinition<CR>
