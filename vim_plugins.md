@@ -1,5 +1,12 @@
 # Vim Plugins List
 
+* indentLine
+* unite.vim
+* autoformat
+* YouCompleteMe
+* zeavim
+* vimproc
+* rust.vim
 * nerdtree      -  https://github.com/scrooloose/nerdtree
 * rust.vim      -  https://github.com/rust-lang/rust.vim
 * airline       -  https://github.com/vim-airline/vim-airline

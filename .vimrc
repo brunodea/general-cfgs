@@ -71,3 +71,8 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 
 "YcmCompleter remaps
 nnoremap gd :YcmCompleter GoToDefinition<CR>
+
+"Window options
+set guioptions-=m "remove menu bar
+set guioptions-=T "remove toolbar
+set guioptions-=r "remove right-hand scroll bar
