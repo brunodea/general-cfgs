@@ -11,3 +11,4 @@ else
 fi
 
 export RUST_SRC_PATH="/usr/src/rust/src/"
+export PATH=$PATH:/home/bruno/.cargo/bin
