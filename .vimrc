@@ -76,3 +76,6 @@ nnoremap gd :YcmCompleter GoToDefinition<CR>
 set guioptions-=m "remove menu bar
 set guioptions-=T "remove toolbar
 set guioptions-=r "remove right-hand scroll bar
+
+" Kill the capslock when leaving insert mode.
+autocmd InsertLeave * set iminsert=0
