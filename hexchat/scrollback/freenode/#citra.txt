@@ -1,0 +1,532 @@
+T 1459444836 18<jroweboy18>	A problem internal to GDB has been detected, further debugging may prove unreliable. 
+T 1459444841 18<jroweboy18>	oh boy. my favorite
+T 1459444850 18<jroweboy18>	A problem internal to GDB has been detected, further debugging may prove unreliable. 
+T 1459444850 18<jroweboy18>	oh boy. my favorite
+T 1459444983 18<Saphiresurf18>	GG
+T 1459444983 18<Saphiresurf18>	GG
+T 1459445112 18<Saphiresurf18>	merry, I don't think Decrypt9 dumps it undecrypted, though
+T 1459445112 18<Saphiresurf18>	merry, I don't think Decrypt9 dumps it undecrypted, though
+T 1459445143 18<Saphiresurf18>	As in
+T 1459445143 18<Saphiresurf18>	As in
+T 1459445189 18<Saphiresurf18>	It doesn't decrypt the backup when it's made ;-;
+T 1459445189 18<Saphiresurf18>	It doesn't decrypt the backup when it's made ;-;
+T 1459445975 22*	26ChanServ gives voice to 18jroweboy
+T 1459445975 22*	26ChanServ gives voice to 18jroweboy
+T 1459446413 22*	26ChanServ gives voice to 18jroweboy
+T 1459446413 22*	26ChanServ gives voice to 18jroweboy
+T 1459447362 18<Subv18>	mm, i can't catch up with the chats, what'd i miss in these past few days?
+T 1459447362 18<Subv18>	mm, i can't catch up with the chats, what'd i miss in these past few days?
+T 1459449411 18<neobrain18>	bleh, so instead of doing anything useful, I ended up submitting a radare2 patch and analyzing and reporting an issue >_>
+T 1459449411 18<neobrain18>	bleh, so instead of doing anything useful, I ended up submitting a radare2 patch and analyzing and reporting an issue >_>
+T 1459449620 18<Saphiresurf18>	Subv, Not sure, we were just pinging you though because I was curious if someone got the home menu to run on Citra ;P
+T 1459449620 18<Saphiresurf18>	Subv, Not sure, we were just pinging you though because I was curious if someone got the home menu to run on Citra ;P
+T 1459449630 18<Subv18>	oh yeah, it works
+T 1459449630 18<Subv18>	oh yeah, it works
+T 1459449634 18<Subv18>	some versions of it, at least
+T 1459449634 18<Subv18>	some versions of it, at least
+T 1459449760 18<Saphiresurf18>	Lol, fair xD
+T 1459449760 18<Saphiresurf18>	Lol, fair xD
+T 1459449770 T 1459449770 18<Saphiresurf18>	Subv, How'd you end up getting it working, if you don't mind explaining?
+18<Saphiresurf18>	Subv, How'd you end up getting it working, if you don't mind explaining?
+T 1459449770 18<archshift18>	[10:03:11]  <@neobrain>	isn't that the guy who rather forked D9 instead of even considering to submit PRs until we asked him to?
+T 1459449770 18<archshift18>	[10:03:11]  <@neobrain>	isn't that the guy who rather forked D9 instead of even considering to submit PRs until we asked him to?
+T 1459449770 18<archshift18>	nah, he submits PRs on his own, just not too frequently
+T 1459449770 18<archshift18>	nah, he submits PRs on his own, just not too frequently
+T 1459449819 18<Subv18>	Saphiresurf: implement stuff in Citra until it boots
+T 1459449819 18<Subv18>	Saphiresurf: implement stuff in Citra until it boots
+T 1459449844 18<neobrain18>	s/implement/stub
+T 1459449844 18<neobrain18>	s/implement/stub
+T 1459449858 18<neobrain18>	oh nvm, actually we were still implementing stuff back then :p
+T 1459449858 18<neobrain18>	oh nvm, actually we were still implementing stuff back then :p
+T 1459450947 T 1459450947 18<mooch18>	lol why did people downvote my comment about luigi's mansion only being bootable because of hacks?
+18<mooch18>	lol why did people downvote my comment about luigi's mansion only being bootable because of hacks?
+T 1459450996 18<TheSchaf18>	people like hax
+T 1459450996 18<TheSchaf18>	people like hax
+T 1459451021 18<Saphiresurf18>	Out of curiosity
+T 1459451021 18<Saphiresurf18>	Out of curiosity
+T 1459451028 18<mooch18>	https://www.reddit.com/r/emulation/comments/4ci989/luigis_mansion_dark_moon_now_boots_in_citra/d1jr5mj
+T 1459451028 18<mooch18>	https://www.reddit.com/r/emulation/comments/4ci989/luigis_mansion_dark_moon_now_boots_in_citra/d1jr5mj
+T 1459451031 18<pcmaker18>	no matter if it's a hack or not...luigi is booting! :)
+T 1459451031 18<pcmaker18>	no matter if it's a hack or not...luigi is booting! :)
+T 1459451042 18<Saphiresurf18>	If I wanted to start contributing to Citra or at least just to understand the code that makes it and where it's coming from
+T 1459451042 18<Saphiresurf18>	If I wanted to start contributing to Citra or at least just to understand the code that makes it and where it's coming from
+T 1459451044 18<mooch18>	hacks are bad for development m8
+T 1459451044 18<mooch18>	hacks are bad for development m8
+T 1459451050 18<Saphiresurf18>	And if I have previous experience programming myself
+T 1459451050 18<Saphiresurf18>	And if I have previous experience programming myself
+T 1459451052 18<jroweboy18>	mooch: np m8, just went and downvoted it again for ya <3 
+T 1459451052 18<jroweboy18>	mooch: np m8, just went and downvoted it again for ya <3 
+T 1459451054 18<mooch18>	they're why pcsx2 is in the shitter right now
+T 1459451054 18<mooch18>	they're why pcsx2 is in the shitter right now
+T 1459451057 18<jroweboy18>	(just kidding i really didn't)
+T 1459451057 18<jroweboy18>	(just kidding i really didn't)
+T 1459451061 18<Saphiresurf18>	Do you guys know a good place for me to start reading to sort of learn about it?
+T 1459451061 18<Saphiresurf18>	Do you guys know a good place for me to start reading to sort of learn about it?
+T 1459451074 18<Saphiresurf18>	RIP pcsx2 mooch 
+T 1459451074 18<Saphiresurf18>	RIP pcsx2 mooch 
+T 1459451088 18<Saphiresurf18>	pcsx2 can be a sad state of affairs at time
+T 1459451088 18<Saphiresurf18>	pcsx2 can be a sad state of affairs at time
+T 1459451246 18<Saphiresurf18>	*times
+T 1459451246 18<Saphiresurf18>	*times
+T 1459452029 18<merry18>	Saphiresurf: have you done emulation stuff before?
+T 1459452029 18<merry18>	Saphiresurf: have you done emulation stuff before?
+T 1459452047 18<Saphiresurf18>	No, nothing programming wise
+T 1459452047 18<Saphiresurf18>	No, nothing programming wise
+T 1459452114 18<merry18>	Quite a number of folk recommend starting with emulating chip8.
+T 1459452114 18<merry18>	Quite a number of folk recommend starting with emulating chip8.
+T 1459452147 18<merry18>	Personally I'm just biased towards the z80 because that was the first machine I learnt to program assembly for;;
+T 1459452147 18<merry18>	Personally I'm just biased towards the z80 because that was the first machine I learnt to program assembly for;;
+T 1459452213 18<merry18>	but I'm terrible for advice, I've less experience than the other guys here
+T 1459452213 18<merry18>	but I'm terrible for advice, I've less experience than the other guys here
+T 1459452313 18<Saphiresurf18>	Oh cool, I'll try and start with that then
+T 1459452313 18<Saphiresurf18>	Oh cool, I'll try and start with that then
+T 1459452320 18<Saphiresurf18>	lol, that's fair, though
+T 1459452320 18<Saphiresurf18>	lol, that's fair, though
+T 1459452331 18<Saphiresurf18>	What'd you end up learning aseembly for the z80 for?
+T 1459452331 18<Saphiresurf18>	What'd you end up learning aseembly for the z80 for?
+T 1459452395 18<Saphiresurf18>	Also, too be fair, someone who took it upon themselves to learn more recently may very well be more familiar with the learning materials than the people who have had experience with it for a while (as they haven't had to learn the basics since.. well... they learned them). Just depends though
+T 1459452395 18<Saphiresurf18>	Also, too be fair, someone who took it upon themselves to learn more recently may very well be more familiar with the learning materials than the people who have had experience with it for a while (as they haven't had to learn the basics since.. well... they learned them). Just depends though
+T 1459452421 18<Saphiresurf18>	merry, Anything you know of that I can read up on when it comes to emulating chip8 or should I just go do some googling?
+T 1459452421 18<Saphiresurf18>	merry, Anything you know of that I can read up on when it comes to emulating chip8 or should I just go do some googling?
+T 1459452447 18<merry18>	When I was much younger I picked up a thin ~20 year old book 'How to write assembly language for the commodore 128'.
+T 1459452447 18<merry18>	When I was much younger I picked up a thin ~20 year old book 'How to write assembly language for the commodore 128'.
+T 1459452464 18<merry18>	Since I didn't have a machine, I wrote an emulator for it in the only language I knew at the time, qbasic.
+T 1459452464 18<merry18>	Since I didn't have a machine, I wrote an emulator for it in the only language I knew at the time, qbasic.
+T 1459452506 18<TheSchaf18>	qbasic ftw
+T 1459452506 18<TheSchaf18>	qbasic ftw
+T 1459452576 18<Stary200118>	an emulator.. in qbasic..?!
+T 1459452576 18<Stary200118>	an emulator.. in qbasic..?!
+T 1459452577 18<Stary200118>	jesus
+T 1459452577 18<Stary200118>	jesus
+T 1459452731 18<Saphiresurf18>	Lol, that's awesome
+T 1459452731 18<Saphiresurf18>	Lol, that's awesome
+T 1459453251 18<merry18>	Stary2001: it was a terrible mess in a terrible language
+T 1459453251 18<merry18>	Stary2001: it was a terrible mess in a terrible language
+T 1459453270 18<Stary200118>	:D
+T 1459453270 18<Stary200118>	:D
+T 1459453293 18<Saphiresurf18>	lmao
+T 1459453293 18<Saphiresurf18>	lmao
+T 1459454374 18<neobrain18>	qbasic, please
+T 1459454374 18<neobrain18>	qbasic, please
+T 1459454384 18<neobrain18>	https://gitlab.brokenpipe.de/stettberger/avremu/tree/master
+T 1459454384 18<neobrain18>	https://gitlab.brokenpipe.de/stettberger/avremu/tree/master
+T 1459454388 18<neobrain18>	emulators in latex ftw
+T 1459454388 18<neobrain18>	emulators in latex ftw
+T 1459454420 18<TheSchaf18>	xD
+T 1459454420 18<TheSchaf18>	xD
+T 1459454436 18<Stary200118>	wtf
+T 1459454436 18<Stary200118>	wtf
+T 1459454581 18<merry18>	hhh
+T 1459454581 18<merry18>	hhh
+T 1459454606 18<mooch18>	that's just fucking horrifying
+T 1459454606 18<mooch18>	that's just fucking horrifying
+T 1459454661 18<Stary200118>	mooch: https://github.com/xoreaxeaxeax/movfuscator
+T 1459454661 18<Stary200118>	mooch: https://github.com/xoreaxeaxeax/movfuscator
+T 1459454704 18<Stary200118>	The M/o/Vfuscator contains a complete mov-only floating point emulator. 
+T 1459454704 18<Stary200118>	The M/o/Vfuscator contains a complete mov-only floating point emulator. 
+T 1459454716 18<mooch18>	why
+T 1459454716 18<mooch18>	why
+T 1459454776 18<Stary200118>	this is why https://github.com/xoreaxeaxeax/movfuscator/raw/master/overview/mov_cfg.png
+T 1459454776 18<Stary200118>	this is why https://github.com/xoreaxeaxeax/movfuscator/raw/master/overview/mov_cfg.png
+T 1459454788 18<Stary200118>	that would be a control flow graph
+T 1459454788 18<Stary200118>	that would be a control flow graph
+T 1459454790 18<Stary200118>	would
+T 1459454790 18<Stary200118>	would
+T 1459455068 18<Lioncash18>	mooch: proof-of-concept
+T 1459455068 18<Lioncash18>	mooch: proof-of-concept
+T 1459456303 18<mooch18>	jfc people keep downvoting me into oblivion just because i'm calling out hacks for what they are
+T 1459456303 18<mooch18>	jfc people keep downvoting me into oblivion just because i'm calling out hacks for what they are
+T 1459456637 18<jroweboy18>	mooch: that or your comment really didn’t contribute to the thread, nor did it explain what exactly these hacks were. i bet if you posted something like “This is neat and all, but citra doesn’t actually run the game yet. This version of citra is using a several hacks to get it to even work, hacks which in their current state won’t get merged into the official release” you would have better response
+T 1459456637 18<jroweboy18>	mooch: that or your comment really didn’t contribute to the thread, nor did it explain what exactly these hacks were. i bet if you posted something like “This is neat and all, but citra doesn’t actually run the game yet. This version of citra is using a several hacks to get it to even work, hacks which in their current state won’t get merged into the official release” you would have better response
+T 1459456741 18<mooch18>	yeah, but when i explained it, i just got more downvotes!
+T 1459456741 18<mooch18>	yeah, but when i explained it, i just got more downvotes!
+T 1459456749 18<mooch18>	https://www.reddit.com/r/emulation/comments/4ci989/luigis_mansion_dark_moon_now_boots_in_citra/d1jr5mj
+T 1459456749 18<mooch18>	https://www.reddit.com/r/emulation/comments/4ci989/luigis_mansion_dark_moon_now_boots_in_citra/d1jr5mj
+T 1459456809 18<jroweboy18>	what. 2 downvotes? 6 total? its not that bad haha (also on reddit complaining about getting downvotes almost always nets you more downvotes. its just what people on there do :/)
+T 1459456809 18<jroweboy18>	what. 2 downvotes? 6 total? its not that bad haha (also on reddit complaining about getting downvotes almost always nets you more downvotes. its just what people on there do :/)
+T 1459456840 18<mooch18>	that's stupid
+T 1459456840 18<mooch18>	that's stupid
+T 1459456900 18<Cruel`18>	I downvoted for good measure
+T 1459456900 18<Cruel`18>	I downvoted for good measure
+T 1459456946 18<mooch18>	dick
+T 1459456946 18<mooch18>	dick
+T 1459457000 18<jroweboy18>	that sounds awfully… Cruel` … of you :^)
+T 1459457000 18<jroweboy18>	that sounds awfully… Cruel` … of you :^)
+T 1459457267 18<bunnei_18>	I also opened mooch's history and downvoted all of his previous posts, just for extra good measure
+T 1459457267 18<bunnei_18>	I also opened mooch's history and downvoted all of his previous posts, just for extra good measure
+T 1459457288 18<LittleWhite18>	then used my votebots ... :D
+T 1459457288 18<LittleWhite18>	then used my votebots ... :D
+T 1459457312 18<jroweboy18>	you used your vote bots too, LittleWhite? nice, i did as well
+T 1459457312 18<jroweboy18>	you used your vote bots too, LittleWhite? nice, i did as well
+T 1459457339 18<LittleWhite18>	That's the only real way to receive good vote on own posts :D
+T 1459457339 18<LittleWhite18>	That's the only real way to receive good vote on own posts :D
+T 1459457675 18<mooch18>	WHY
+T 1459457675 18<mooch18>	WHY
+T 1459457680 18<yuriks18>	merry: QBasic was awesome, I pretty much learned to code in that
+T 1459457680 18<yuriks18>	merry: QBasic was awesome, I pretty much learned to code in that
+T 1459457685 T 1459457685 18<jroweboy18>	“pkg-config not found.” $ locate pkg-config /usr/local/bin/pkg-config
+18<jroweboy18>	“pkg-config not found.” $ locate pkg-config /usr/local/bin/pkg-config
+T 1459457688 18<TheSchaf18>	me too
+T 1459457688 18<TheSchaf18>	me too
+T 1459457692 18<jroweboy18>	story of my life
+T 1459457692 18<jroweboy18>	story of my life
+T 1459457696 18<mooch18>	i learned how to code using c++ lol
+T 1459457696 18<mooch18>	i learned how to code using c++ lol
+T 1459457912 19*	Now talking on 22#citra
+T 1459457912 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459457912 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459457912 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459458462 18<linkmauve118>	jroweboy, wrong PATH then.
+T 1459458462 18<linkmauve118>	jroweboy, wrong PATH then.
+T 1459458549 18<jroweboy18>	i guess :S when i run the script from the terminal it works just fine, but when xcode runs it it doesn’t. i don’t know how to check whats in the path when xcode runs it yet though
+T 1459458549 18<jroweboy18>	i guess :S when i run the script from the terminal it works just fine, but when xcode runs it it doesn’t. i don’t know how to check whats in the path when xcode runs it yet though
+T 1459458572 18<yuriks18>	Saphiresurf: both Z80 and 6502 are reasonably simple CPUs to emulate, and they're very popular
+T 1459458572 18<yuriks18>	Saphiresurf: both Z80 and 6502 are reasonably simple CPUs to emulate, and they're very popular
+T 1459459640 18<jroweboy18>	any idea where the settings file ends up on mac when you build and run through xcode?
+T 1459459640 18<jroweboy18>	any idea where the settings file ends up on mac when you build and run through xcode?
+T 1459459772 18<yuriks18>	should end up in the same place as directly running it I think
+T 1459459772 18<yuriks18>	should end up in the same place as directly running it I think
+T 1459459780 18<yuriks18>	we don't do cwd-relative paths on anything but windows afaik
+T 1459459780 18<yuriks18>	we don't do cwd-relative paths on anything but windows afaik
+T 1459459835 18<linkmauve118>	We do if there is a directory named user in cwd.
+T 1459459835 18<linkmauve118>	We do if there is a directory named user in cwd.
+T 1459459955 18<jroweboy18>	apparently for me it ended up in ~/.config/citra-emu/qt-config.ini  ¯\_(ツ)_/¯ 
+T 1459459955 18<jroweboy18>	apparently for me it ended up in ~/.config/citra-emu/qt-config.ini  ¯\_(ツ)_/¯ 
+T 1459460312 18<archshift18>	yeah that's where it's supposed to end up
+T 1459460312 18<archshift18>	yeah that's where it's supposed to end up
+T 1459460317 18<archshift18>	on linux as well
+T 1459460317 18<archshift18>	on linux as well
+T 1459460926 22*	26ChanServ gives voice to 18darkf
+T 1459460926 22*	26ChanServ gives voice to 18darkf
+T 1459461824 18<neobrain18>	ugh, just updated to ftpd after having a file transfer fail after like 30 minutes with the old version
+T 1459461824 18<neobrain18>	ugh, just updated to ftpd after having a file transfer fail after like 30 minutes with the old version
+T 1459461842 18<TheSchaf18>	ftp? thats so 1999
+T 1459461842 18<TheSchaf18>	ftp? thats so 1999
+T 1459461844 18<neobrain18>	took like 5 minutes to catch up the progress...
+T 1459461844 18<neobrain18>	took like 5 minutes to catch up the progress...
+T 1459461859 18<neobrain18>	TheSchaf: why are you even on irc :p
+T 1459461859 18<neobrain18>	TheSchaf: why are you even on irc :p
+T 1459461873 18<TheSchaf18>	to distract myself from working/coding!
+T 1459461873 18<TheSchaf18>	to distract myself from working/coding!
+T 1459461902 18<neobrain18>	see, that's what I use ftp for
+T 1459461902 18<neobrain18>	see, that's what I use ftp for
+T 1459466960 22*	26ChanServ gives channel operator status to 18bunnei
+T 1459466960 22*	26ChanServ gives channel operator status to 18bunnei
+T 1459467197 18<archshift18>	https://lkml.org/lkml/2016/3/31/1108
+T 1459467197 18<archshift18>	https://lkml.org/lkml/2016/3/31/1108
+T 1459467233 18<Stary200118>	hhehehehe
+T 1459467234 18<Stary200118>	hhehehehe
+T 1459467359 18<bunnei18>	MaJoR1, got time for another progress report banner?
+T 1459467359 18<bunnei18>	MaJoR1, got time for another progress report banner?
+T 1459467512 18<MaJoR118>	*now*? I'm working on the dolphin progress repooooort
+T 1459467512 18<MaJoR118>	*now*? I'm working on the dolphin progress repooooort
+T 1459467574 18<Lioncash18>	archshift: hah
+T 1459467575 18<Lioncash18>	archshift: hah
+T 1459467645 18<bunnei18>	MaJoR1, within the next 2 days?
+T 1459467645 18<bunnei18>	MaJoR1, within the next 2 days?
+T 1459467676 18<MaJoR118>	*nod*
+T 1459467676 18<MaJoR118>	*nod*
+T 1459467936 18<bunnei18>	article is not quite ready, so a more likely publishing date is sometime this weekend
+T 1459467936 18<bunnei18>	article is not quite ready, so a more likely publishing date is sometime this weekend
+T 1459468440 18<darkf18>	MaJoR1: how many april fools jokes will be included this time?
+T 1459468440 18<darkf18>	MaJoR1: how many april fools jokes will be included this time?
+T 1459468465 18<MaJoR118>	I haven't worked on it yet, actually
+T 1459468465 18<MaJoR118>	I haven't worked on it yet, actually
+T 1459468478 18<MaJoR118>	or do you mean dolphin's?
+T 1459468478 18<MaJoR118>	or do you mean dolphin's?
+T 1459468482 18<darkf18>	yeah, dolphin's
+T 1459468482 18<darkf18>	yeah, dolphin's
+T 1459468838 18<MaJoR118>	none this time
+T 1459468838 18<MaJoR118>	none this time
+T 1459468923 18<MaJoR118>	of course, if there *were* a joke in it, I wouldn't tell you
+T 1459468923 18<MaJoR118>	of course, if there *were* a joke in it, I wouldn't tell you
+T 1459468924 18<MaJoR118>	hmmmm
+T 1459468925 18<MaJoR118>	hmmmm
+T 1459468967 18<darkf18>	you could totally tell *me* =p
+T 1459468967 18<darkf18>	you could totally tell *me* =p
+T 1459469293 18<JayFoxRox18>	darkf: I guess there is no point in adding jokes with the recent announcement that dolphin will be merged with cemu :/ I'm surprised there will even be any progress reports with a (soon) dead project like that. Looking forward to the dolphemu progress report though :)
+T 1459469293 18<JayFoxRox18>	darkf: I guess there is no point in adding jokes with the recent announcement that dolphin will be merged with cemu :/ I'm surprised there will even be any progress reports with a (soon) dead project like that. Looking forward to the dolphemu progress report though :)
+T 1459469340 18<jroweboy18>	when is citra going to add NX support again?
+T 1459469340 18<jroweboy18>	when is citra going to add NX support again?
+T 1459469354 T 1459469354 18<MaJoR118>	hehehehe
+18<MaJoR118>	hehehehe
+T 1459470331 18<JayFoxRox18>	MaJoR1: don't laugh, you just lost your job :P
+T 1459470331 18<JayFoxRox18>	MaJoR1: don't laugh, you just lost your job :P
+T 1459470361 18<MaJoR118>	I'm working on dolphin for free, CEMU is getting money!
+T 1459470361 18<MaJoR118>	I'm working on dolphin for free, CEMU is getting money!
+T 1459470365 18<MaJoR118>	;)
+T 1459470365 18<MaJoR118>	;)
+T 1459470641 18<darkf18>	JayFoxRox: if they actually did do that joke, both projects would never hear the end of it
+T 1459470641 18<darkf18>	JayFoxRox: if they actually did do that joke, both projects would never hear the end of it
+T 1459470662 18<JayFoxRox18>	what joke?
+T 1459470662 18<JayFoxRox18>	what joke?
+T 1459470668 18<darkf18>	dolphin + cemu
+T 1459470668 18<darkf18>	dolphin + cemu
+T 1459470669 18*	JayFoxRox puts on the serious face
+T 1459470669 18*	JayFoxRox puts on the serious face
+T 1459470674 18<darkf18>	lol
+T 1459470674 18<darkf18>	lol
+T 1459470676 18<darkf18>	oh you
+T 1459470676 18<darkf18>	oh you
+T 1459470701 18<darkf18>	at least announce dolphin is working on wii u support :D
+T 1459470701 18<darkf18>	at least announce dolphin is working on wii u support :D
+T 1459470708 18<darkf18>	it's just two wiis taped together of course
+T 1459470708 18<darkf18>	it's just two wiis taped together of course
+T 1459470731 18<JayFoxRox18>	that's what the U represents btw - it's 2 vertically standing Wiis connected with sticky tape at the base
+T 1459470731 18<JayFoxRox18>	that's what the U represents btw - it's 2 vertically standing Wiis connected with sticky tape at the base
+T 1459470753 18<darkf18>	absolutely
+T 1459470753 18<darkf18>	absolutely
+T 1459470757 18<JayFoxRox18>	(which also acts as the bus probably)
+T 1459470757 18<JayFoxRox18>	(which also acts as the bus probably)
+T 1459470764 18<darkf18>	and the NX is a cross between a wii u and an xbox
+T 1459470764 18<darkf18>	and the NX is a cross between a wii u and an xbox
+T 1459470788 18<JayFoxRox18>	exciting times - looks like we should merge dolphemu+xqemu
+T 1459470788 18<JayFoxRox18>	exciting times - looks like we should merge dolphemu+xqemu
+T 1459470803 18<darkf18>	indeed!
+T 1459470803 18<darkf18>	indeed!
+T 1459471403 18<JayFoxRox18>	uh, let's change topics: aprils fools. A friend of mine runs this project: https://github.com/hut/ranger and made the following april fools joke in 2014: https://github.com/hut/ranger/commit/09b0f2f1044025c8d14d5f7296f43b495cf75ec3
+T 1459471403 18<JayFoxRox18>	uh, let's change topics: aprils fools. A friend of mine runs this project: https://github.com/hut/ranger and made the following april fools joke in 2014: https://github.com/hut/ranger/commit/09b0f2f1044025c8d14d5f7296f43b495cf75ec3
+T 1459471484 18<JayFoxRox18>	*2015?
+T 1459471484 18<JayFoxRox18>	*2015?
+T 1459471658 18<Lioncash18>	lol
+T 1459471658 18<Lioncash18>	lol
+T 1459474753 18<JayFoxRox18>	meh.. https://github.com/citra-emu/citra/pull/1621#issuecomment-204198233 >.<
+T 1459474753 18<JayFoxRox18>	meh.. https://github.com/citra-emu/citra/pull/1621#issuecomment-204198233 >.<
+T 1459474766 18<JayFoxRox18>	I don't need the hw specs but the env specs :P
+T 1459474766 18<JayFoxRox18>	I don't need the hw specs but the env specs :P
+T 1459475682 18<Subv18>	<@neobrain> [15:59:48] emulators in latex ftw
+T 1459475682 18<Subv18>	<@neobrain> [15:59:48] emulators in latex ftw
+T 1459475693 18<Subv18>	\textbf{Nope out of there right now}
+T 1459475693 18<Subv18>	\textbf{Nope out of there right now}
+T 1459475820 22*	26ChanServ gives voice to 18jroweboy
+T 1459475820 22*	26ChanServ gives voice to 18jroweboy
+T 1459511634 19*	Now talking on 22#citra
+T 1459511634 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459511634 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459511634 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459514770 22*	26ChanServ gives channel operator status to 18archshift
+T 1459516088 18<neobrain18>	tfw checking the "update condition flags" bit on TST and TEQ instructions...
+T 1459516479 18<Lioncash18>	lol
+T 1459518771 19*	Now talking on 22#citra
+T 1459518771 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459518771 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459518771 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459519370 22*	26ChanServ gives voice to 18Cruel`
+T 1459519370 22*	26ChanServ gives voice to 18Cruel`
+T 1459535015 20*	Disconnected (20Invalid argument)
+T 1459535036 20*	Disconnected (20Invalid argument)
+T 1459535040 19*	Now talking on 22#citra
+T 1459535040 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459535040 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459535040 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459535064 19*	Now talking on 22#citra
+T 1459535064 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459535064 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459535064 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459536720 19*	Now talking on 22#citra
+T 1459536721 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459536721 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459536721 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459537700 18<kog18>	hi all
+T 1459537700 18<neobot18>	Hi! Welcome to #citra. Do you have a question on your mind? I'm just a bot, but lots of real people are hanging around here and may be able to help. Make sure to stick around for more than a few minutes to give them a chance to reply, though!
+T 1459537716 18<kog18>	have anyone ever tried the Camera Video sample?
+T 1459537917 18<wwylele18>	?
+T 1459540425 18<kog18>	i got only a black screen when i use the camera video sample :(
+T 1459547766 22*	26ChanServ gives voice to 18darkf
+T 1459553208 18<JayFoxRox18>	JMC4789: candyland doritos? you put that there.. right?
+T 1459553427 18<JayFoxRox18>	all of those loadscreens are modded, right? also that face?
+T 1459553469 18<JayFoxRox18>	is that uwe boll?
+T 1459553553 18<darkf18>	whoa whats going on
+T 1459553690 18<JMC478918>	JayFoxRox, they're in the TAS too - https://www.youtube.com/watch?feature=player_detailpage&v=qeNrk_Gz57I#t=500
+T 1459553788 18<JayFoxRox18>	JMC4789: now I'm even more confused
+T 1459553795 18<JayFoxRox18>	why is some text behind it and some text infront of it?
+T 1459553822 18<JMC478918>	i didn't make that video, i dunno
+T 1459553825 18<JayFoxRox18>	soo romhack?
+T 1459553829 18<JMC478918>	nope
+T 1459553835 18<JMC478918>	it's not a romhack
+T 1459553839 18<JMC478918>	the TAS syncs on my build
+T 1459553845 18<JMC478918>	if it's a romhack, then it wouldn't sync
+T 1459553862 18<JayFoxRox18>	why not? if they just replaced the loadscreen textures etc?
+T 1459553875 18<JMC478918>	dolphin has texture placement features
+T 1459553879 18<JMC478918>	don't need to modify the game :D
+T 1459553884 18<JMC478918>	*replacement
+T 1459553897 18<JayFoxRox18>	yeah, but maybe your ROM is patched so it would also play differently on hw
+T 1459553911 18<JayFoxRox18>	in case you didn't dump the ROM yourself (which we all know, you did)
+T 1459553920 18<JMC478918>	I actually did
+T 1459553934 18<JMC478918>	delroth bought me the game as a gag gift
+T 1459553953 18<JayFoxRox18>	and it's signed 'n shit by nintendo?
+T 1459553964 18<delroth18>	of course
+T 1459553966 18<JayFoxRox18>	and it's not a bootleg or anything and works on retail hw?
+T 1459553970 18<JMC478918>	yes
+T 1459553973 18<JMC478918>	it's a retail game
+T 1459553977 18<JMC478918>	matches redump
+T 1459553985 18<JayFoxRox18>	how the fuck would a mcdonalds logo survive that process?!
+T 1459554000 18<JMC478918>	JayFoxRox, get the 3DS version working :D
+T 1459554011 18<JayFoxRox18>	also uwe bolls likeness etc - it wouldn't fly
+T 1459554023 18<JMC478918>	do you really think anyone played that far into the game?
+T 1459554065 18<JayFoxRox18>	I have heard and read lots about the TCR process by all 3 big console makes
+T 1459554067 18<JayFoxRox18>	*makers
+T 1459554080 18<JayFoxRox18>	all of them would catch these kind of things
+T 1459554095 18<JayFoxRox18>	also if that is indeed boll I think he'd try to make the money from it
+T 1459554101 18<JMC478918>	damn TAS is amazing
+T 1459554108 18<JMC478918>	Makes me look bad :(
+T 1459554217 18<JayFoxRox18>	JMC4789: trying to get my hands on magical medallion btw, but no luck so far
+T 1459554308 18<polaris-18>	april fools? :P
+T 1459554338 18<JMC478918>	magical medallion?
+T 1459555539 22*	26ChanServ gives channel operator status to 18flamesage
+T 1459565022 18<JayFoxRox18>	polaris-: I shit you not. I think the bug looks very interesting so I'd love to take a look :)
+T 1459565036 18<JayFoxRox18>	JMC4789: Gummy Bears game for 3DS
+T 1459565088 18<JayFoxRox18>	https://github.com/citra-emu/citra/issues/1532
+T 1459565254 18<JMC478918>	JayFoxRox, get minigolf
+T 1459565255 18<JMC478918>	it's better
+T 1459565423 18<JayFoxRox18>	is there an citra issue for that? I don't really want to play it lol - I just want it fixed (ocd kicks in etc)
+T 1459565439 18<yuriks18>	JayFoxRox: wow, that's a very, uh... interesting-looking bug
+T 1459565475 18<JayFoxRox18>	yuriks: right? never seen it - and I've 5+ years graphics programming experience and worked on a handful of emus
+T 1459565494 18<JayFoxRox18>	pcmaker said it reminds him of an alpha issue in xenia but that was a broken buffer read afaik
+T 1459565508 18<yuriks18>	I vaguely see moire patterns there
+T 1459565510 18<JayFoxRox18>	it isn't depth testing either or w-buffer should have changed it at least
+T 1459565520 18<JMC478918>	i've seen weirder shit in Dolphin
+T 1459565530 18<JMC478918>	like the Dolby Digital logo in Super Mario Sunshine loaded as a goop map once
+T 1459565547 18<JMC478918>	...still don't know what caused it or if it could happen again
+T 1459565556 18<yuriks18>	cosmic rays.
+T 1459565564 18<JMC478918>	apparently SMS is one of those games
+T 1459565566 18<JMC478918>	where the longer you run it
+T 1459565571 18<JMC478918>	the weirder shit starts to happen even on console
+T 1459565572 18<linkmauve118>	Buy ECC memory, it will solve every problem.
+T 1459565621 18<Lioncash18>	JMC4789: One of the things I consistently manage to run into on SMS is the initial M swish's ending snapping to the top right of the screen
+T 1459565621 18<JayFoxRox18>	I also thought about the moire pattern, so maybe textures parsed poorly and missing projection or something
+T 1459565644 18<JMC478918>	Lioncash, dualcore?
+T 1459565657 18<JayFoxRox18>	btw, playing wise I'm fine with tappingo which I recently fixed. I must have spend like 10 hours in it already the last weeks
+T 1459565662 18<Lioncash18>	JMC4789: nope
+T 1459565669 18<Lioncash18>	I always use single core
+T 1459565676 18<JMC478918>	Lioncash, you must have broke it; I can't reproduce that
+T 1459565680 18<JayFoxRox18>	(and I'm playing it with a trackpoint so my finger looks horrible already)
+T 1459565702 18<yuriks18>	[19:52:51] <JMC4789> the weirder shit starts to happen even on console
+T 1459565711 18<yuriks18>	that smells like someone using floats to keep track of time
+T 1459565719 18<JMC478918>	how many hours would it be?
+T 1459565740 18<yuriks18>	would it be for what?
+T 1459565743 18<linkmauve118>	JayFoxRox, heh, I play Dungeon Keeper on a trackpoint. ^^
+T 1459565746 18<JMC478918>	before it starts screwing up?
+T 1459565750 18<yuriks18>	that depends
+T 1459565751 18<JMC478918>	if it were floating point keeping track of time
+T 1459565754 18<JMC478918>	rough estimate?
+T 1459565761 18<yuriks18>	but, the way floating point works is that values near 0 have higher precision
+T 1459565764 18<JMC478918>	I usually see things getting weird around 6 - 8 hours
+T 1459565802 18<JayFoxRox18>	linkmauve1: we should have a usergroup for trackpoint players
+T 1459565822 18<JayFoxRox18>	though, I often wish I had a mouse - I'm just too lazy to walk into the living room to get it
+T 1459565830 18<JMC478918>	i know there are some really fucked up vids on youtube
+T 1459565832 22*	26ChanServ gives voice to 18shinyquagsire
+T 1459565838 18<JMC478918>	showing the game going crazy eventually
+T 1459565845 18<linkmauve118>	I don’t own a mouse, I’m sure it would be better but I’m lazy to go buy one.
+T 1459565871 18<yuriks18>	JMC4789: 6-8 hours doesn't sound enough for it to start happening
+T 1459565901 18<yuriks18>	oh, actually, it is
+T 1459565922 18<JayFoxRox18>	then we should have a ~~usergroup~~ supportgroup for that instead: "anonymous too-lazy-to-get-mouse-so-i-am-trackpoint-user"
+T 1459565929 18<yuriks18>	[19:58:37] <yuriks> << 21600.0f + (1.0f / 60.0f)
+T 1459565930 18<yuriks18>	[19:58:37] <geordi> 21600
+T 1459565940 18<JayFoxRox18>	also has the super cool acronym atltgmsiat(p)u
+T 1459565942 18<linkmauve118>	yuriks, my calculations tell me 78h, if it was a 60fps game (I know it is a 25fps one).
+T 1459565951 18<linkmauve118>	Oh.
+T 1459565978 18<linkmauve118>	Interesting.
+T 1459566023 18<yuriks18>	I forget how to calculate this properly, so I'm just running an experiment
+T 1459566100 18<JayFoxRox18>	yuriks: [19:58:37] <yuriks> << 21600.0f + (1.0f / 60.0f)
+T 1459566100 18<JayFoxRox18>	easy fix: static int foo = 0; if (foo++ > 10) { t += (10.0f / 60.0f); foo = 0; }
+T 1459566103 18<JayFoxRox18>	;P
+T 1459566112 18<linkmauve118>	Anyway, it’s 4am, time to not waste yet another weekend by being too tired to do anything.
+T 1459566123 18<JayFoxRox18>	find the off-by-one and get one for free!
+T 1459566125 18<yuriks18>	I think my experiment is lying though
+T 1459566133 18<yuriks18>	[20:01:50] <yuriks> { printf("%f", 21600.0f + (1.0f / 60.0f)); }
+T 1459566133 18<yuriks18>	[20:01:51] <geordi> 21600.017578
+T 1459566141 22*	26ChanServ gives voice to 18Kitlith
+T 1459566142 18<JayFoxRox18>	yuriks: use e for such things
+T 1459566147 18<yuriks18>	but it's getting close enough to the point where it starts being wonky
+T 1459566161 18<yuriks18>	JayFoxRox: I'm explicitly testing for a frame-sized increment
+T 1459566168 18<yuriks18>	linkmauve1: good night, good luck, sleep well
+T 1459566168 18<JayFoxRox18>	I've had horrible things happen with %f
+T 1459566173 18<JayFoxRox18>	so use %e instead
+T 1459566181 18<linkmauve118>	yuriks, you’d think devs would have started learning not to use floats in such cases. ^^'
+T 1459566182 18<yuriks18>	oh, thought you mean e as in epsilon
+T 1459566196 18<JayFoxRox18>	yeah, I figured :P
+T 1459566202 18<linkmauve118>	Also, SMS is a 30 or 25 fps game.
+T 1459566316 18<JayFoxRox18>	linkmauve1: who uses absolute time anyway? shouldn't a properly written game mostly be able to reset timers once in a while?
+T 1459566322 18<yuriks18>	[20:05:06] <yuriks> { float t = 6 * 60 * 60; float advance = 1.0f / 60.0f; for (int i = 0; i < 10; ++i) { for (int j = 0; j < 60; ++j) { t += advance; } printf("%e ", t); } }
+T 1459566322 18<yuriks18>	[20:05:06] <geordi> 2.160105e+04 2.160211e+04 2.160316e+04 2.160422e+04 2.160527e+04 2.160633e+04 2.160738e+04 2.160844e+04 2.160949e+04 2.161055e+04 
+T 1459566342 18<yuriks18>	JayFoxRox: I see the word "properly written" getting thrown around a lot ;)
+T 1459566527 18<Zaneo18>	Probably not correlated, but I had some funky results using printf with %f on whatever ARM is in the Cyclone V
+T 1459567055 22*	26ChanServ gives voice to 18darkf
+T 1459568148 19*	Now talking on 22#citra
+T 1459568148 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459568148 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459568149 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459568164 Python interface unloaded
+T 1459903428 19*	Now talking on 22#citra
+T 1459903428 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459903428 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459903428 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459904721 22*	26ChanServ gives voice to 18jroweboy
+T 1459910880 18<polaris-18>	so my work on the gdbstub for citra came up during a job interview i had just a little bit ago
+T 1459910910 18<polaris-18>	as well as my work with reverse engineering in general, since it applied to their company (although it's not security or anything related)
+T 1459910984 18<polaris-18>	it was interesting, and the guy really seemed interested and excited to find someone who was into reverse engineering
+T 1459910995 18<yuriks18>	yay :)
+T 1459911117 18<polaris-18>	i almost gave up on this company too, because the guy was nearly a half hour late for the skype interview
+T 1459911180 18<polaris-18>	the only bad thing (or good, depending on how you look at it) is i don't think i'll have much, if any, opportunity to work with japanese in the office. so any japanese practice i get would be after hours or on the weekends :(
+T 1459912015 18<bunnei18>	polaris-, nice! Hobby projects in general are pretty great to have when looking for a job, and emulation in general is a great resume thing
+T 1459912041 18<polaris-18>	yeah, i have a few hobby projects on my resume already. plus stuff i did in school
+T 1459912090 18<polaris-18>	i think the biggest thing that got him interested in my resume was that i have 7 years of "professional" game programming experience on my resume, though. i was clear in my descriptions that i only worked on the localization side of stuff, so preparing things for english text, fixing bugs, etc
+T 1459912105 18<bunnei18>	Not only does it cover a huge range of skills (comp eng, OS, RE, etc), but it also has a lot of pretty challenging optimization components
+T 1459912114 18<polaris-18>	but he was thinking i did more stuff like 3d programming, which would apply to their work, but i suck at that :(
+T 1459912158 18<polaris-18>	but when i was explaining what i *did* do, and i mentioned reverse engineering, he became really interested in that because they need more people in the office who are skilled at RE apparently
+T 1459912159 18<bunnei18>	keep coding on side projects, it really pays off
+T 1459934859 19*	Now talking on 22#citra
+T 1459934859 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1459934859 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1459934859 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1459943046 18<neobrain18>	tfw static_cast<int32_t>(0x80000000) is actually UB..
+T 1459943265 18<merry18>	wait seriously
+T 1459943633 18<neobrain18>	actually, it's not UB but implementation-defined, but.. yeah
+T 1459943645 18<neobrain18>	https://stackoverflow.com/questions/7601731/how-does-one-safely-static-cast-between-unsigned-int-and-int/7602006#7602006
+T 1459943748 18<merry18>	oh it's just implementation-defined. don't scare me like that.
+T 1459943754 18<neobrain18>	:p
+T 1459945596 22*	26ChanServ gives channel operator status to 18Lioncache
+T 1459945638 22*	26ChanServ gives voice to 18Cruel`
+T 1459946378 18<darkf18>	!love
+T 1459946384 18<darkf18>	nooo
+T 1459946485 18<neobrain18>	huh, wtf
+T 1459948173 18<Cruel`18>	!quit
+T 1459948173 18<neobot18>	Yeah... no. Shouldn't you be working instead of trying to mess with me?
+T 1459948175 18<Cruel`18>	:)
+T 1459948224 18<darkf18>	!love
+T 1459948225 18<neobot18>	Haskell is love. Haskell is life.
+T 1459948228 18<darkf18>	there we go
+T 1460058180 19*	Now talking on 22#citra
+T 1460058180 22*	Topic for 22#citra is: Citra 3DS emulator | Check out our new website: https://citra-emu.org ! | GAME PIRACY = BAN (LINKING, SUGGESTING, USING, ETC.) | Nightly builds: https://builds.citra-emu.org/citra/nightly | Join us on #citra-dev for development discussion | Key bindings: http://tinyurl.com/citra-keys
+T 1460058180 22*	Topic for 22#citra set by 26bunnei_!81531f02@gateway/web/freenode/ip.129.83.31.2 (24Wed Feb 24 17:40:25 2016)
+T 1460058180 -18ChanServ-	[#citra] Hi, welcome to #citra! Before asking questions, remember: 1) Please leave if you're using Citra to play downloaded games 2) Don't bug us about particular games working (in particular, Pokemon doesn't work yet) 3) IRC is slow-paced; don't hesitate to ask your question (don't ask to ask), but be prepared that it may take some hours until people reply
+T 1460058199 18<Dettorer18>	that depends on what you want to do, if you only want the binary you could simply install another version of libpng
+T 1460058233 18<Dettorer18>	seems like you just need the 1.2 version
+T 1460058272 18<MachinaeWolf18>	think I'll try both versions
+T 1460058325 18<Dettorer18>	if you compile citra yourself you shouldn't need this old version of libpng (but then you have to install qtwidgets and qtopengl :p)
+T 1460058343 18<MachinaeWolf18>	lol
+T 1460058545 18<MachinaeWolf18>	well I'm doing both, 1 version of citra make work better than the other *shrugs*
+T 1460059349 18<MachinaeWolf18>	yeah it needed both qtwidgets and qtopengl
+T 1460059595 18<MachinaeWolf18>	and cmake command worked but make error'd...
+T 1460059723 18<MachinaeWolf18>	Dettorer: http://dpaste.com/20H9J8R
+T 1460059818 18<MachinaeWolf18>	yep no binary built
+T 1460059859 18<LokiX18>	Version of gcc?
+T 1460059926 18<MachinaeWolf18>	I have 4.8.5 and 5.3.0 installed
+T 1460060050 18<LokiX18>	Is it using the 5.3 one?
+T 1460060333 18<MachinaeWolf18>	think so
+T 1460060556 18<LokiX18>	I would double check that it is, std::make_unique was intruduced in gcc 4.9, which would explain the error you're getting if it was using 4.8.5.
+T 1460060796 18<MachinaeWolf18>	not sure how to check it let me see if I can figure that out
+T 1460060925 18<LokiX18>	MachinaeWolf: http://stackoverflow.com/questions/17275348/how-to-specify-new-gcc-path-for-cmake/17275650#17275650
+T 1460060988 18<MachinaeWolf18>	ah ok
+T 1460061358 18<MachinaeWolf18>	did that still error'd looks about the same
+T 1460061448 18<MachinaeWolf18>	well it's a much smaller error but still an error
+T 1460061562 18<LokiX18>	Paste it? And I'm guessing you "cmake'd" after setting the exports, right?
+T 1460061616 18<MachinaeWolf18>	yes I ran cmake first no problem, make was the issue
+T 1460061619 18<MachinaeWolf18>	http://dpaste.com/2YATKQQ
+T 1460061826 18<LokiX18>	Try deleting the contents of your 'build' folder and run cmake again. If that doesn't work, I have no idea.
+T 1460061975 18<MachinaeWolf18>	well it's taking longer this time, might be working
+T 1460062018 18<LokiX18>	( ͡° ͜ʖ ͡°)
+T 1460062168 18<linkmauve118>	MachinaeWolf, libpng has broken the ABI multiple times between 1.2 and 1.6, so it’s normal not to be able to link against one and use the other.
+T 1460062295 18<MachinaeWolf18>	ah, well citra finally built
+T 1460062320 18<MachinaeWolf18>	thanks LokiX 

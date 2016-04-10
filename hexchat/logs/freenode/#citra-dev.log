@@ -1,0 +1,1276 @@
+**** BEGIN LOGGING AT Sun Mar 27 19:31:45 2016
+
+Mar 27 19:31:45 *	Now talking on #citra-dev
+Mar 27 19:31:45 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 27 19:31:45 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 27 19:31:45 -NickServ-	You are now identified for brunodea.
+Mar 27 19:34:05 *	angelXwind (~Karen-cha@178.32.249.61) has joined
+Mar 27 19:34:33 *	SonicFreak94 is now known as SF94|Away
+**** ENDING LOGGING AT Sun Mar 27 19:40:35 2016
+
+**** BEGIN LOGGING AT Sun Mar 27 19:40:52 2016
+
+Mar 27 19:40:52 *	Now talking on #citra-dev
+Mar 27 19:40:52 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 27 19:40:52 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 27 19:40:53 -NickServ-	You are now identified for brunodea.
+Mar 27 20:40:48 *	xerpi has quit (Remote host closed the connection)
+Mar 27 20:51:43 *	pauldachz has quit (Ping timeout: 250 seconds)
+Mar 27 20:55:00 *	pauldachz (~pauldachz@c-24-13-38-95.hsd1.il.comcast.net) has joined
+Mar 27 21:10:42 *	bunnei (~bunnei@c-24-34-105-20.hsd1.ma.comcast.net) has joined
+Mar 27 21:10:42 *	ChanServ gives channel operator status to bunnei
+Mar 27 21:10:52 *	pauldachz has quit (Read error: Connection reset by peer)
+Mar 27 21:11:39 *	pauldachz (~pauldachz@c-24-13-38-95.hsd1.il.comcast.net) has joined
+Mar 27 21:33:51 *	brunodea has quit (Ping timeout: 244 seconds)
+Mar 27 21:33:51 *	Disconnected (Remote host closed socket)
+**** ENDING LOGGING AT Sun Mar 27 21:33:51 2016
+
+**** BEGIN LOGGING AT Sun Mar 27 21:34:16 2016
+
+Mar 27 21:34:16 *	Now talking on #citra-dev
+Mar 27 21:34:16 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 27 21:34:16 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 27 21:39:47 *	pauldachz has quit (Ping timeout: 260 seconds)
+Mar 27 21:40:47 <bunnei>	alas I need something to work on again :|
+Mar 27 21:44:29 <bunnei>	JayFoxRox, did you ever get anyone to test your depth write test yesterday?
+Mar 27 21:46:34 <JayFoxRox>	merry and LokiX tested it today. however, I believe merry made a mistake (the results contradict earlier findings and the title of her result sheet doesn't match the changes she should have made to the source before testing)
+Mar 27 21:48:24 <JayFoxRox>	merry: I asked you to change depthtest from "false" to "true" but your sheet is called "Depthtest off" - makes me wonder what value it was before. maybe I also messed up because I had a different version online or something - mine was "false" in my local repo, so I thought your first test were with depthtest off, the second one should have been depthtest on
+Mar 27 21:50:45 *	Joefish has quit (Ping timeout: 276 seconds)
+Mar 27 21:51:04 <merry>	JayFoxRox: I'll take another look without any modifications other than .
+Mar 27 21:51:06 <merry>	'true'
+Mar 27 21:52:10 <merry>	> C3D_DepthTest(true, GPU_ALWAYS, GPU_WRITE_ALL);, yesyes?
+Mar 27 21:52:49 <JayFoxRox>	https://github.com/JayFoxRox/3ds-tests/blob/master/depth-write/source/main.c#L78
+Mar 27 21:52:52 <JayFoxRox>	yup
+Mar 27 21:56:35 <JayFoxRox>	I've also repushed my latest version but it might not work at all - I just wanted to push before going to bed :)
+Mar 27 21:57:36 <bunnei>	merry, JayFoxRox review plz https://github.com/citra-emu/citra/pull/1546 :)
+Mar 27 22:00:38 <JayFoxRox>	d'oh shit forgot about it again today bunnei :(
+Mar 27 22:06:49 <bunnei>	no worries
+Mar 27 22:07:11 <merry>	JayFoxRox: am I right in saying the stuff with w-buffer == true are what you're interested in?
+Mar 27 22:07:15 <JayFoxRox>	bunnei: you could fix the sw rast lighting as your next project
+Mar 27 22:07:53 <yuriks>	sorry for being totally absent lately, but I really feel super tired of Citra. doing some other stuff for a while
+Mar 27 22:08:05 <yuriks>	tfarley: let me know when you're ready for more feedback on your PR, though
+Mar 27 22:08:13 <JayFoxRox>	merry: at the moment I'm interested wether triangles are drawn even if the Z value (so z/w*scale+offset or the same thing *w for w-buffers) is < 0 or > 1
+Mar 27 22:08:32 <bunnei>	JayFoxRox, perhaps, I don't really care to much about the SW rasterizer though
+Mar 27 22:08:34 <JayFoxRox>	in the first tests those triangles were not drawn = overflow / underflow = clip away
+Mar 27 22:08:51 <JayFoxRox>	and then for some odd reason it started clamping in your results instead and always drew the triangle
+Mar 27 22:09:07 <bunnei>	yuriks, that's fine, just don't expect PRs to be held up for your review unless you specifically note otherwise
+Mar 27 22:09:12 <JayFoxRox>	bunnei: I think the sw rast is very important to test new theories
+Mar 27 22:09:16 <yuriks>	bunnei: yeah, I know
+Mar 27 22:09:49 <yuriks>	we have some great people active lately though, so I feel like it's fine ^^
+Mar 27 22:09:55 *	peachum (~peachum@2601:644:301:9f7c:993c:d0ef:85eb:5341) has joined
+Mar 27 22:10:49 *	SF94|Away is now known as SonicFreak94
+Mar 27 22:11:01 <merry>	JayFoxRox: do you have a link to the version LokiX used?
+Mar 27 22:11:14 <merry>	3dsx dl is fine
+Mar 27 22:11:18 <bunnei>	JayFoxRox, perhaps, but the fragment lighting in the SW rasterizer is just still something that I don't feel like is a good use of my time. Like I said, earlier, I implemented the actual fragment lighting part of it already, and just didn't get the math right for interpolating normals (and don't feel like banging my head anymore on that)
+Mar 27 22:12:02 <bunnei>	Although I'd be happy to share the rest of my work if someone wants to figure out the interpolation
+Mar 27 22:13:56 <LokiX>	merry: I used this one for the re-tests JayFoxRox wanted. <JayFoxRox> https://dl.dropboxusercontent.com/u/13558082/depth-write.3dsx
+Mar 27 22:14:03 <JayFoxRox>	merry: no, I'm afraid that's lost now. I don't commit everytime I compile
+Mar 27 22:14:15 <JayFoxRox>	LokiX: that's symlinked and always the latest version I have locally
+Mar 27 22:14:32 <LokiX>	Oh. :(
+Mar 27 22:14:38 <merry>	oh well.
+Mar 27 22:14:52 <LokiX>	I still have it on my 3ds, I could upload it if you want.
+Mar 27 22:15:01 <JayFoxRox>	just use the newer version :P
+Mar 27 22:15:04 <JayFoxRox>	it should work the same
+Mar 27 22:15:09 <JayFoxRox>	at least we know what the code is like then
+Mar 27 22:15:54 <JayFoxRox>	https://docs.google.com/spreadsheets/d/1E8xvJIbj_MVygWtr4ELPuzOJPqEv4yGeHQuKG6kFmTc/edit#gid=0 merry - check line 547 for example
+Mar 27 22:16:01 <merry>	JayFoxRox: http://i.imgur.com/dYigd0g.png
+Mar 27 22:16:19 <JayFoxRox>	urgh.. that's horrible :/
+Mar 27 22:16:43 <JayFoxRox>	it looks fine in citra, looks like I'm being hit by a redraw
+Mar 27 22:17:28 <merry>	it's pretty much there constantly :p
+Mar 27 22:17:56 <JayFoxRox>	I already #define printf() so I can move data into a buffer and do a single clear + print
+Mar 27 22:18:12 <JayFoxRox>	(because setting stdout buffers does not work either with the libc..)
+Mar 27 22:18:30 <yuriks>	I never get flickering like that when doing text
+Mar 27 22:18:44 <JayFoxRox>	yuriks: I clear the screen all the time and it's all in one thread
+Mar 27 22:18:46 <yuriks>	you should probably only redraw when a key is pressed
+Mar 27 22:19:05 <JayFoxRox>	yeah - that would work indeed, but I had problems getting the framebuffer depth values
+Mar 27 22:19:29 <JayFoxRox>	(in citra at least) I get old or garbage values for the first 1-2 frames after changes
+Mar 27 22:19:36 <yuriks>	O_o
+Mar 27 22:19:54 <JayFoxRox>	as I don't know how to properly sync up the citro3d / ctrulib code and the actual GPU I don't know when to read the buffers properly
+Mar 27 22:20:14 <JayFoxRox>	so sometimes I'd WAR
+Mar 27 22:20:33 <JayFoxRox>	so my solution was to just print it out in a loop and the font rendering works fine in citra :P
+Mar 27 22:24:25 <merry>	I'm headed to bed, a bit too tired.
+Mar 27 22:24:25 <pcmaker>	yuriks: ? https://github.com/citra-emu/citra/issues/1486
+Mar 27 22:24:46 <yuriks>	pcmaker: sorry, don't think I'm going to get around to that super soon...
+Mar 27 22:25:12 <pcmaker>	:(
+Mar 27 22:25:41 <yuriks>	I have a gameboy emulator I could sell you if you're insterested instead XD
+Mar 27 22:42:45 *	Disconnected (Invalid argument)
+**** ENDING LOGGING AT Sun Mar 27 22:42:45 2016
+
+**** BEGIN LOGGING AT Sun Mar 27 22:43:08 2016
+
+Mar 27 22:43:08 *	Now talking on #citra-dev
+Mar 27 22:43:08 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 27 22:43:08 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 27 22:43:09 <JayFoxRox>	you can probably add 2 of those and it should be even better :P
+Mar 27 22:43:28 <JayFoxRox>	it will just be somewhat slower - but it's not very interactive anyway
+Mar 27 22:44:33 <JayFoxRox>	https://github.com/JayFoxRox/citra/commit/5db1e9d87bb5046cb4c033a8edd5c02ad3d0a522 this is the citra implementation btw in case anyone wants to test depth issue games - it's based on my printf branch so I can run my own test app
+Mar 27 22:47:20 *	calc84maniac (~calc84man@71-14-101-241.dhcp.gnvl.sc.charter.com) has joined
+Mar 27 23:02:08 <yuriks>	LokiX: you should try waiting for the bottom screen vblank
+Mar 27 23:02:14 <yuriks>	each screen has its own vblank
+Mar 27 23:03:20 *	Groose (~Groose@192.30.252.42) has joined
+Mar 27 23:03:20 <Groose>	[citra] bunnei pushed 2 new commits to master: https://git.io/vVJ6Z
+Mar 27 23:03:20 <Groose>	citra/master 933af7a LFsWang: Fix Qt chinese words encode problem on Windows
+Mar 27 23:03:20 <Groose>	citra/master e815e4a bunnei: Merge pull request #1541 from LFsWang/path...
+Mar 27 23:03:21 *	Groose (~Groose@192.30.252.42) has left
+Mar 27 23:08:39 <LokiX>	JayFoxRox: http://i.imgur.com/Ub0ZHhd.png Left is hw, right is sw.
+Mar 27 23:13:30 <LokiX>	yuriks: Oh? Would that be gspWaitForVBlank1()?
+Mar 27 23:13:36 <yuriks>	I think so
+Mar 27 23:15:22 <JayFoxRox>	LokiX: only implemented software so far
+Mar 27 23:16:07 <LokiX>	JayFoxRox: Right. xD
+Mar 27 23:16:10 <JayFoxRox>	way harder to debug the hw code because I can't simply read back values in my homebrew - I'll have to apitrace it or something :/
+Mar 27 23:18:27 <LokiX>	yuriks: Weirdly enough, with gspWaitForVBlank1() it looks the same as if it had no gspWaitForVBlank() at all.
+Mar 27 23:19:28 <yuriks>	LokiX: which is... ?:D
+Mar 27 23:20:04 <LokiX>	yuriks: http://i.imgur.com/dYigd0g.png
+Mar 27 23:20:21 <yuriks>	isn't that how it looked before?
+Mar 27 23:22:12 <JayFoxRox>	btw, mine never uses the RED code because my devkitpro is too old :P
+Mar 27 23:22:19 <pcmaker>	JayFoxRox: Just testing w-buffer branch and tappingo is without difference
+Mar 27 23:22:26 <JayFoxRox>	pcmaker: use sw rendering
+Mar 27 23:22:34 <JayFoxRox>	with the latest commit it works fine for me
+Mar 27 23:23:02 <JayFoxRox>	there are no hw rendering changes in that branch
+Mar 27 23:23:08 <JayFoxRox>	I'll do them if I find the time for it
+Mar 27 23:23:19 <pcmaker>	sw is fine
+Mar 27 23:24:01 <LokiX>	yuriks: Yes, with gspWaitForVBlank1() looks like that as well. With gspWaitForVBlank() it looks slightly better.(You can see where it's missing, but kinda "ghosthy")
+Mar 27 23:24:09 <JayFoxRox>	bunnei: just an idea. I was going to do it anyway probably: base class for a "shader" which interpretershader and jitshader inherit. the base class would have a virtual run and compile function. the compile function could simply copy the program/swizzle data at compile time
+Mar 27 23:25:18 <JayFoxRox>	the current approach with the GetVertexShaderInstruction is stupid because we need a second function for the GS + we need a setup for the JIT but only a Run for the interpreter which can create ambiguity
+Mar 27 23:27:20 <JayFoxRox>	my GS branch has trouble with the current approach too because it has to ::setup the shader multiple times per draw call (as VS feeds the GS, so I have to setup Vs, then GS, then VS again etc)
+Mar 27 23:27:55 <JayFoxRox>	would be way easier if I could just compile 2 shaders at the start of the loop, then "Run" them whenever I feel like it (and probably feed input and output data using buffers)
+Mar 27 23:32:14 <bunnei>	JayFoxRox, ah alright... Fwiw I don't really have a good understanding of how Pica GS works (so a code organization thats ideal for both isn't automatically obvious to me), but this sounds like it should be done as pre- GS patch, after #1546 is merged 
+Mar 27 23:41:19 *	calc85maniac (~calc84man@71-14-101-241.dhcp.gnvl.sc.charter.com) has joined
+Mar 27 23:44:03 *	calc84maniac has quit (Ping timeout: 240 seconds)
+Mar 27 23:48:13 *	RoadrunnerWMC has quit (Remote host closed the connection)
+Mar 27 23:55:54 *	RoadrunnerWMC (~Roadrunne@104.236.106.247) has joined
+Mar 28 00:46:29 *	mat^2 (~Mathias@87-55-0-192-dynamic.dk.customer.tdc.net) has joined
+Mar 28 01:22:03 *	inolen (~Adium@bas17-toronto63-3096725123.dsl.bell.ca) has joined
+Mar 28 02:20:44 *	mat^2 has quit (Ping timeout: 260 seconds)
+Mar 28 02:41:11 *	Nikos (4ed6be4c@gateway/web/freenode/ip.78.214.190.76) has joined
+**** ENDING LOGGING AT Mon Mar 28 02:45:37 2016
+
+**** BEGIN LOGGING AT Mon Mar 28 23:51:32 2016
+
+Mar 28 23:51:32 *	Now talking on #citra-dev
+Mar 28 23:51:32 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 28 23:51:33 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 29 00:02:21 *	Kitlith has quit (Ping timeout: 250 seconds)
+Mar 29 00:10:42 *	mat^2 has quit (Ping timeout: 268 seconds)
+Mar 29 00:21:56 *	Kitlith (~Kitlith@c-24-6-221-231.hsd1.ca.comcast.net) has joined
+Mar 29 00:45:30 *	peachum (~peachum@50.250.192.246) has joined
+Mar 29 00:53:46 *	LokiX has quit (Read error: Connection reset by peer)
+Mar 29 01:04:27 *	LokiX (LokiX@191.188.92.83) has joined
+Mar 29 01:18:34 *	peachum has quit (Remote host closed the connection)
+Mar 29 01:53:54 *	peachum (~peachum@50.250.192.246) has joined
+Mar 29 01:56:44 <pcmaker>	merry: Unfortunately, quality is worse
+Mar 29 02:06:11 *	Kitlith has quit (Ping timeout: 248 seconds)
+Mar 29 02:22:27 *	Kitlith (~Kitlith@c-24-6-221-231.hsd1.ca.comcast.net) has joined
+**** ENDING LOGGING AT Tue Mar 29 03:02:53 2016
+
+**** BEGIN LOGGING AT Tue Mar 29 15:45:37 2016
+
+Mar 29 15:45:37 *	Now talking on #citra-dev
+Mar 29 15:45:37 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 29 15:45:37 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 29 15:45:37 -NickServ-	You are now identified for brunodea.
+Mar 29 15:53:18 *	ector (~asdf@37.247.11.157) has joined
+Mar 29 16:34:20 *	Groose (~Groose@192.30.252.46) has joined
+Mar 29 16:34:20 <Groose>	[citra] mailwl opened pull request #1613: Set unknown value to 1, which waits some games before start drawing (master...anp) https://git.io/vVti5
+Mar 29 16:34:20 *	Groose (~Groose@192.30.252.46) has left
+Mar 29 17:15:44 *	paulieflomar has quit (Read error: Connection reset by peer)
+Mar 29 17:24:02 *	darkf (~darkf@unaffiliated/darkf) has joined
+Mar 29 17:30:08 *	LittleWhite has quit (Quit: Leaving.)
+Mar 29 17:54:01 *	ichfly has quit (Quit: Nettalk6 - www.ntalk.de)
+Mar 29 18:23:34 <JayFoxRox>	in C++ when I have a func template<bool Debug> foo() { /* can I do different control flow based on "Debug" ? */ }
+Mar 29 18:25:28 <merry>	yes if I understand correctly what you mean by 'different control flow'.
+Mar 29 18:26:11 <JayFoxRox>	if (Debug) { printf("Debug Foo"); } else { printf("Not Debug Foo"); }
+Mar 29 18:26:19 <merry>	that's fine
+Mar 29 18:26:20 <Lioncash>	Yes, that will work
+Mar 29 18:26:42 <merry>	though you don't magically get static ifs (I kinda want static ifs)
+Mar 29 18:26:44 <JayFoxRox>	mhh my problem is probably another bar<Debug> variable then
+Mar 29 18:26:54 <JayFoxRox>	    RunnableShader<Debug>* shader;
+Mar 29 18:26:55 <JayFoxRox>	    if (!Debug && VideoCore::g_shader_jit_enabled) {
+Mar 29 18:26:55 <JayFoxRox>	        shader = new RunnableJitShader();
+Mar 29 18:26:55 <JayFoxRox>	    } else {
+Mar 29 18:26:55 <JayFoxRox>	        shader = new RunnableInterpreterShader<Debug>();
+Mar 29 18:26:56 <JayFoxRox>	    }
+Mar 29 18:27:37 <Lioncash>	JayFoxRox: What are you trying to do in particular?
+Mar 29 18:27:40 <JayFoxRox>	RunnableJitShader can only provide RunnableShader<false>, however, this template must handle Debug=false and Debug=true
+Mar 29 18:27:54 <JayFoxRox>	Lioncash: trying to refactor bunneis JIT part 2 code for my GS code
+Mar 29 18:27:55 <merry>	that won't work.
+Mar 29 18:28:09 <merry>	that would need a static if should you want to write code in that manner.
+Mar 29 18:28:27 <JayFoxRox>	yeah - I was aware I need to do it at compile-time
+Mar 29 18:28:38 <JayFoxRox>	but I wasn't sure how (and if) I could do that
+Mar 29 18:28:48 <merry>	preprocessor?
+Mar 29 18:28:57 <Lioncash>	ew
+Mar 29 18:29:04 *	merry pets Lioncash 
+Mar 29 18:29:19 <Lioncash>	(if you mean using the preproc to get a constant result)
+Mar 29 18:29:31 <JayFoxRox>	unless template vars are automaticly parsed by the C++ preproc it sounds overly complicated to me..
+Mar 29 18:32:13 <merry>	you could always have RunnableJitShader take a bool Debug template argument and just ignore it in that case..
+Mar 29 18:32:28 <merry>	though it makes me wonder why it's a template parameter in the first place
+Mar 29 18:33:28 <ector>	just use a regular bool, there's not much benefit from template paramters in this kind of code.. that can't possible be inner loop stuff
+Mar 29 18:36:34 <Lioncash>	^ this
+Mar 29 18:36:56 <Lioncash>	(assuming nothing in citra is being weird and prevents it)
+Mar 29 18:37:27 <JayFoxRox>	the shader structs already have <bool Debug> templates and the debug record code depends on it too I believe
+Mar 29 18:37:32 <JayFoxRox>	I don't know how to do it otherwise
+Mar 29 18:38:06 <JayFoxRox>	the changes are WAY too invasive already (seeing how I only want to test bunneis PR but already took like 5 hours to restructure the code)
+Mar 29 18:38:51 <JayFoxRox>	I've tried to have 2 functions now, one for the true and one for the false template but it doesn't work either :/
+Mar 29 18:39:15 <JayFoxRox>	"ambiguating new declaration"
+Mar 29 18:39:38 <merry>	JayFoxRox: pop your code up somewhere
+Mar 29 18:40:03 <JayFoxRox>	only if you promise not to laugh ;P
+Mar 29 18:40:12 <merry>	suuuure ;)
+Mar 29 18:44:44 <JayFoxRox>	https://github.com/JayFoxRox/citra/commit/fa86d37c2497ae2d2162328933a309fc33619579#diff-48f017addf690e20906e1969da7cc96eR46
+Mar 29 18:45:57 <JayFoxRox>	idea is to stop binding shaders in Setup. instead create a RunnableShader object from selected Pica regs (or grab it from cache), Then ::Run it whenever necessary.
+Mar 29 18:46:34 <JayFoxRox>	(also pass input data and output data using variables instead of having it in the unit state etc. - but that will work fine, I already do that in my other GS branch)
+Mar 29 18:47:05 <merry>	can Setup take a template argument?
+Mar 29 18:47:16 <merry>	as in, does your design allow for that?
+Mar 29 18:48:02 <JayFoxRox>	I don't know. I'm a C++ noob and don't know how powerful templates are. I'm a C99 macro whore normally :P
+Mar 29 18:48:39 <merry>	Ill take a better read then~
+Mar 29 18:48:51 <Lioncash>	JayFoxRox: You can't make template functions virtual, btw.
+Mar 29 18:49:36 <Lioncash>	as in, they can't use the arguments of a template
+Mar 29 18:50:24 <JayFoxRox>	?
+Mar 29 18:50:45 <Lioncash>	You have have a FIXME in your code about virtual functions
+Mar 29 18:51:53 <JayFoxRox>	oh yeah - I think I got that working already. I had some problems earlier because it claimed I didn't overwrite some pure virtual functions
+Mar 29 18:52:08 <JayFoxRox>	so unless shader.h:361 is a problem already I should be good
+Mar 29 18:55:03 <Lioncash>	Btw, with Setup(), why do you return a local variable by reference, instead of just returning the pointer? (you should use unique_ptr for this, btw)
+Mar 29 18:55:44 <JayFoxRox>	Lioncash: yeah - but it would have meant more changes in command_processor and I wasn't sure how to use unique_pointer and make_unique. I was going to do something like that eventually
+Mar 29 18:56:42 <JayFoxRox>	ideally Setup() would create a new shader or grab one from the cache. I might also replace it with the constructor of RunnableShader which would then forward stuff to a RunnableJitShader or RunnableInterpreterShader
+Mar 29 18:58:49 <Lioncash>	JayFoxRox: also returning a local reference like that is a memory leak.
+Mar 29 18:58:57 <JayFoxRox>	Lioncash: I'm aware :)
+Mar 29 19:00:23 <JayFoxRox>	I can't use a unique_ptr because the pointer needs to be in a cache + I need one to return, right?
+Mar 29 19:00:48 <Lioncash>	shared_ptr and weak_ptr
+Mar 29 19:00:58 <JayFoxRox>	yup, thought so :)
+Mar 29 19:15:21 *	paulieflomar (~paulieflo@216.240.181.209) has joined
+Mar 29 19:18:46 *	paulieflomar_q (~paulieflo@216.240.181.209) has joined
+Mar 29 19:19:11 *	paulieflomar has quit (Client Quit)
+Mar 29 19:24:50 <merry>	I really can't understand why you're trying to refactor this this way.;;
+Mar 29 19:35:09 <merry>	The shader will only be run in Debug mode when a breakpoint is hit, correct?
+Mar 29 19:39:52 <linkmauve1>	merry, why do you need a static if?  I just looked at both g++ and clang++, and they don’t compile in the path that isn’t taken, even at -O0.
+Mar 29 19:44:41 <merry>	linkmauve1: easier to explain with an example: https://godbolt.org/g/HYufJL
+Mar 29 19:47:34 <JayFoxRox>	merry: yeah, only for the Qt breakpoint debugging. I'm refactoring it because at the moment the code calls Shader::Setup() which creates a shader jit and puts it in a cache. then it can be called using Shader::Run(). However, when using a GS you'll repeatedly have to Setup VS, run it, then setup GS, run it, then do the VS again for the next vertex etc
+Mar 29 19:48:41 <JayFoxRox>	so to avoid doing the cache lookup and reloading the shader code I'd like to create runnable shader objects at the start of the primitive and then run the shaders whenever I want while processing the vertices
+Mar 29 19:48:56 <JayFoxRox>	I guess one could create a SetupVS and SetupGS function, but it's pretty ugly imho
+Mar 29 19:50:26 <merry>	that makes sense, yes.
+Mar 29 19:50:47 <JayFoxRox>	the current code already had the ugly DebugState<Debug> thing so I kept it
+Mar 29 19:51:18 <JayFoxRox>	and I figured it would make sense to have a Debug-Interpreter, Interpreter (for non x64) and a JIT class
+Mar 29 19:52:18 <merry>	JayFoxRox: how about something along these lines? https://gist.github.com/MerryMage/614dfc8ae2410b278a61acd87a02d286
+Mar 29 19:52:37 <merry>	A shader can be run in "release-mode" or in "debug-mode" if you like
+Mar 29 19:53:22 <JayFoxRox>	(also I wanted to move shader code and swizzle data into the shader object because changing the code afterwards would make the JIT invalid. At the moment it's possible to call Setup at the wrong point and end up with garbage JIT results. At least I wanted to make it consistence between jit and interpreter)
+Mar 29 20:06:00 <JayFoxRox>	maybe I should just revert some changes and keep the current layout, then turn the Shader namespace into a class and have a template so it can be fed with the registers for either VS or GS, one could have a singleton then for GeometryShader:: and VertexShader:: ?
+Mar 29 20:18:11 *	ector has quit ()
+Mar 29 20:22:42 *	xerpi has quit (Remote host closed the connection)
+Mar 29 21:17:17 <pcmaker>	interesting https://github.com/citra-emu/citra/pull/1613
+Mar 29 21:29:09 *	CaptainCaffeine has quit (Quit: Leaving)
+Mar 29 21:36:13 <Lectem>	ObsidianX: I commented your PR, if you need more info just ask 
+Mar 29 21:37:30 <ObsidianX>	ah, bummer. alright. i'll work on that later on tonight
+Mar 29 21:37:35 <ObsidianX>	luckily the list in ctrulib is pretty short
+Mar 29 21:39:36 <Lectem>	yeah, the only problem is that not only the optname are not the same as other OSes, but vals can differ too
+Mar 29 21:39:59 <Lectem>	I did quite some intensive testing on socu, and *everything* working should be in ctrulib
+Mar 29 21:44:28 <JayFoxRox>	stupid me.. I'll just make ShaderSetup a class :P will unit data and code in one class :)
+Mar 29 21:49:48 *	pauldachz (~pauldachz@c-24-13-38-95.hsd1.il.comcast.net) has joined
+Mar 29 21:53:23 *	jroweboy (~jroweboy@2605:a601:6df:1c00:580f:acee:caa8:236b) has joined
+Mar 29 21:54:24 *	jroweboy has quit (Client Quit)
+Mar 29 21:55:46 *	jroweboy (~jroweboy@2605:a601:6df:1c00:580f:acee:caa8:236b) has joined
+Mar 29 21:56:29 *	jroweboy_ (~jroweboy@2605:a601:6df:1c00:580f:acee:caa8:236b) has joined
+Mar 29 21:56:31 *	jroweboy_ has quit (Read error: Connection reset by peer)
+Mar 29 21:57:29 *	rewrite has quit (Ping timeout: 244 seconds)
+Mar 29 22:00:34 *	rewrite (~rewrite@208.100.19.173) has joined
+Mar 29 22:00:34 *	rewrite has quit (Changing host)
+Mar 29 22:00:34 *	rewrite (~rewrite@unaffiliated/rewrite) has joined
+Mar 29 22:31:51 *	Armada has quit (Ping timeout: 276 seconds)
+Mar 29 22:33:05 *	Armada (~Armada@unaffiliated/armada) has joined
+Mar 29 22:44:05 *	darkf has quit (Read error: Connection reset by peer)
+Mar 29 22:44:31 *	darkf (~darkf@unaffiliated/darkf) has joined
+Mar 29 23:28:32 <JayFoxRox>	bunnei: I'm almost done rebasing (and refactoring) my GS stuff on your JIT branch. I should be able to test it tomorrow (I promise <3 )
+Mar 30 00:14:18 *	Groose (~Groose@192.30.252.45) has joined
+Mar 30 00:14:19 <Groose>	[citra] exhalatio opened pull request #1616: Dummy implementation dlp:SRVR Service. (master...dlp_dummy) https://git.io/vVqbW
+Mar 30 00:14:19 *	Groose (~Groose@192.30.252.45) has left
+Mar 30 00:23:58 *	darkf has quit (Read error: Connection reset by peer)
+Mar 30 00:24:28 *	darkf (~darkf@unaffiliated/darkf) has joined
+Mar 30 01:00:56 *	angelXwind has quit (Ping timeout: 244 seconds)
+Mar 30 01:09:10 *	angelXwind (~Karen-cha@178.32.249.61) has joined
+Mar 30 01:47:36 <JayFoxRox>	https://github.com/bunnei/citra/compare/refactor-shader-jit...JayFoxRox:gs-new-refactor only 4 more steps to go :) [most of it copy & paste]
+Mar 30 02:17:12 *	Joefish_ (~Joefish@p5B120861.dip0.t-ipconnect.de) has joined
+Mar 30 02:20:44 <tfarley>	yuriks: in order to keep cache logic out of mem read/write fast path i have to set page's mapped pointer to null to get to special handlers. from your comments it would seem adding an 8MB old_pointer array to the pagetable would not be ideal. what do?
+Mar 30 02:21:33 <yuriks>	tfarley: you can just re-derive them from the VMAs
+Mar 30 02:21:59 <yuriks>	probably write a function that remaps part a range of a VMA
+Mar 30 02:22:10 <yuriks>	remaps a range of*
+Mar 30 02:22:36 <yuriks>	I'm thinking that this might need some looking at
+Mar 30 02:22:54 <yuriks>	because if the VMAs change then you need to flush the entries in that region anyway
+Mar 30 02:23:38 <tfarley>	oh boy :|
+Mar 30 02:25:55 <tfarley>	this seems like something i could easily screw up hehe
+Mar 30 02:26:24 *	yuriks throws tfarley in the shark tank
+Mar 30 02:26:27 <yuriks>	:)
+Mar 30 02:27:09 <yuriks>	into*
+Mar 30 02:30:02 <archshift>	The new Github saved replies are pretty nice
+Mar 30 02:30:15 <archshift>	I just saved a "not a help forum" reply :)
+Mar 30 02:52:20 <yuriks>	archshift: oh wow, that's grand
+Mar 30 03:09:32 *	SonicFreak94 is now known as SF94|Zzz
+**** BEGIN LOGGING AT Wed Mar 30 09:17:43 2016
+
+Mar 30 09:17:43 *	Now talking on #citra-dev
+Mar 30 09:17:43 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 30 09:17:43 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 30 09:17:43 -NickServ-	You are now identified for brunodea.
+Mar 30 09:18:08 <JayFoxRox>	GS is around the corner - should be finished in about 2-3 hours
+Mar 30 09:18:25 <JMC4789>	You not knowing C++ makes it pretty crazy.  you must be very quick to understand how things work in the emulator :D
+Mar 30 09:18:58 <polaris->	C++ is just C with classes, right? :)
+Mar 30 09:19:29 <JayFoxRox>	JMC4789: it feels like C with a "auto" type for variables
+Mar 30 09:19:58 <JayFoxRox>	I want to learn C++ though, partly the reason why I work on citra atm (between uni and uni or uni and job - idk yet)
+Mar 30 09:20:10 <neobrain>	C *has* auto for variables, it's just different from the one in C++ and effectively completely useless :p
+Mar 30 09:23:49 <Lioncash>	polaris-: One of the worst things is there are people that think that unironically
+Mar 30 09:24:56 <polaris->	Lioncash, i used to be like that when i first learned C++ many, many years ago. i know how to use the OOP features and templates and such though, but i still haven't gotten around to newer C++ stuff (the fancy pointers, etc) unfortunately because i don't use C++ enough
+Mar 30 09:26:50 <polaris->	i've been looking for a job recently in Japan and surprisingly, C++ job listings seems to be really rare. i've seen maybe 2 or 3
+Mar 30 09:27:43 <polaris->	and all of the C++ codebases i've had to deal with for work (videogame localizations, so i deal with random stuff) have all boiled down to "C with classes" unfortunately. i don't think i've ever seen any of the newer C++ features used, ever
+Mar 30 09:32:43 <Lioncash>	polaris-: Unfortunately there's this hot meme game devs like to tout that the STL is bad.
+Mar 30 09:33:05 <Lioncash>	polaris-: Despite things like the EASTL existing
+Mar 30 09:35:27 <neobrain>	I loved how the other day one of the more well reputed game developers made a big deal out of accessing arrays via "a[i++]" instead of "a[++i]" (or vice-versa, I don't actually remember)
+Mar 30 09:44:03 *	Disconnected (Invalid argument)
+**** ENDING LOGGING AT Wed Mar 30 09:44:03 2016
+
+**** BEGIN LOGGING AT Wed Mar 30 09:44:29 2016
+
+Mar 30 09:44:29 *	Now talking on #citra-dev
+Mar 30 09:44:29 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 30 09:44:29 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 30 09:44:29 -NickServ-	You are now identified for brunodea.
+Mar 30 09:44:51 <polaris->	maybe i'm giving compilers too much credit here, but wouldn't a compiler be able to determine if it's safe to use one vs the other and choose the more optimized one?
+Mar 30 09:44:55 <Lioncash>	Whenever something trivial like that is *actually* an issue it usually means "Our console's toolchain uses a crap closed-source compiler with awful optimizations instead of using GCC or Clang" or "We wrote some completely awful stuff, but we're so far in the hole we need to gloss over it"
+Mar 30 09:45:04 <Lioncash>	polaris-: Generally, yeah
+Mar 30 09:47:31 <Lioncash>	polaris-: Most of the complaints about the STL have been long-since addressed, however you still have late 1990's-early 2000's mindsets being cargo-culted.
+Mar 30 09:48:07 <Lioncash>	So whenever someone complains about that sort of thing, I usually just reply with "Show me the benchmarking you did"
+Mar 30 09:48:15 <Lioncash>	And most of the time, they haven't
+Mar 30 09:54:56 *	CaptainCaffeine (~matt@172.98.67.67) has joined
+Mar 30 10:16:38 <JayFoxRox>	meh.. X11 keeps freezing because I hit breakpoints while the Qt context menu is opened >.<
+Mar 30 10:16:43 <JayFoxRox>	on my 3rd reboot now
+Mar 30 10:23:45 <bunnei_>	JayFoxRox: did you get anywhere yesterday with integrating #1546 with your stuff?
+Mar 30 10:24:54 <JayFoxRox>	bunnei_ I'm working on it as we speak :)
+Mar 30 10:25:05 <JayFoxRox>	it still SIGSEGVs but I have all my GS code integrated now
+Mar 30 10:25:14 <bunnei_>	Ah cool
+Mar 30 10:25:36 <bunnei_>	JayFoxRox: other than the last two nits, does anything need to change with my PR before merging it?
+Mar 30 10:26:30 <JayFoxRox>	bunnei_: give me a couple more hours
+Mar 30 10:26:58 <JayFoxRox>	because as soon as the SIGSEGV is gone I can test with ~10 games which use said JMP logic which won't work otherwise
+Mar 30 10:28:03 <bunnei_>	Sweet
+Mar 30 10:35:44 <bunnei_>	tfarley: Any plans to revisit #1436 again anytime soon?
+Mar 30 10:43:00 <JayFoxRox>	wth.. no matter what I run it crashes in ProcessCommandList() - this is spooky!
+Mar 30 11:09:54 <JayFoxRox>	bunnei_: my shader loader is still slightly broken but this might be legit: Backwards if-statements (477 -> 66) not supported
+Mar 30 11:09:56 <JayFoxRox>	in alien on the run
+Mar 30 11:10:43 <bunnei_>	JayFoxRox: hmm cool... is that in a vertex shader?
+Mar 30 11:10:50 <JayFoxRox>	no idea tbh :P
+Mar 30 11:10:55 <JayFoxRox>	but probably
+Mar 30 11:11:09 <JayFoxRox>	I'm not sure if it's ever executed though
+Mar 30 11:11:21 <JayFoxRox>	it might not even be proper code because my program_code.offset is broken
+Mar 30 11:11:55 <JayFoxRox>	I'm currently uploading VS and GS through it and increment them seperately when it should instead reuse the VS if the vs_com_mode is in a specific mode
+Mar 30 11:12:05 <JayFoxRox>	so maybe the code which is uploaded is broken
+Mar 30 11:12:50 <bunnei_>	hmm okay... If it turns out to be real I'll implement that, I can look into that game later today
+Mar 30 11:13:10 *	darkf has quit (Quit: Leaving)
+Mar 30 11:13:22 <bunnei_>	cc pcmaker ^ ever see a game complain about that exception^ "Backwards if-statements not supported" in the shader JIT
+Mar 30 11:14:27 <JayFoxRox>	https://github.com/bunnei/citra/compare/refactor-shader-jit...JayFoxRox:gs-new-refactor < this is still my WIP branch
+Mar 30 11:15:20 <JayFoxRox>	bunnei_: if that assert already existed previously it's probably nonsense because I had the game running with the old interpreter / jit (jit will only break some vertices but otherwise compiled fine I believe)
+Mar 30 11:15:42 <bunnei_>	Yes its been in there, still, Pica could support it, I should test it at some point
+Mar 30 11:24:55 <JayFoxRox>	bunnei_: another game, similar error. thinking about it.. the assert was there + the code was there, but it was never compiled if it was dead code
+Mar 30 11:25:10 <JayFoxRox>	now that all code is compiled this could theoreticly happen way more often
+Mar 30 11:27:55 <bunnei_>	hmm yeah... is main_offset non-zero?
+Mar 30 11:28:16 <bunnei_>	(as before, if the program started at zero, as many shaders do, it would have still compiled all of the code)
+Mar 30 11:31:30 <bunnei_>	477 -> 66 does look bogus though, what was the jump for the other game?
+Mar 30 11:33:47 <JayFoxRox>	Backwards if-statements (734 -> 37) not supported
+Mar 30 11:34:16 <bunnei_>	I'm not sure how we could always detect dead code without knowing main offset at compile time... Maybe we need a SHADER_ASSERT(..) that just does a LOG_CRITICAL and emits INT 3 or something
+Mar 30 11:34:22 <bunnei_>	yeah thats bogus
+Mar 30 11:35:47 <JayFoxRox>	bunnei_: I'd vote for pushing an ABI_CallFunction which does the LOG_ERROR
+Mar 30 11:36:08 <bunnei_>	ah yeah, that's not a bad suggestion either
+Mar 30 11:36:28 <JayFoxRox>	but yeah, that should probably already happen in your PR
+Mar 30 11:36:52 <JayFoxRox>	because otherwise we might get a ton of regressions because of those link time assertions
+Mar 30 11:37:23 <bunnei_>	well, its already been tested a ton and its the first I've heard of it, but yeah I can do that
+Mar 30 11:38:20 <JayFoxRox>	I'll do some other things now but I'll fix the offset issues in my GS code later and test some more :)
+Mar 30 12:25:07 <JayFoxRox>	bunnei_: fixed upload = no problems anymore
+Mar 30 12:25:21 <JayFoxRox>	WWE menu now fixed with new JIT
+Mar 30 12:27:26 <JayFoxRox>	korra also working with new JIT and very fast now (compared to the old ::Setup approach)
+Mar 30 12:28:13 <JayFoxRox>	mutant mudds still regression (somewhere in master last week probably)
+Mar 30 12:29:09 *	SF94|Zzz is now known as SonicFreak94
+Mar 30 12:40:16 <merry>	 nbh/.[1;2C
+Mar 30 12:40:16 <merry>	AC
+Mar 30 12:40:21 <merry>	err, sorry
+Mar 30 12:42:46 <tfarley>	merry is a robot, confirmed
+Mar 30 12:43:06 *	Kitlith has quit (Ping timeout: 244 seconds)
+Mar 30 12:43:16 <Lioncash>	lol
+Mar 30 12:43:29 <tfarley>	bunnei_: just recently picked it back up again. working through the comments
+Mar 30 12:44:27 *	Kitlith (~Kitlith@c-24-6-221-231.hsd1.ca.comcast.net) has joined
+Mar 30 12:45:01 *	ichfly (~ichfly@185.35.208.140) has joined
+Mar 30 12:57:26 <JayFoxRox>	https://github.com/bunnei/citra/compare/refactor-shader-jit...JayFoxRox:gs-new-refactor < is now also almost complete. I still want to clean up the last fixup commit, then rebase on bunneis fixes. after that I'll work on the HW w-buffer.
+Mar 30 13:39:12 *	xerpi has quit (Quit: Leaving)
+Mar 30 13:57:49 *	paulieflomar (~paulieflo@67-42-182-215.eugn.qwest.net) has joined
+Mar 30 13:58:28 *	ector (~asdf@37-247-11-157.customers.ownit.se) has joined
+Mar 30 13:58:29 *	paulieflomar has quit (Read error: Connection reset by peer)
+Mar 30 13:59:16 *	paulieflomar_q has quit (Ping timeout: 264 seconds)
+Mar 30 14:00:42 *	paulieflomar (~paulieflo@216.240.181.209) has joined
+Mar 30 14:01:46 <bunnei_>	JayFoxRox: awesome!
+Mar 30 14:01:57 <bunnei_>	tfarley: also awesome!
+Mar 30 14:09:35 <JayFoxRox>	where do I have to add code in PicaShaderConfig so it gets updated? I have a depth related reg in pica which is changed but it won't update PicaShaderConfig. I added a new var and set it in the constructor. I then read it in GenerateFrag.Shader
+Mar 30 14:10:22 <pcmaker>	JayFoxRox: GS Looks pretty good.I've seen problem only with upscaled resolution...it makes gs buggy when it's checked in resi rev, mh3
+Mar 30 14:11:05 <JayFoxRox>	"resi rev"?
+Mar 30 14:11:30 <JayFoxRox>	pcmaker: the MH3 regression is still there, right?
+Mar 30 14:11:51 <bunnei_>	JayFoxRox: it just needs to be a member of the struct, and initialized by CurrentConfig() with whatever the active value is
+Mar 30 14:11:58 *	LittleWhite (~LittleWhi@vac26-2-88-164-50-240.fbx.proxad.net) has joined
+Mar 30 14:12:05 <JayFoxRox>	that's odd
+Mar 30 14:12:57 <pcmaker>	JayFoxRox: resident evil revelations, mh3 don't know yet, because I can'T get into menu...
+Mar 30 14:13:16 <bunnei_>	JayFoxRox: e.g. https://github.com/citra-emu/citra/blob/master/src/video_core/renderer_opengl/gl_rasterizer.h#L144 as an example
+Mar 30 14:13:52 <JayFoxRox>	bunnei: I copied that line before already
+Mar 30 14:14:00 <JayFoxRox>	    Pica::Regs::DepthBuffering depthmap_enable = Pica::Regs::DepthBuffering::WBuffering;
+Mar 30 14:14:02 <JayFoxRox>	and
+Mar 30 14:14:18 <JayFoxRox>	        res.depthmap_enable = regs.depthmap_enable;
+Mar 30 14:14:36 <bunnei_>	yea that seems fine
+Mar 30 14:14:45 <JayFoxRox>	= won't trigger
+Mar 30 14:14:49 <bunnei_>	sure there isnt something else you're overlooking?
+Mar 30 14:14:53 <JayFoxRox>	definitly not
+Mar 30 14:14:58 <bunnei_>	is it actually changing?
+Mar 30 14:15:03 <JayFoxRox>	    if (config.depthmap_enable == Pica::Regs::DepthBuffering::WBuffering) {
+Mar 30 14:15:03 <JayFoxRox>	        out += "depth *= gl_FragCoord.w;\n";
+Mar 30 14:15:03 <JayFoxRox>	        out += "depth = 0.1337;\n";
+Mar 30 14:15:03 <JayFoxRox>	    }
+Mar 30 14:15:06 <JayFoxRox>	nothing changes
+Mar 30 14:15:20 <JayFoxRox>	(    out += "gl_FragDepth = depth;\n"; follows)
+Mar 30 14:15:37 <pcmaker>	JayFoxRox: yeah mh3 gs issue still exist
+Mar 30 14:15:58 <JayFoxRox>	bunnei_: also works fine with swrast so the Pica::Regs reg is being changed
+Mar 30 14:15:59 <bunnei_>	So what is the value of config.depthmap_enable ? And is that what you expect?
+Mar 30 14:16:11 <JayFoxRox>	either Pica::Regs::DepthBuffering::WBuffering or Pica::Regs::DepthBuffering::ZBuffering
+Mar 30 14:16:25 <JayFoxRox>	expecting to see 0.1337 in my GL debug depth output
+Mar 30 14:16:34 <JayFoxRox>	but instead I see 0.5 which is the value if the condition is not true
+Mar 30 14:17:20 *	xerpi (~xerpi@186.Red-88-7-96.staticIP.rima-tde.net) has joined
+Mar 30 14:17:23 <JayFoxRox>	yup, shader doesn't recompile either
+Mar 30 14:17:25 <JayFoxRox>	test with printf
+Mar 30 14:17:36 <bunnei_>	add an "else {depth = foo;}" and see if foo is being set? Something else wacky could be going on
+Mar 30 14:18:18 <JayFoxRox>	^ shader doesn't recompile
+Mar 30 14:18:36 <bunnei_>	JayFoxRox: What is type Pica::Regs::DepthBuffering ?
+Mar 30 14:19:15 <JayFoxRox>	CurrentConfig isn't called
+Mar 30 14:19:19 <JayFoxRox>	an enum
+Mar 30 14:19:38 <JayFoxRox>	enum DepthBuffering : u32 {
+Mar 30 14:19:39 <JayFoxRox>	        WBuffering  = 0,
+Mar 30 14:19:39 <JayFoxRox>	        ZBuffering  = 1,
+Mar 30 14:19:39 <JayFoxRox>	    };
+Mar 30 14:20:11 <bunnei_>	oh
+Mar 30 14:20:18 <bunnei_>	shader_dirty probably isnt being set on that register write
+Mar 30 14:20:21 <bunnei_>	^^
+Mar 30 14:20:33 <bunnei_>	JayFoxRox: https://github.com/citra-emu/citra/blob/master/src/video_core/renderer_opengl/gl_rasterizer.cpp#L268
+Mar 30 14:20:50 <bunnei_>	Sorry, forgot about that part
+Mar 30 14:21:17 <JayFoxRox>	yeah just found that too :P
+Mar 30 14:21:39 <bunnei_>	JayFoxRox: Might as well add a comment to PicaShaderConfig mentioning that :)
+Mar 30 14:28:46 <JayFoxRox>	w-buffer branch should also work fine with hw rendering now :) [still contians a debug commit which spits tons of errors + untested ALLOW code which is not in hw yet]
+Mar 30 14:29:23 <JayFoxRox>	= tappingo still broken (allow crap), others should be fixed
+Mar 30 14:29:39 <JayFoxRox>	oh and also I'm not sure about perspective correction with both, hw and sw, needs more hw testing
+Mar 30 14:30:59 <JayFoxRox>	pcmaker: is it normal that crash time 3D had some lighting errors on the cars in the menu?
+Mar 30 14:33:50 <pcmaker>	JayFoxRox: do you mean this http://i.imgur.com/zWOZUFg.jpg ? 
+Mar 30 14:34:35 <JayFoxRox>	yep
+Mar 30 14:35:04 <pcmaker>	it was before already
+Mar 30 14:35:32 <pcmaker>	lighting it's not perfect yet
+Mar 30 14:36:38 <JayFoxRox>	neato :) then I only have to verify perspective correction (3ds-tests/depth-write) and get someone to retest the garbage tests. then check the allow regs (3ds-tests/allow-buffers) and fix that.
+Mar 30 14:37:15 <JayFoxRox>	and on the GS front I have to cleanup some more, fix MH3 / Mutant Mudds regression and then that's also good to go (probably in chunks though)
+Mar 30 14:56:30 *	jroweboy (~jroweboy@2605:a601:6df:1c00:ec32:d1a1:d03a:aea7) has joined
+Mar 30 15:01:46 *	Lioncash has quit (Read error: Connection reset by peer)
+Mar 30 15:02:56 *	Groose (~Groose@192.30.252.34) has joined
+Mar 30 15:02:56 <Groose>	[citra] MerryMage opened pull request #1618: Prevent cache overflow when single stepping (master...one-step) https://git.io/vVO90
+Mar 30 15:02:56 *	Groose (~Groose@192.30.252.34) has left
+Mar 30 15:37:11 *	Disconnected (Network is unreachable)
+**** ENDING LOGGING AT Wed Mar 30 15:37:11 2016
+
+**** BEGIN LOGGING AT Wed Mar 30 19:38:31 2016
+
+Mar 30 19:38:31 *	Now talking on #citra-dev
+Mar 30 19:38:31 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 30 19:38:31 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 30 19:38:31 -NickServ-	You are now identified for brunodea.
+Mar 30 20:06:16 *	ector has quit ()
+Mar 30 20:23:10 *	xerpi has quit (Remote host closed the connection)
+Mar 30 20:38:06 <JayFoxRox>	mhh I need a GL way to cause zero-reads
+Mar 30 20:38:07 <JayFoxRox>	however, afair there is no readmask in GL. so I probably have to setup a second framebuffer for read access >.<
+Mar 30 20:42:27 <JayFoxRox>	where is ector when one needs him..
+Mar 30 20:46:12 <JayFoxRox>	if framebuffers don't need the same size I'll probably just have a zero-framebuffer which is only used for reading :P
+Mar 30 21:03:45 <JayFoxRox>	tfarley: ^ would this be mergeable with your branch?
+Mar 30 21:04:32 <JayFoxRox>	little background: Pica has COLOR_READ register, if that is 0x0 it will read 0x00000000 from the colorbuffer for blending etc. If it's non-zero it will read all color channels. so in theory I should be able to have a white framebuffer which is only ever used for reading (replacing the draw buffer while COLOR_READ is 0x0)
+Mar 30 21:08:28 <tfarley>	jayfoxrox: how do you plan to implement that in gl? afaik the reads during drawing actually pull from the draw framebuffer, not the read framebuffer. and if you clear that you clear the current fb that you're drawing to
+Mar 30 21:09:11 <tfarley>	you may have to add it as special logic in the fragment shader
+Mar 30 21:12:50 <JayFoxRox>	for blending it should be fairly simple, idk about logic & stencil. for depth one could hardcode the result for each mode - however, all of this sounds REALLY complicated for such a small feature
+Mar 30 21:18:08 *	Groose (~Groose@192.30.252.40) has joined
+Mar 30 21:18:08 <Groose>	[citra] bunnei pushed 2 new commits to master: https://git.io/vVsJZ
+Mar 30 21:18:08 <Groose>	citra/master 2a99464 MerryMage: DSP: Implement audio filters (simple, biquad)
+Mar 30 21:18:08 <Groose>	citra/master 644fbbe bunnei: Merge pull request #1572 from MerryMage/audio-filter...
+Mar 30 21:18:09 *	Groose (~Groose@192.30.252.40) has left
+**** BEGIN LOGGING AT Wed Mar 30 23:25:08 2016
+
+Mar 30 23:25:08 *	Now talking on #citra-dev
+Mar 30 23:25:08 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 30 23:25:08 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 30 23:25:08 -NickServ-	You are now identified for brunodea.
+Mar 30 23:37:32 *	inolen (~Adium@bas17-toronto63-3096725123.dsl.bell.ca) has joined
+Mar 30 23:50:38 *	angelXwind has quit (Ping timeout: 248 seconds)
+Mar 30 23:52:46 *	angelXwind (~Karen-cha@178.32.249.61) has joined
+Mar 30 23:57:49 *	angelXwind has quit (Ping timeout: 244 seconds)
+Mar 30 23:59:02 *	angelXwind (~Karen-cha@178.32.249.61) has joined
+Mar 30 23:59:15 *	matpow2 has quit (Ping timeout: 248 seconds)
+Mar 31 00:14:55 *	MaJoR1 (MaJoR1@unaffiliated/majoroesch) has left
+Mar 31 00:15:16 *	MaJoR1 (MaJoR1@unaffiliated/majoroesch) has joined
+Mar 31 00:26:29 *	JayFoxRox has quit (Ping timeout: 246 seconds)
+Mar 31 00:26:51 *	darkf has quit (Ping timeout: 246 seconds)
+Mar 31 00:30:39 *	wetterfuchs has quit (Ping timeout: 246 seconds)
+Mar 31 00:30:39 *	benvanik has quit (Ping timeout: 246 seconds)
+Mar 31 00:30:39 *	archshift has quit (Ping timeout: 246 seconds)
+Mar 31 00:30:39 *	Lectem has quit (Ping timeout: 246 seconds)
+Mar 31 00:30:39 *	aaa801 has quit (Ping timeout: 246 seconds)
+Mar 31 00:30:39 *	brunodea has quit (Ping timeout: 246 seconds)
+Mar 31 00:30:39 *	Disconnected (Remote host closed socket)
+**** ENDING LOGGING AT Thu Mar 31 00:30:39 2016
+
+**** BEGIN LOGGING AT Thu Mar 31 00:31:05 2016
+
+Mar 31 00:31:05 *	Now talking on #citra-dev
+Mar 31 00:31:05 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 31 00:31:05 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 31 00:31:06 -NickServ-	brunodea_ is not a registered nickname.
+Mar 31 00:32:42 *	aaa801_ (sid14726@gateway/web/irccloud.com/x-pgzjyacfrwlscnvp) has joined
+Mar 31 00:32:48 *	JayFoxRox has quit (Ping timeout: 246 seconds)
+Mar 31 00:32:48 *	darkf has quit (Ping timeout: 246 seconds)
+Mar 31 00:32:49 *	wetterfuchs has quit (Ping timeout: 246 seconds)
+Mar 31 00:32:49 *	benvanik has quit (Ping timeout: 246 seconds)
+Mar 31 00:32:50 *	archshift has quit (Ping timeout: 246 seconds)
+Mar 31 00:32:50 *	Lectem has quit (Ping timeout: 246 seconds)
+Mar 31 00:32:50 *	JayFoxRo- is now known as JayFoxRox
+Mar 31 00:32:52 *	Lectem_ is now known as Lectem
+Mar 31 00:32:56 *	aaa801 has quit (Ping timeout: 246 seconds)
+Mar 31 00:33:21 *	benvanik_ is now known as benvanik
+Mar 31 00:33:26 *	brunodea has quit (Ping timeout: 246 seconds)
+Mar 31 00:33:27 *	FireFly has quit (Ping timeout: 246 seconds)
+Mar 31 00:33:27 *	Chemlo has quit (Ping timeout: 246 seconds)
+Mar 31 00:33:31 *	Effilry (~firefly@firefly.xen.prgmr.com) has joined
+Mar 31 00:33:40 *	Effilry has quit (Changing host)
+Mar 31 00:33:40 *	Effilry (~firefly@oftn/oswg-member/FireFly) has joined
+Mar 31 00:33:41 *	Chemlo (~Chemlo@c-50-160-76-30.hsd1.ut.comcast.net) has joined
+Mar 31 00:35:02 *	archshift_ is now known as archshift
+Mar 31 00:38:36 *	aaa801_ is now known as aaa801
+Mar 31 00:42:05 *	FenrisulfrX (LokiX@191.188.92.83) has joined
+Mar 31 00:42:28 *	LokiX has quit (Ping timeout: 264 seconds)
+Mar 31 00:50:22 *	angelXwind has quit (Ping timeout: 248 seconds)
+Mar 31 00:50:57 *	angelXwind (~Karen-cha@178.32.249.61) has joined
+Mar 31 00:57:36 *	Stary2001 (Stary2001@praise.ipv6.fossil.stary2001.co.uk) has joined
+Mar 31 01:01:39 *	FenrisulfrX has quit (Ping timeout: 248 seconds)
+Mar 31 01:02:13 *	LokiX (~Fenrisulf@191.188.92.83) has joined
+Mar 31 01:06:27 *	LokiX has quit (Ping timeout: 248 seconds)
+**** BEGIN LOGGING AT Thu Mar 31 09:22:58 2016
+
+Mar 31 09:22:58 *	Now talking on #citra-dev
+Mar 31 09:22:58 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 31 09:22:58 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 31 09:22:58 -NickServ-	You are now identified for brunodea.
+Mar 31 09:24:30 *	Groose (~Groose@192.30.252.45) has joined
+Mar 31 09:24:30 <Groose>	[citra] LFsWang opened pull request #1620: Fix filename&path encode problem on Windows (master...path) https://git.io/vVG06
+Mar 31 09:24:30 *	Groose (~Groose@192.30.252.45) has left
+Mar 31 09:46:17 <JayFoxRox>	meh we should have a issue for "HW Renderer does not flush framebuffer before access" but I'm too lazy to do it :P it often works fine for color because the display transfer will flush the region, however depth and stencil are never flushed = never end up in memory
+Mar 31 09:46:53 <JayFoxRox>	= no fancy stuff such as checking if stuff is onscreen, queries for DOF / autofocus etc
+Mar 31 09:47:13 <JayFoxRox>	I'm not sure if nintendo even allows it, but it would theoreticly be possible
+Mar 31 09:47:51 <JayFoxRox>	my workaround for now is to dump pixel data using GL and once the formula works I just leave it - it's a shame I can't use 3DS homebrew to dump the buffers though
+Mar 31 09:52:51 *	Groose (~Groose@192.30.252.40) has joined
+Mar 31 09:52:51 <Groose>	[citra] bunnei pushed 2 new commits to master: https://git.io/vVG2N
+Mar 31 09:52:51 <Groose>	citra/master f7619a9 mailwl: Add gsp functions: SetAxiConfigQoSMode, UnregisterInterruptRelayQueue
+Mar 31 09:52:51 <Groose>	citra/master 67c982b bunnei: Merge pull request #1419 from mailwl/branch-gsp...
+Mar 31 09:52:52 *	Groose (~Groose@192.30.252.40) has left
+Mar 31 10:31:05 *	Disconnected (Invalid argument)
+**** ENDING LOGGING AT Thu Mar 31 10:31:05 2016
+
+**** BEGIN LOGGING AT Thu Mar 31 11:50:58 2016
+
+Mar 31 11:50:58 *	Now talking on #citra-dev
+Mar 31 11:50:58 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 31 11:50:58 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 31 11:50:58 -NickServ-	You are now identified for brunodea.
+Mar 31 11:57:35 <Lioncash>	JayFoxRox: wrt your ping. I'll get to it on Friday or early Saturday.
+Mar 31 11:57:59 <Lioncash>	(most likely friday if nothing comes up)
+Mar 31 12:00:57 *	Groose (~Groose@192.30.252.46) has joined
+Mar 31 12:00:57 <Groose>	[citra] lioncash pushed 2 new commits to master: https://git.io/vVGhm
+Mar 31 12:00:57 <Groose>	citra/master cbba0be MerryMage: DynCom: Optimize single stepping
+Mar 31 12:00:57 <Groose>	citra/master 80c1696 Mathew Maidment: Merge pull request #1618 from MerryMage/one-step...
+Mar 31 12:00:57 *	Groose (~Groose@192.30.252.46) has left
+Mar 31 12:15:48 *	matpow2 has quit (Ping timeout: 276 seconds)
+Mar 31 12:48:57 *	OOD_ (~OOD___@206-248-191-123.dsl.teksavvy.com) has joined
+Mar 31 13:12:54 *	Yllodra has quit (Quit: Leaving)
+Mar 31 13:14:17 *	mat^2 (~Mathias@91.103.38.8) has joined
+Mar 31 13:19:10 *	Groose (~Groose@192.30.252.34) has joined
+Mar 31 13:19:10 <Groose>	[citra] JayFoxRox opened pull request #1621: Implement W-buffer and fix depth-mapping (master...w-buffer) https://git.io/vVZG3
+Mar 31 13:19:10 *	Groose (~Groose@192.30.252.34) has left
+Mar 31 13:25:02 <JMC4789>	JayFoxRox, I'll ask this to get into the habit: What games do you think that'll effect :P
+Mar 31 13:28:13 <JayFoxRox>	no idea :P
+Mar 31 13:28:24 <JayFoxRox>	but all of those which have broken depth probably
+Mar 31 13:28:53 <JMC4789>	pfft
+Mar 31 13:28:54 <JayFoxRox>	(except for those where the depth is written as a result of yuriks PR)
+Mar 31 13:28:56 <JMC4789>	stupid hardware testers
+Mar 31 13:29:05 <JMC4789>	not testing games
+Mar 31 13:29:13 <JMC4789>	and implementing it on actual data
+Mar 31 13:31:26 <JayFoxRox>	I've changed the comment about it fixing games in the PR - I previously had a larger branch for a solution to the yuriks-depth problem + w-buffer and just split it for the PR
+Mar 31 13:31:31 <JayFoxRox>	the description was a leftover from before
+Mar 31 13:32:36 <JayFoxRox>	my buffer-allow branch will fix the other problems and that fixes a good amount of games
+Mar 31 13:33:54 <JMC4789>	anyway, hardware tests are more useful, but it's hard to make users care about that... unless the story around it is really fun :D
+Mar 31 13:34:52 <JayFoxRox>	depth and interpolation issues are shitty anyway
+Mar 31 13:35:02 <JMC4789>	yeah...
+Mar 31 13:35:03 <JayFoxRox>	same about precision issues
+Mar 31 13:35:09 <JMC4789>	they are nasty
+Mar 31 13:35:12 <JayFoxRox>	you don't really see them until they make problems
+Mar 31 13:35:29 <JMC4789>	tons of problems, mind you
+Mar 31 13:35:57 <JayFoxRox>	JMC4789: this fixes crash time btw
+Mar 31 13:54:30 *	SF94|Zzz is now known as SonicFreak94
+Mar 31 13:56:24 <JayFoxRox>	merry: is it enough to do that in the sw rasterizer? GL is probably not precise enough anyway (depth is implementation defined which is why you have funny functions to add a implementation specified bias for it)
+Mar 31 13:56:32 <JayFoxRox>	re comment about precision
+Mar 31 13:57:12 <JayFoxRox>	also I don't know where exactly I should add it - it could be anywhere from shader, to clipper, to depth scale/offset, to conversion to integer :P
+Mar 31 13:59:45 <merry>	JayFoxRox: where to add it: probably closest to where the calculation is actually done.
+Mar 31 14:00:22 <merry>	A comment in both would be nice.
+Mar 31 14:00:35 <merry>	(Because I know we'll forget.)
+Mar 31 14:03:12 <JayFoxRox>	merry: maybe open an issue instead?
+Mar 31 14:03:28 <JayFoxRox>	I'm fine with adding it in the sw rast because there is a point where stuff could go wrong
+Mar 31 14:03:58 <JayFoxRox>	but I don't know where this should happen in GLSL because shader precision is not defined, depth precision is not defined, nothing is defined so it could be everywhere and it's not even possible without jumping through many hoops
+**** BEGIN LOGGING AT Thu Mar 31 14:04:00 2016
+
+Mar 31 14:04:00 *	Now talking on #citra-dev
+Mar 31 14:04:00 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 31 14:04:00 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 31 14:04:00 -NickServ-	brunodea_ is not a registered nickname.
+Mar 31 14:04:00 *	brunodea_ (~brunodea@189.58.217.149.dynamic.adsl.gvt.net.br) has joined
+Mar 31 14:04:34 <merry>	Well, it's much like a HACK: comment, isn't it...
+Mar 31 14:04:34 <merry>	Well, it's much like a HACK: comment, isn't it...
+Mar 31 14:04:37 <JayFoxRox>	might not even be worse an issue because the fundamental concept of the hw rasterizer is to sacrifice precission for performance
+Mar 31 14:04:37 <JayFoxRox>	might not even be worse an issue because the fundamental concept of the hw rasterizer is to sacrifice precission for performance
+Mar 31 14:04:46 <merry>	"this might not be accurate"
+Mar 31 14:04:46 <merry>	"this might not be accurate"
+Mar 31 14:05:29 <JayFoxRox>	yeah "//TODO: This is not accurate, rounding and precision might be different in hardware"
+Mar 31 14:05:29 <JayFoxRox>	yeah "//TODO: This is not accurate, rounding and precision might be different in hardware"
+Mar 31 14:05:37 <JayFoxRox>	or something like that
+Mar 31 14:05:37 <JayFoxRox>	or something like that
+Mar 31 14:05:47 <merry>	SOmething like that yeah
+Mar 31 14:05:47 <merry>	SOmething like that yeah
+Mar 31 14:06:09 <JayFoxRox>	I'll do that later, le gf is waiting
+Mar 31 14:06:09 <JayFoxRox>	I'll do that later, le gf is waiting
+Mar 31 14:06:46 <merry>	okay have fun
+Mar 31 14:06:46 <merry>	okay have fun
+Mar 31 14:22:34 *	jroweboy has quit (Read error: Connection reset by peer)
+Mar 31 14:22:34 *	jroweboy has quit (Read error: Connection reset by peer)
+Mar 31 14:28:07 *	LittleWhite (~LittleWhi@vac26-2-88-164-50-240.fbx.proxad.net) has joined
+Mar 31 14:28:07 *	LittleWhite (~LittleWhi@vac26-2-88-164-50-240.fbx.proxad.net) has joined
+Mar 31 14:33:10 *	ichfly (~ichfly@185.35.208.140) has joined
+Mar 31 14:33:10 *	ichfly (~ichfly@185.35.208.140) has joined
+Mar 31 14:39:35 *	jroweboy (~jroweboy@45.56.55.166) has joined
+Mar 31 14:39:35 *	jroweboy (~jroweboy@45.56.55.166) has joined
+Mar 31 14:41:04 *	OOD_ has quit (Quit: Leaving)
+Mar 31 14:41:04 *	OOD_ has quit (Quit: Leaving)
+Mar 31 15:00:25 *	bunnei has quit (Ping timeout: 252 seconds)
+Mar 31 15:00:25 *	bunnei has quit (Ping timeout: 252 seconds)
+Mar 31 15:00:35 *	JMC4789 has quit (Ping timeout: 250 seconds)
+Mar 31 15:00:35 *	JMC4789 has quit (Ping timeout: 250 seconds)
+Mar 31 15:13:55 *	JMC4789 (~justin@2601:40f:4200:4f10:5024:60cf:ddb8:31e) has joined
+Mar 31 15:13:55 *	JMC4789 (~justin@2601:40f:4200:4f10:5024:60cf:ddb8:31e) has joined
+Mar 31 16:00:51 *	mat^2 has quit (Ping timeout: 248 seconds)
+Mar 31 16:00:51 *	mat^2 has quit (Ping timeout: 248 seconds)
+Mar 31 16:29:58 *	mat^2 (~Mathias@130.226.161.124) has joined
+Mar 31 16:29:58 *	mat^2 (~Mathias@130.226.161.124) has joined
+Mar 31 17:44:50 *	xerpi (~xerpi@14.Red-83-43-94.dynamicIP.rima-tde.net) has joined
+Mar 31 17:44:50 *	xerpi (~xerpi@14.Red-83-43-94.dynamicIP.rima-tde.net) has joined
+**** ENDING LOGGING AT Thu Mar 31 17:58:12 2016
+
+**** BEGIN LOGGING AT Thu Mar 31 17:58:12 2016
+
+**** ENDING LOGGING AT Thu Mar 31 17:58:17 2016
+
+Mar 31 17:58:17 *	brunodea_ has quit (Quit: Leaving)
+**** BEGIN LOGGING AT Thu Mar 31 17:58:32 2016
+
+Mar 31 17:58:32 *	Now talking on #citra-dev
+Mar 31 17:58:32 *	brunodea_ (~brunodea@189.58.217.149.dynamic.adsl.gvt.net.br) has joined
+Mar 31 17:58:32 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Mar 31 17:58:32 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Mar 31 17:58:32 -NickServ-	brunodea_ is not a registered nickname.
+Mar 31 18:07:44 *	ichfly has quit (Quit: Nettalk6 - www.ntalk.de)
+Mar 31 18:43:08 *	LittleWhite has quit (Quit: Leaving.)
+Mar 31 18:48:46 *	darkf (~darkf@unaffiliated/darkf) has joined
+Mar 31 18:57:56 <JayFoxRox>	wth.. w-buffer supposedly has memleak?!
+Mar 31 18:57:56 <JayFoxRox>	wth.. w-buffer supposedly has memleak?!
+Mar 31 19:02:49 <Lioncash>	JayFoxRox: bust out lsan and you can probably find it down to the line number.
+Mar 31 19:02:49 <Lioncash>	JayFoxRox: bust out lsan and you can probably find it down to the line number.
+Mar 31 19:06:37 <Lioncash>	make sure to use clang when doing that, if you do end up using lsan, their versions of the sanitizers are usually much better at detection (especially the thread sanitizer in particular).
+Mar 31 19:06:37 <Lioncash>	make sure to use clang when doing that, if you do end up using lsan, their versions of the sanitizers are usually much better at detection (especially the thread sanitizer in particular).
+Mar 31 19:10:28 <JayFoxRox>	got any cmake magic command line for that? :>
+Mar 31 19:10:28 <JayFoxRox>	got any cmake magic command line for that? :>
+Mar 31 19:12:28 <Lioncash>	-fsanitize=leak as a compile flag
+Mar 31 19:12:28 <Lioncash>	-fsanitize=leak as a compile flag
+Mar 31 19:13:09 <JayFoxRox>	yeah but how do I add that with cmake?
+Mar 31 19:13:10 <JayFoxRox>	yeah but how do I add that with cmake?
+Mar 31 19:16:19 <Lioncash>	-DCMAKE_CXX_FLAGS="-fsanitize=leak" at the CLI (I think it'll prepend it), or you can directly add it to the end of https://github.com/citra-emu/citra/blob/master/CMakeLists.txt#L68
+Mar 31 19:16:19 <Lioncash>	-DCMAKE_CXX_FLAGS="-fsanitize=leak" at the CLI (I think it'll prepend it), or you can directly add it to the end of https://github.com/citra-emu/citra/blob/master/CMakeLists.txt#L68
+Mar 31 19:17:55 <Lioncash>	make sure to specify -DCMAKE_RELEASE_TYPE=RelWithDebInfo or -DCMAKE_RELEASE_TYPE=Debug otherwise you won't get line numbers with anything it catches
+Mar 31 19:17:55 <Lioncash>	make sure to specify -DCMAKE_RELEASE_TYPE=RelWithDebInfo or -DCMAKE_RELEASE_TYPE=Debug otherwise you won't get line numbers with anything it catches
+Mar 31 19:18:04 <JayFoxRox>	rebuilding, but I've already checked like 5 games with htop and citra only used 300M memory
+Mar 31 19:18:04 <JayFoxRox>	rebuilding, but I've already checked like 5 games with htop and citra only used 300M memory
+Mar 31 19:18:25 <JayFoxRox>	yeah, I always use RelWithDebInfo
+Mar 31 19:18:26 <JayFoxRox>	yeah, I always use RelWithDebInfo
+Mar 31 19:19:02 <JayFoxRox>	it sounds like shader cache overflow (either in citra or in the GL driver)
+Mar 31 19:19:02 <JayFoxRox>	it sounds like shader cache overflow (either in citra or in the GL driver)
+Mar 31 19:19:15 <archshift>	Citra shouldn't use that much more memory than the 3DS does
+Mar 31 19:19:16 <archshift>	Citra shouldn't use that much more memory than the 3DS does
+Mar 31 19:19:28 <archshift>	so 300mb sounds about right
+Mar 31 19:19:28 <archshift>	so 300mb sounds about right
+Mar 31 19:19:37 <JayFoxRox>	yeah, people in the issue report 300MB in master, but 4-5GB in my branch which I can't confirm
+Mar 31 19:19:37 <JayFoxRox>	yeah, people in the issue report 300MB in master, but 4-5GB in my branch which I can't confirm
+Mar 31 19:19:43 <JayFoxRox>	but there are 2 people claiming that sooo.. idk
+Mar 31 19:19:43 <JayFoxRox>	but there are 2 people claiming that sooo.. idk
+Mar 31 19:20:07 <JayFoxRox>	I don't even alloc anything explicitly
+Mar 31 19:20:07 <JayFoxRox>	I don't even alloc anything explicitly
+Mar 31 19:20:33 <JayFoxRox>	so the only thing responsible could be a huge amount of shader invalidations or something I think
+Mar 31 19:20:33 <JayFoxRox>	so the only thing responsible could be a huge amount of shader invalidations or something I think
+Mar 31 19:20:57 <JayFoxRox>	(but then it's still not my fault because I use the same method of dirtying the shader code as was already present)
+Mar 31 19:20:57 <JayFoxRox>	(but then it's still not my fault because I use the same method of dirtying the shader code as was already present)
+Mar 31 19:21:59 <JayFoxRox>	however, pcmaker also ran into some comilation problems, so I wouldn't be surprised if wwylele and killzxgaming both tested with other branches merged
+Mar 31 19:21:59 <JayFoxRox>	however, pcmaker also ran into some comilation problems, so I wouldn't be surprised if wwylele and killzxgaming both tested with other branches merged
+Mar 31 19:22:52 <JayFoxRox>	SUMMARY: LeakSanitizer: 10411 byte(s) leaked in 328 allocation(s).
+Mar 31 19:22:52 <JayFoxRox>	SUMMARY: LeakSanitizer: 10411 byte(s) leaked in 328 allocation(s).
+Mar 31 19:26:02 <JayFoxRox>	I can't get it to leak much more and all of that is allocated in fontconfig :/
+Mar 31 19:26:02 <JayFoxRox>	I can't get it to leak much more and all of that is allocated in fontconfig :/
+Mar 31 19:30:17 *	inolen (~Adium@206.223.160.26) has joined
+Mar 31 19:30:58 *	ector has quit ()
+Mar 31 19:33:09 <archshift>	JayFoxRox: I don't even see how your code *could* leak memory...
+Mar 31 19:33:09 <archshift>	JayFoxRox: I don't even see how your code *could* leak memory...
+Mar 31 19:40:13 *	inolen has quit (Quit: Leaving.)
+Mar 31 19:41:36 <JayFoxRox>	archshift: exactly what I was thinking - but it's 2 people with the same issue
+Mar 31 19:41:36 <JayFoxRox>	archshift: exactly what I was thinking - but it's 2 people with the same issue
+Mar 31 19:47:25 <Lioncash>	could be a very certain codepath a game runs through that indirectly causes it.
+Mar 31 19:47:25 <Lioncash>	could be a very certain codepath a game runs through that indirectly causes it.
+Mar 31 19:48:07 <JayFoxRox>	maybe a missed shader_dirty in another code path but the more frequent depth_enable hits it.. true
+Mar 31 19:48:07 <JayFoxRox>	maybe a missed shader_dirty in another code path but the more frequent depth_enable hits it.. true
+Mar 31 19:48:14 <JayFoxRox>	but we need more info then
+Mar 31 19:48:14 <JayFoxRox>	but we need more info then
+Mar 31 19:49:36 <JayFoxRox>	I've tested these commits with all games I have (~15 I'd guess) before splitting my branches for the PR and never had so much RAM use or at least I didn't notice it (but I have a tray icon for RAM usage so I would have noticed - probably)
+Mar 31 19:49:36 <JayFoxRox>	I've tested these commits with all games I have (~15 I'd guess) before splitting my branches for the PR and never had so much RAM use or at least I didn't notice it (but I have a tray icon for RAM usage so I would have noticed - probably)
+Mar 31 19:50:54 <JayFoxRox>	Subv: thanks for pointing out that line btw :P I knew I must have had lost it in some commit but I wasn't sure. It's actually supposed to be there (some games want that state and in OpenGL this is also defined behaviour) but not for this PR
+Mar 31 19:50:54 <JayFoxRox>	Subv: thanks for pointing out that line btw :P I knew I must have had lost it in some commit but I wasn't sure. It's actually supposed to be there (some games want that state and in OpenGL this is also defined behaviour) but not for this PR
+Mar 31 19:53:16 <JayFoxRox>	so if anyone wants to pick some low hanging fruit implement https://www.opengl.org/sdk/docs/man/html/glBlendFuncSeparate.xhtml
+Mar 31 19:53:16 <JayFoxRox>	so if anyone wants to pick some low hanging fruit implement https://www.opengl.org/sdk/docs/man/html/glBlendFuncSeparate.xhtml
+Mar 31 19:53:40 <JayFoxRox>	src/video_core/rasterizer.cpp ~ line 1000
+Mar 31 19:53:40 <JayFoxRox>	src/video_core/rasterizer.cpp ~ line 1000
+Mar 31 19:53:50 <JayFoxRox>	same thing probably missing from hw renderer too :P
+Mar 31 19:53:50 <JayFoxRox>	same thing probably missing from hw renderer too :P
+Mar 31 19:55:22 <JayFoxRox>	maybe a job for you pcmaker? want to get your feet wet as a programmer?
+Mar 31 19:55:22 <JayFoxRox>	maybe a job for you pcmaker? want to get your feet wet as a programmer?
+Mar 31 20:02:27 <jroweboy>	where should unicorn pick up execution at each call to ExecuteInstructions? Up until now I was just guessing it should be PC
+Mar 31 20:02:27 <jroweboy>	where should unicorn pick up execution at each call to ExecuteInstructions? Up until now I was just guessing it should be PC
+Mar 31 20:02:39 <jroweboy>	and it seems to work for a little bit
+Mar 31 20:02:39 <jroweboy>	and it seems to work for a little bit
+Mar 31 20:03:33 <jroweboy>	but then it goes crazy and starts executing instructions way out in 0x0041618c which isn’t even in the code section i think
+Mar 31 20:03:33 <jroweboy>	but then it goes crazy and starts executing instructions way out in 0x0041618c which isn’t even in the code section i think
+Mar 31 20:03:55 <JayFoxRox>	jroweboy: I guess from the current state..
+Mar 31 20:03:55 <JayFoxRox>	jroweboy: I guess from the current state..
+Mar 31 20:04:13 <JayFoxRox>	so ExecuteInstructions(10) should be the same as doing 10x ExecuteInstructions(1)
+Mar 31 20:04:13 <JayFoxRox>	so ExecuteInstructions(10) should be the same as doing 10x ExecuteInstructions(1)
+Mar 31 20:05:05 <JayFoxRox>	maybe unicorn engine uses the wrong CPU features / ISA and misinterprets a jump? or maybe you are not reading back the context properly?
+Mar 31 20:05:05 <JayFoxRox>	maybe unicorn engine uses the wrong CPU features / ISA and misinterprets a jump? or maybe you are not reading back the context properly?
+Mar 31 20:05:19 <JayFoxRox>	(just wild guesses, I didn't look too closely into the citra CPU code)
+Mar 31 20:05:19 <JayFoxRox>	(just wild guesses, I didn't look too closely into the citra CPU code)
+Mar 31 20:08:07 <jroweboy>	hmm
+Mar 31 20:08:07 <jroweboy>	hmm
+Mar 31 20:09:40 <jroweboy>	so you did give me the wild idea to try to run it one instruction at a time
+Mar 31 20:09:40 <jroweboy>	so you did give me the wild idea to try to run it one instruction at a time
+Mar 31 20:09:41 <Lioncash>	Usually you'd just use the PC for execution. Are you synchronizing mode switches from ARM to Thumb correctly?
+Mar 31 20:09:41 <Lioncash>	Usually you'd just use the PC for execution. Are you synchronizing mode switches from ARM to Thumb correctly?
+Mar 31 20:10:07 <JayFoxRox>	(also don't trust the ARM disassembler in citra - I think I'd printf the instructions before exeucting them and if something is fishy I'd check if the instruction is really what the disassembler claims or what the interpreter / jit ran)
+Mar 31 20:10:07 <JayFoxRox>	(also don't trust the ARM disassembler in citra - I think I'd printf the instructions before exeucting them and if something is fishy I'd check if the instruction is really what the disassembler claims or what the interpreter / jit ran)
+Mar 31 20:10:09 <jroweboy>	Lioncash: no i’m not. what should tip me off to do the switch?
+Mar 31 20:10:09 <jroweboy>	Lioncash: no i’m not. what should tip me off to do the switch?
+Mar 31 20:10:25 <JayFoxRox>	a specific branch iirc?
+Mar 31 20:10:25 <JayFoxRox>	a specific branch iirc?
+Mar 31 20:10:27 <Lioncash>	If the T flag is active
+Mar 31 20:10:27 <Lioncash>	If the T flag is active
+Mar 31 20:10:37 <JayFoxRox>	Lioncash: but it also requires a branch, right?
+Mar 31 20:10:37 <JayFoxRox>	Lioncash: but it also requires a branch, right?
+Mar 31 20:11:12 <Lioncash>	Yes, an interworking branch, but that doesn't matter if the T bit isn't set
+Mar 31 20:11:12 <Lioncash>	Yes, an interworking branch, but that doesn't matter if the T bit isn't set
+Mar 31 20:12:06 <jroweboy>	where is the t flag located in? cp15?
+Mar 31 20:12:06 <jroweboy>	where is the t flag located in? cp15?
+Mar 31 20:12:13 <Lioncash>	CPSR
+Mar 31 20:12:13 <Lioncash>	CPSR
+Mar 31 20:12:52 <Lioncash>	Specifically, bit 5 of iy
+Mar 31 20:12:52 <jroweboy>	whew :S still haven’t figured out how to set the cp15 register in unicorn yet
+Mar 31 20:12:53 <jroweboy>	whew :S still haven’t figured out how to set the cp15 register in unicorn yet
+Mar 31 20:12:53 <Lioncash>	Specifically, bit 5 of iy
+Mar 31 20:12:54 <Lioncash>	it*
+Mar 31 20:12:54 <Lioncash>	it*
+Mar 31 20:13:21 <Lioncash>	CP15 is a coprocessor, there's numerous registers :p
+Mar 31 20:13:21 <Lioncash>	CP15 is a coprocessor, there's numerous registers :p
+Mar 31 20:13:52 <Lioncash>	But you shouldn't have to worry about that, since you do that through MRC and MCR instructions.
+Mar 31 20:13:52 <Lioncash>	But you shouldn't have to worry about that, since you do that through MRC and MCR instructions.
+Mar 31 20:14:05 <jroweboy>	right. Sorry bout that :) just a little weary from working on this all day
+Mar 31 20:14:05 <jroweboy>	right. Sorry bout that :) just a little weary from working on this all day
+Mar 31 20:14:53 *	JayFoxRox walks to jroweboy, holding a cup of coffee in his hands
+Mar 31 20:14:53 *	JayFoxRox walks to jroweboy, holding a cup of coffee in his hands
+Mar 31 20:15:03 <Lioncash>	jroweboy: No worries, you don't need to apologize :p
+Mar 31 20:15:03 <Lioncash>	jroweboy: No worries, you don't need to apologize :p
+Mar 31 20:15:06 *	JayFoxRox slips and all the coffee is spilled over poor jroweboy
+Mar 31 20:15:07 *	JayFoxRox slips and all the coffee is spilled over poor jroweboy
+Mar 31 20:15:31 *	jroweboy goes to the doctor to deal with the 3rd degree burns
+Mar 31 20:15:31 *	jroweboy goes to the doctor to deal with the 3rd degree burns
+Mar 31 20:15:58 *	JayFoxRox crosses fingers and whispers "please not US citizen, please not US.."
+Mar 31 20:15:58 *	JayFoxRox crosses fingers and whispers "please not US citizen, please not US.."
+Mar 31 20:16:22 <jroweboy>	us citizen
+Mar 31 20:16:23 <jroweboy>	us citizen
+Mar 31 20:20:04 <Lioncash>	jroweboy: I don't know how you have unicorn set up, but if you're moving changes from dyncom's little context struct over to whatever unicorn uses, then ARMul_State should just have a member called TFlag you can read.
+Mar 31 20:20:04 <Lioncash>	jroweboy: I don't know how you have unicorn set up, but if you're moving changes from dyncom's little context struct over to whatever unicorn uses, then ARMul_State should just have a member called TFlag you can read.
+Mar 31 20:24:18 *	xerpi has quit (Remote host closed the connection)
+Mar 31 20:29:14 <jroweboy>	okay, lemme try something
+Mar 31 20:29:14 <jroweboy>	okay, lemme try something
+Mar 31 20:29:20 *	bunnei (~bunnei@c-24-34-105-20.hsd1.ma.comcast.net) has joined
+Mar 31 20:29:20 *	ChanServ gives channel operator status to bunnei
+Mar 31 20:29:20 *	ChanServ gives channel operator status to bunnei
+Mar 31 20:39:04 <jroweboy>	so from what i’ve been reading, you set the flag, and then on the next jump, it’ll be in thumb mode? if so, then i should hook jumps and switch mode?
+Mar 31 20:39:04 <jroweboy>	so from what i’ve been reading, you set the flag, and then on the next jump, it’ll be in thumb mode? if so, then i should hook jumps and switch mode?
+Mar 31 20:40:17 <Lioncash>	I have no idea how your model is set up.
+Mar 31 20:40:17 <Lioncash>	I have no idea how your model is set up.
+Mar 31 20:41:31 <jroweboy>	oh i’m just talking about arm in general, like on the actual processer, when it hits blx or bx it switches mode http://www.keil.com/support/man/docs/armasm/armasm_dom1361289866046.htm
+Mar 31 20:41:31 <jroweboy>	oh i’m just talking about arm in general, like on the actual processer, when it hits blx or bx it switches mode http://www.keil.com/support/man/docs/armasm/armasm_dom1361289866046.htm
+Mar 31 20:44:35 <Lioncash>	The mode switch happens before the branch is done.
+Mar 31 20:44:35 <Lioncash>	The mode switch happens before the branch is done.
+Mar 31 20:47:08 <Lioncash>	Note that some of the data processing instructions can also jump into thumb mode as well.
+Mar 31 20:47:08 <Lioncash>	Note that some of the data processing instructions can also jump into thumb mode as well.
+Mar 31 20:47:30 <Lioncash>	(the reverse is not true for data processing instructions in thumb mode)
+Mar 31 20:47:30 <Lioncash>	(the reverse is not true for data processing instructions in thumb mode)
+Mar 31 20:48:18 <jroweboy>	hrmmm thats going to be troublesome i bet
+Mar 31 20:48:18 <jroweboy>	hrmmm thats going to be troublesome i bet
+Mar 31 20:57:58 <Lioncash>	jroweboy: You don't need to worry about it for pre-ARMv7 (it's just a simple jump if the PC is used as a destination, not an interworking one) 
+Mar 31 20:57:58 <Lioncash>	jroweboy: You don't need to worry about it for pre-ARMv7 (it's just a simple jump if the PC is used as a destination, not an interworking one) 
+Mar 31 20:59:41 <Lioncash>	However, LDR, POP, etc can do interworking branches though on ARMv6K
+Mar 31 20:59:41 <Lioncash>	However, LDR, POP, etc can do interworking branches though on ARMv6K
+Mar 31 21:02:06 <Lioncash>	jroweboy: For easier lookup, anything in the ARMv7 manual with LoadWritePC and BXWritePC in its pseudocode can do an interworking branch on v6K
+Mar 31 21:02:06 <Lioncash>	jroweboy: For easier lookup, anything in the ARMv7 manual with LoadWritePC and BXWritePC in its pseudocode can do an interworking branch on v6K
+Mar 31 21:04:39 <jroweboy>	well according to these comments, unicorn should automatically switch modes
+Mar 31 21:04:39 <jroweboy>	well according to these comments, unicorn should automatically switch modes
+Mar 31 21:05:14 *	Groose (~Groose@192.30.252.34) has joined
+Mar 31 21:05:14 <Groose>	[citra] JayFoxRox opened pull request #1622: Avoid warnings by casting to size_t for ARRAY_SIZE() comparisons (master...fix-warnings) https://git.io/vVnDc
+Mar 31 21:05:14 *	Groose (~Groose@192.30.252.34) has left
+Mar 31 21:05:15 <Groose>	[citra] JayFoxRox opened pull request #1622: Avoid warnings by casting to size_t for ARRAY_SIZE() comparisons (master...fix-warnings) https://git.io/vVnDc
+Mar 31 21:05:56 <jroweboy>	https://github.com/unicorn-engine/unicorn/issues/391#issuecomment-173895834
+Mar 31 21:05:56 <jroweboy>	https://github.com/unicorn-engine/unicorn/issues/391#issuecomment-173895834
+Mar 31 21:13:43 *	Dazzozo (~daz@sauria.dazzozo.com) has left ("Leaving")
+Mar 31 21:13:48 *	Dazzozo (~daz@sauria.dazzozo.com) has joined
+Mar 31 21:17:45 <jroweboy>	hmm but i suppose it really isn’t though. The hex for the code it runs is eb0c585f which in thumb translates to add.w r8, r12, pc, lsr #21 but in no thumb, its bl 0x416184
+Mar 31 21:17:45 <jroweboy>	hmm but i suppose it really isn’t though. The hex for the code it runs is eb0c585f which in thumb translates to add.w r8, r12, pc, lsr #21 but in no thumb, its bl 0x416184
+Mar 31 21:17:58 <jroweboy>	the thumb code sounds more reasonable to me
+Mar 31 21:17:58 <jroweboy>	the thumb code sounds more reasonable to me
+Mar 31 21:18:58 <JayFoxRox>	jroweboy: how the fuck are you adding a new CPU backend?
+Mar 31 21:18:58 <JayFoxRox>	jroweboy: how the fuck are you adding a new CPU backend?
+Mar 31 21:19:12 <jroweboy>	i don’t even know :p
+Mar 31 21:19:12 <jroweboy>	i don’t even know :p
+Mar 31 21:19:21 <JayFoxRox>	my standard approach for those kind of things was always to run with an existing interpreter and dump all registers after every instruction
+Mar 31 21:19:22 <JayFoxRox>	my standard approach for those kind of things was always to run with an existing interpreter and dump all registers after every instruction
+Mar 31 21:19:38 <JayFoxRox>	then implement the new interpreter / JIT and run it in single step mode, also dumping the state
+Mar 31 21:19:38 <JayFoxRox>	then implement the new interpreter / JIT and run it in single step mode, also dumping the state
+Mar 31 21:19:47 <JayFoxRox>	ideally you'd also do the same on hardware
+Mar 31 21:19:47 <JayFoxRox>	ideally you'd also do the same on hardware
+Mar 31 21:20:03 <jroweboy>	this is several thousand instructions in 
+Mar 31 21:20:03 <jroweboy>	this is several thousand instructions in 
+Mar 31 21:20:04 <JayFoxRox>	so even if pointers / RNG or timing are different you can still find an entry point
+Mar 31 21:20:04 <JayFoxRox>	so even if pointers / RNG or timing are different you can still find an entry point
+Mar 31 21:20:14 <jroweboy>	i guess i could adapt the idea though
+Mar 31 21:20:14 <jroweboy>	i guess i could adapt the idea though
+Mar 31 21:20:14 <JayFoxRox>	jroweboy: so? my traces usually were a couple hundred MB
+Mar 31 21:20:15 <JayFoxRox>	jroweboy: so? my traces usually were a couple hundred MB
+Mar 31 21:20:35 <JayFoxRox>	even if you just had a second copy of citra with the old interpreter you could at least set a breakpoint on said instruction
+Mar 31 21:20:35 <JayFoxRox>	even if you just had a second copy of citra with the old interpreter you could at least set a breakpoint on said instruction
+Mar 31 21:21:14 <JayFoxRox>	also I'd expect you to have IDA (or another tool of preference) opened with the binary loaded so you can see what a well-proven disassembler has to say about it
+Mar 31 21:21:14 <JayFoxRox>	also I'd expect you to have IDA (or another tool of preference) opened with the binary loaded so you can see what a well-proven disassembler has to say about it
+Mar 31 21:21:52 <Lioncash>	or just use http://svr-acjf3-armie.cl.cam.ac.uk/main.cgi and save time
+Mar 31 21:21:52 <Lioncash>	or just use http://svr-acjf3-armie.cl.cam.ac.uk/main.cgi and save time
+Mar 31 21:21:55 <JayFoxRox>	(gdb or objdump disassembly is also good, however, I prefer IDA because if you have hex rays decompiler you can step along the high level code and most errors are easy to trace)
+Mar 31 21:21:55 <JayFoxRox>	(gdb or objdump disassembly is also good, however, I prefer IDA because if you have hex rays decompiler you can step along the high level code and most errors are easy to trace)
+Mar 31 21:23:11 <JayFoxRox>	Lioncash: imho this is a 2 part problem: 1. finding out what instruction it is and 2. verifying it actually does what it should against a reference (be it an existing implementation or the docs)
+Mar 31 21:23:11 <JayFoxRox>	Lioncash: imho this is a 2 part problem: 1. finding out what instruction it is and 2. verifying it actually does what it should against a reference (be it an existing implementation or the docs)
+Mar 31 21:23:24 <Lioncash>	jroweboy: btw, thumb opcodes can't be 32-bits wide on the 3DS (unless it's a dual-BL, but those are subdivided as two 16-bit instructions halves)
+Mar 31 21:23:24 <Lioncash>	jroweboy: btw, thumb opcodes can't be 32-bits wide on the 3DS (unless it's a dual-BL, but those are subdivided as two 16-bit instructions halves)
+Mar 31 21:24:09 <JayFoxRox>	(testing against docs is usually a pita so I'd always try to find a reference. ideally you fix the new code + improve the reference in case of bugs)
+Mar 31 21:24:09 <JayFoxRox>	(testing against docs is usually a pita so I'd always try to find a reference. ideally you fix the new code + improve the reference in case of bugs)
+Mar 31 21:25:26 <jroweboy>	JayFoxRox: yeah, don’t have ida, and gdb keeps crashing when i try to actually do anything in it. (yes i’m using arm gdb) so i took to just printing the memory there
+Mar 31 21:25:26 <jroweboy>	JayFoxRox: yeah, don’t have ida, and gdb keeps crashing when i try to actually do anything in it. (yes i’m using arm gdb) so i took to just printing the memory there
+Mar 31 21:25:53 <jroweboy>	Lioncash: yeah i was just printing 32 bytes irregardless of mode
+Mar 31 21:25:53 <jroweboy>	Lioncash: yeah i was just printing 32 bytes irregardless of mode
+Mar 31 21:28:04 <Lioncash>	JayFoxRox: You're essentially relying on an existing implementation to not be bug-prone to prove it's right in that case. Meanwhile, documentation, from people who made what you're emulating, actually has hard info on what is right or wrong.
+Mar 31 21:28:04 <Lioncash>	JayFoxRox: You're essentially relying on an existing implementation to not be bug-prone to prove it's right in that case. Meanwhile, documentation, from people who made what you're emulating, actually has hard info on what is right or wrong.
+Mar 31 21:30:47 <JayFoxRox>	Lioncash: I'd say the citra skyeye is the reference to beat - so if you use a stock emu like unicorn-engine you'll be able to fix 3DS specific cases OR fix the citra skyeye. any difference in emulation needs to be looked at anyway and there are only those 2 options + maybe the case that none are right. but you will likely consult the other docs anyway
+Mar 31 21:30:47 <JayFoxRox>	Lioncash: I'd say the citra skyeye is the reference to beat - so if you use a stock emu like unicorn-engine you'll be able to fix 3DS specific cases OR fix the citra skyeye. any difference in emulation needs to be looked at anyway and there are only those 2 options + maybe the case that none are right. but you will likely consult the other docs anyway
+Mar 31 21:35:23 <Lioncash>	While I can partially agree, sorry, but if you're not using documentation in tandem from the get-go (if available), you've fundamentally screwed up.
+Mar 31 21:35:23 <Lioncash>	While I can partially agree, sorry, but if you're not using documentation in tandem from the get-go (if available), you've fundamentally screwed up.
+Mar 31 21:36:31 <neobrain>	what is "testing against docs" supposed to mean anyway?
+Mar 31 21:36:32 <neobrain>	what is "testing against docs" supposed to mean anyway?
+Mar 31 21:38:47 <Lioncash>	Ok, so you have your model, your documentation says [x] should happen when [y]. Does it do this? If yes, cool. If no, welp, there's your problem.
+Mar 31 21:38:47 <Lioncash>	Ok, so you have your model, your documentation says [x] should happen when [y]. Does it do this? If yes, cool. If no, welp, there's your problem.
+Mar 31 21:38:56 <Lioncash>	pretty self-explanatory stuff, tbqh
+Mar 31 21:38:56 <Lioncash>	pretty self-explanatory stuff, tbqh
+Mar 31 21:39:39 <neobrain>	.. wouldn't you have read the docs before you implement stuff in the first place?
+Mar 31 21:39:39 <neobrain>	.. wouldn't you have read the docs before you implement stuff in the first place?
+Mar 31 21:41:25 *	CaptainCaffeine has quit (Ping timeout: 244 seconds)
+Mar 31 21:41:27 <Lioncash>	neobrain: Well yes, but unless you memorize 2736 pages of a reference manual, you're pretty SOL if you think only a read-before is sufficient
+Mar 31 21:41:27 <Lioncash>	neobrain: Well yes, but unless you memorize 2736 pages of a reference manual, you're pretty SOL if you think only a read-before is sufficient
+Mar 31 21:42:29 <neobrain>	.. indeed :p
+Mar 31 21:42:29 <neobrain>	.. indeed :p
+Mar 31 21:47:01 *	Groose (~Groose@192.30.252.46) has joined
+Mar 31 21:47:01 <Groose>	[citra] lioncash pushed 2 new commits to master: https://git.io/vVnQ8
+Mar 31 21:47:01 <Groose>	citra/master c26b141 Jannik Vogel: Avoid warnings by casting to size_t for ARRAY_SIZE() comparisons
+Mar 31 21:47:01 <Groose>	citra/master fc6f898 Mathew Maidment: Merge pull request #1622 from JayFoxRox/fix-warnings...
+Mar 31 21:47:01 <Groose>	[citra] lioncash pushed 2 new commits to master: https://git.io/vVnQ8
+Mar 31 21:47:01 <Groose>	citra/master c26b141 Jannik Vogel: Avoid warnings by casting to size_t for ARRAY_SIZE() comparisons
+Mar 31 21:47:01 <Groose>	citra/master fc6f898 Mathew Maidment: Merge pull request #1622 from JayFoxRox/fix-warnings...
+Mar 31 21:47:02 *	Groose (~Groose@192.30.252.46) has left
+Mar 31 21:49:46 <JayFoxRox>	Lioncash: from what I can tell by reading what you say here and on github it looks like you pretty much ate 2736 for breakfast :P you know a lot of ARM and have all the necessary info when necessary
+Mar 31 21:49:46 <JayFoxRox>	Lioncash: from what I can tell by reading what you say here and on github it looks like you pretty much ate 2736 for breakfast :P you know a lot of ARM and have all the necessary info when necessary
+Mar 31 21:50:49 <JayFoxRox>	*2736 pages
+Mar 31 21:50:49 <JayFoxRox>	*2736 pages
+Mar 31 21:55:46 <Lioncash>	JayFoxRox: Heh, some of it. I usually have the v7 manual open in the background, since I usually need to look something up; anything I don't I can just rely on Ctrl-F-fu :p
+Mar 31 21:55:46 <Lioncash>	JayFoxRox: Heh, some of it. I usually have the v7 manual open in the background, since I usually need to look something up; anything I don't I can just rely on Ctrl-F-fu :p
+Mar 31 21:56:01 *	inolen (~Adium@bas17-toronto63-3096725123.dsl.bell.ca) has joined
+Mar 31 21:57:24 *	CaptainCaffeine (~matt@172.98.67.99) has joined
+Mar 31 22:47:12 <JayFoxRox>	archshift: *idea*, shader compilation might fail and clutter the log with invalid framebuffer error every draw call ;)
+Mar 31 22:47:12 <JayFoxRox>	archshift: *idea*, shader compilation might fail and clutter the log with invalid framebuffer error every draw call ;)
+Mar 31 22:47:36 <archshift>	does our log buffer grow infinitely?
+Mar 31 22:47:36 <archshift>	does our log buffer grow infinitely?
+Mar 31 22:50:08 <yuriks>	no
+Mar 31 22:50:08 <yuriks>	no
+Mar 31 22:50:16 <yuriks>	neither does windows'
+Mar 31 22:50:16 <yuriks>	neither does windows'
+Mar 31 22:51:11 <JayFoxRox>	mehh this is driving me nuts.. 4 people with the same issue already
+Mar 31 22:51:11 <JayFoxRox>	mehh this is driving me nuts.. 4 people with the same issue already
+Mar 31 22:51:45 <JayFoxRox>	also it doesn't seem to work for them with hw rendering (they get different results with shaders / software. but with the hw tests we did this shouldn't happen)
+Mar 31 22:51:45 <JayFoxRox>	also it doesn't seem to work for them with hw rendering (they get different results with shaders / software. but with the hw tests we did this shouldn't happen)
+Mar 31 22:52:51 <yuriks>	what are their GPUs?
+Mar 31 22:52:51 <yuriks>	what are their GPUs?
+Mar 31 22:53:03 *	yuriks is guessing intel+intel+intel+intel ;P
+Mar 31 22:53:03 *	yuriks is guessing intel+intel+intel+intel ;P
+Mar 31 22:53:46 <JayFoxRox>	no nvidia+nvidia+nvidia+nvidia and windows-windows-windows-windows I believe
+Mar 31 22:53:46 <JayFoxRox>	no nvidia+nvidia+nvidia+nvidia and windows-windows-windows-windows I believe
+Mar 31 22:54:03 <JayFoxRox>	(meanwhile.. I'm on intel)
+Mar 31 22:54:03 <JayFoxRox>	(meanwhile.. I'm on intel)
+Mar 31 22:54:23 <yuriks>	can you throw me a build?
+Mar 31 22:54:23 <yuriks>	can you throw me a build?
+Mar 31 22:54:35 <yuriks>	and the latest copy of your hwtest
+Mar 31 22:54:35 <yuriks>	and the latest copy of your hwtest
+Mar 31 22:54:59 <JayFoxRox>	I'm on arch with latest libc etc - I don't think I can build for most people :P
+Mar 31 22:54:59 <JayFoxRox>	I'm on arch with latest libc etc - I don't think I can build for most people :P
+Mar 31 22:55:18 *	jroweboy has quit (Quit: jroweboy)
+Mar 31 22:56:51 <JayFoxRox>	it should be mandatory for anyone posting on github PR and issues to be available on IRC for at least 10 minutes after posting
+Mar 31 22:56:51 <JayFoxRox>	it should be mandatory for anyone posting on github PR and issues to be available on IRC for at least 10 minutes after posting
+Mar 31 22:57:00 *	jroweboy (~jroweboy@2605:a601:6df:1c00:3d45:fd1c:68e1:22a4) has joined
+Mar 31 22:57:11 <JayFoxRox>	my PR is being derailed and I have no way to control the situation >.<
+Mar 31 22:57:11 <JayFoxRox>	my PR is being derailed and I have no way to control the situation >.<
+Mar 31 22:57:32 <yuriks>	oh, thought you were on windows for some reason
+Mar 31 22:57:32 <yuriks>	oh, thought you were on windows for some reason
+Mar 31 22:58:22 <yuriks>	I'll have to work for the rest of the day, but maybe ask me tomorrow about testing it
+Mar 31 22:58:22 <yuriks>	I'll have to work for the rest of the day, but maybe ask me tomorrow about testing it
+Mar 31 22:58:37 <JayFoxRox>	https://github.com/citra-emu/citra/issues/1515 < appearantly this is also only with HW rendering but works fine with SW as said in another issue by the author: https://github.com/citra-emu/citra/issues/1514#issuecomment-204201205
+Mar 31 22:58:37 <JayFoxRox>	https://github.com/citra-emu/citra/issues/1515 < appearantly this is also only with HW rendering but works fine with SW as said in another issue by the author: https://github.com/citra-emu/citra/issues/1514#issuecomment-204201205
+Mar 31 22:59:54 <JayFoxRox>	(also continued discussion about memory leaks there for some reason..)
+Mar 31 22:59:54 <JayFoxRox>	(also continued discussion about memory leaks there for some reason..)
+Mar 31 23:00:25 <yuriks>	fixing the "black arm issue" is probably because there's no fragment lighting
+Mar 31 23:00:25 <yuriks>	fixing the "black arm issue" is probably because there's no fragment lighting
+Mar 31 23:00:44 <yuriks>	I need to find an ergonomic way of using both a laptop and my desktop at the same time here <_<
+Mar 31 23:00:45 <yuriks>	I need to find an ergonomic way of using both a laptop and my desktop at the same time here <_<
+Mar 31 23:01:32 <JayFoxRox>	yuriks: I thought so too at first: but it works with SW but not with HW
+Mar 31 23:01:32 <JayFoxRox>	yuriks: I thought so too at first: but it works with SW but not with HW
+Mar 31 23:01:54 <yuriks>	yes, but what I mean is that the hw implementatin is missing something
+Mar 31 23:01:54 <yuriks>	yes, but what I mean is that the hw implementatin is missing something
+Mar 31 23:02:04 <JayFoxRox>	so I'd rather blame a blending issue or depth buffer issues (maybe he tested with the previous w-buffer branch before I removed the buffer-allow stuff)
+Mar 31 23:02:04 <JayFoxRox>	so I'd rather blame a blending issue or depth buffer issues (maybe he tested with the previous w-buffer branch before I removed the buffer-allow stuff)
+Mar 31 23:02:12 <yuriks>	while the sw rasterizer simply uses the diffuse texture when fragment lighting is used
+Mar 31 23:02:12 <yuriks>	while the sw rasterizer simply uses the diffuse texture when fragment lighting is used
+Mar 31 23:02:20 <JayFoxRox>	oh that's possible
+Mar 31 23:02:20 <JayFoxRox>	oh that's possible
+Mar 31 23:29:55 <jroweboy>	well i tried to see if that pr would eat up all my ram on my windows machine. after hovering around 300MB for the intro cutscene of OoT, ram usage dropped to 150MB. Probably isnt useful information though :) (I don't actually have that animal crossing game dumpped yet :p)
+Mar 31 23:29:55 <jroweboy>	well i tried to see if that pr would eat up all my ram on my windows machine. after hovering around 300MB for the intro cutscene of OoT, ram usage dropped to 150MB. Probably isnt useful information though :) (I don't actually have that animal crossing game dumpped yet :p)
+Mar 31 23:33:58 <JayFoxRox>	jroweboy: did you run with HW rendering? also are you on nvidia?
+Mar 31 23:33:58 <JayFoxRox>	jroweboy: did you run with HW rendering? also are you on nvidia?
+Mar 31 23:34:05 <jroweboy>	yes and yes
+Mar 31 23:34:05 <jroweboy>	yes and yes
+Mar 31 23:34:16 <jroweboy>	which is why i was going to test it to see if i got the same behavior
+Mar 31 23:34:17 <jroweboy>	which is why i was going to test it to see if i got the same behavior
+Mar 31 23:34:37 <JayFoxRox>	thanks for testing :) then they are probably just too dump to fetch or merge force-pushed stuff
+Mar 31 23:34:37 <JayFoxRox>	thanks for testing :) then they are probably just too dump to fetch or merge force-pushed stuff
+Mar 31 23:35:35 <JayFoxRox>	because most of them do youtube videos or post on reddit - so they might also have fetched yesterday and keep merging old stuff now (the older branch was massive and has tons of crap which could go wrong)
+Mar 31 23:35:35 <JayFoxRox>	because most of them do youtube videos or post on reddit - so they might also have fetched yesterday and keep merging old stuff now (the older branch was massive and has tons of crap which could go wrong)
+Mar 31 23:47:48 *	calc85maniac has quit (Read error: Connection reset by peer)
+Mar 31 23:54:06 *	calc84maniac (~calc84man@71-14-101-241.dhcp.gnvl.sc.charter.com) has joined
+Apr 01 00:07:19 <LokiX>	jroweboy: were you running the debug or release build?
+Apr 01 00:07:19 <LokiX>	jroweboy: were you running the debug or release build?
+Apr 01 00:07:56 <LokiX>	JayFoxRox: Debug build no leak, release build leak(for me)
+Apr 01 00:07:56 <LokiX>	JayFoxRox: Debug build no leak, release build leak(for me)
+Apr 01 00:08:04 *	jroweboy_ (~jroweboy@2605:a601:6df:1c00:3d45:fd1c:68e1:22a4) has joined
+Apr 01 00:09:38 <jroweboy_>	dced for a second there. i suppose i could try release if theres reason to believe it'll make a difference
+Apr 01 00:09:38 <jroweboy_>	dced for a second there. i suppose i could try release if theres reason to believe it'll make a difference
+Apr 01 00:10:39 <LokiX>	Switching to sw rendering frees up all the memory leaked, and if you switch back and it starts to leak again.
+Apr 01 00:10:39 <LokiX>	Switching to sw rendering frees up all the memory leaked, and if you switch back and it starts to leak again.
+Apr 01 00:11:52 *	jroweboy has quit (Ping timeout: 264 seconds)
+**** ENDING LOGGING AT Fri Apr  1 00:12:11 2016
+
+Apr 01 00:12:11 *	brunodea_ has quit (Quit: Leaving)
+**** BEGIN LOGGING AT Fri Apr  1 08:53:54 2016
+
+Apr 01 08:53:54 *	Now talking on #citra-dev
+Apr 01 08:53:54 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 01 08:53:54 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 01 08:53:54 -NickServ-	You are now identified for brunodea.
+Apr 01 09:46:10 *	ChanServ gives channel operator status to archshift
+Apr 01 09:53:03 <JMC4789>	does anyone have a before/after of immediate mode vertex submission?
+Apr 01 10:27:32 <JayFoxRox>	sooo.. who is going to fix this ShaderConfig == bug?
+Apr 01 10:27:55 <JayFoxRox>	would it be safe to pad it?
+Apr 01 10:27:58 <JayFoxRox>	*pack
+Apr 01 10:28:06 <Lioncash>	please don't 
+Apr 01 10:28:10 <JayFoxRox>	*pack
+Apr 01 10:28:58 <JayFoxRox>	Lioncash: I think you responded to "pad" when I meant "pack"
+Apr 01 10:29:08 <Lioncash>	Nope
+Apr 01 10:29:54 <JayFoxRox>	a member wise comparison is hundreds lines of code :/
+Apr 01 10:30:33 <JayFoxRox>	also nobody is going to bother changing it (I certainly won't - I do have enough work with my remaining features which are already done and working fine on my system. it's a problem with existing code in citra)
+Apr 01 10:31:08 <Lioncash>	If people are going to half-ass it with packing, I may as well add it to my todo list and do it right.
+**** BEGIN LOGGING AT Fri Apr  1 10:52:51 2016
+
+Apr 01 10:52:51 *	Now talking on #citra-dev
+Apr 01 10:52:51 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 01 10:52:51 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 01 10:52:51 -NickServ-	brunodea_ is not a registered nickname.
+Apr 01 11:10:31 <JayFoxRox>	https://github.com/JayFoxRox/citra/pull/5 < if anybody has a better name for these regs I'd be happy to edit this before moving it to main project
+Apr 01 11:10:31 <JayFoxRox>	https://github.com/JayFoxRox/citra/pull/5 < if anybody has a better name for these regs I'd be happy to edit this before moving it to main project
+Apr 01 11:14:17 <Lioncash>	JayFoxRox: btw I'll have time tonight to do tests regarding 1568 tonight, so I'll try to wrap that up.
+Apr 01 11:14:17 <Lioncash>	JayFoxRox: btw I'll have time tonight to do tests regarding 1568 tonight, so I'll try to wrap that up.
+Apr 01 11:14:36 <JayFoxRox>	cool, can't wait :)
+Apr 01 11:14:36 <JayFoxRox>	cool, can't wait :)
+Apr 01 11:28:36 <JayFoxRox>	dafuq now I'm being hit by a mesa bug too
+Apr 01 11:28:36 <JayFoxRox>	dafuq now I'm being hit by a mesa bug too
+Apr 01 11:29:36 <JayFoxRox>	calling glCheckFramebufferStatus(GL_FRAMEBUFFER); after SyncFramebuffer fixes a ton of INCOMPLETE_FRAMEBUFFER to appear
+Apr 01 11:29:36 <JayFoxRox>	calling glCheckFramebufferStatus(GL_FRAMEBUFFER); after SyncFramebuffer fixes a ton of INCOMPLETE_FRAMEBUFFER to appear
+Apr 01 11:41:56 <linkmauve1>	JayFoxRox, yeah, both tfarley, yuriks and me found and fixed this bug independently.
+Apr 01 11:41:56 <linkmauve1>	JayFoxRox, yeah, both tfarley, yuriks and me found and fixed this bug independently.
+Apr 01 11:42:30 <linkmauve1>	JayFoxRox, https://bugs.freedesktop.org/show_bug.cgi?id=94148
+Apr 01 11:42:30 <linkmauve1>	JayFoxRox, https://bugs.freedesktop.org/show_bug.cgi?id=94148
+Apr 01 11:42:44 <linkmauve1>	Well, “fixed” it in Citra.
+Apr 01 11:42:44 <linkmauve1>	Well, “fixed” it in Citra.
+Apr 01 11:43:16 <linkmauve1>	The actual fix would be to make glDraw* validate the fbo if it hasn’t been done before, as the specification says.
+Apr 01 11:43:16 <linkmauve1>	The actual fix would be to make glDraw* validate the fbo if it hasn’t been done before, as the specification says.
+Apr 01 11:44:52 <JayFoxRox>	meh.. I also have an almost complete bug report
+Apr 01 11:44:52 <JayFoxRox>	meh.. I also have an almost complete bug report
+Apr 01 11:45:02 <JayFoxRox>	it doesn't happen with LIBGL_ALWAYS_SOFTWARE=1 btw
+Apr 01 11:45:02 <JayFoxRox>	it doesn't happen with LIBGL_ALWAYS_SOFTWARE=1 btw
+Apr 01 11:45:07 <JayFoxRox>	so this is an intel bug
+Apr 01 11:45:07 <JayFoxRox>	so this is an intel bug
+Apr 01 11:47:53 <linkmauve1>	Oh, interesting.
+Apr 01 11:47:53 <linkmauve1>	Oh, interesting.
+Apr 01 11:50:50 <Groose>	[citra] bunnei pushed 2 new commits to master: https://git.io/vVCzQ
+Apr 01 11:50:50 <Groose>	citra/master abe5c6e purpasmart96: GSP: Return proper error codes for register writes
+Apr 01 11:50:50 <Groose>	citra/master 9d7028b bunnei: Merge pull request #1390 from purpasmart96/citra_gsp_error_codes...
+Apr 01 11:50:50 <Groose>	[citra] bunnei pushed 2 new commits to master: https://git.io/vVCzQ
+Apr 01 11:50:50 <Groose>	citra/master abe5c6e purpasmart96: GSP: Return proper error codes for register writes
+Apr 01 11:50:50 <Groose>	citra/master 9d7028b bunnei: Merge pull request #1390 from purpasmart96/citra_gsp_error_codes...
+Apr 01 11:52:39 <linkmauve1>	JayFoxRox, anyway, please comment with any additional information you have.
+Apr 01 11:52:39 <linkmauve1>	JayFoxRox, anyway, please comment with any additional information you have.
+Apr 01 12:00:54 <linkmauve1>	JayFoxRox, which reminds me, I only tested on my gen7, not on my gen6, but I doubt it would make any difference since this is purely a state tracking issue.
+Apr 01 12:00:54 <linkmauve1>	JayFoxRox, which reminds me, I only tested on my gen7, not on my gen6, but I doubt it would make any difference since this is purely a state tracking issue.
+Apr 01 12:01:53 <JayFoxRox>	I've changed it to i965 as that's what I'm on - I don't really know how to use their bug tracker though :P
+Apr 01 12:01:53 <JayFoxRox>	I've changed it to i965 as that's what I'm on - I don't really know how to use their bug tracker though :P
+Apr 01 12:02:02 <JayFoxRox>	but an email should have gone to the right persons eventually
+Apr 01 12:02:02 <JayFoxRox>	but an email should have gone to the right persons eventually
+Apr 01 12:07:08 <linkmauve1>	Yes, it did, I received it.
+Apr 01 12:07:08 <linkmauve1>	Yes, it did, I received it.
+Apr 01 12:43:19 <JayFoxRox>	if there is no better title for the registers than "allow" I'll probably PR this in about half an hour with that name (changing PR names sucks + there will be more PRs about similar regs): https://github.com/JayFoxRox/citra/pull/5
+Apr 01 12:43:19 <JayFoxRox>	if there is no better title for the registers than "allow" I'll probably PR this in about half an hour with that name (changing PR names sucks + there will be more PRs about similar regs): https://github.com/JayFoxRox/citra/pull/5
+Apr 01 12:56:17 <bunnei_>	JayFoxRox: are these different than just another "enable" field?
+Apr 01 12:56:17 <bunnei_>	JayFoxRox: are these different than just another "enable" field?
+Apr 01 13:54:45 <pcmaker>	JMC4789: I have a many older builds.I can provide some pics if you want
+Apr 01 13:54:45 <pcmaker>	JMC4789: I have a many older builds.I can provide some pics if you want
+Apr 01 13:54:45 <JayFoxRox>	bunnei_: they might actually turn off power + I don't want them mistaken for "enable stencil test" and "enable depth test" :/
+Apr 01 13:54:45 <JayFoxRox>	bunnei_: they might actually turn off power + I don't want them mistaken for "enable stencil test" and "enable depth test" :/
+Apr 01 13:55:07 <JayFoxRox>	I don't want to call it mask either because these are boolean + stencil already has a reference and writemask
+Apr 01 13:55:07 <JayFoxRox>	I don't want to call it mask either because these are boolean + stencil already has a reference and writemask
+Apr 01 13:55:56 <JMC4789>	pcmaker, do you have immediate mode before/after?
+Apr 01 13:55:56 <JMC4789>	pcmaker, do you have immediate mode before/after?
+Apr 01 13:56:25 <JayFoxRox>	I did consider *_read_permission / *_write_permission OR require_*_write / require_*_read
+Apr 01 13:56:25 <JayFoxRox>	I did consider *_read_permission / *_write_permission OR require_*_write / require_*_read
+Apr 01 13:59:12 <JayFoxRox>	will PR later - going to the cinema
+Apr 01 13:59:12 <JayFoxRox>	will PR later - going to the cinema
+Apr 01 13:59:25 <JayFoxRox>	(also forgot hw tests are still pending :$)
+Apr 01 13:59:25 <JayFoxRox>	(also forgot hw tests are still pending :$)
+Apr 01 13:59:35 <pcmaker>	JMC4789: I will take a look...propably yes
+Apr 01 13:59:35 <pcmaker>	JMC4789: I will take a look...propably yes
+Apr 01 14:00:11 <JMC4789>	okay, thanks
+Apr 01 14:00:11 <JMC4789>	okay, thanks
+Apr 01 15:23:35 *	Disconnected (Invalid argument)
+**** ENDING LOGGING AT Fri Apr  1 15:23:35 2016
+
+Apr 01 15:23:56 *	Disconnected (Invalid argument)
+**** ENDING LOGGING AT Fri Apr  1 15:23:56 2016
+
+**** BEGIN LOGGING AT Fri Apr  1 15:24:00 2016
+
+Apr 01 15:24:00 *	Now talking on #citra-dev
+Apr 01 15:24:00 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 01 15:24:00 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+**** BEGIN LOGGING AT Fri Apr  1 15:24:24 2016
+
+Apr 01 15:24:24 *	Now talking on #citra-dev
+Apr 01 15:24:24 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 01 15:24:24 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 01 15:24:24 -NickServ-	You are now identified for brunodea.
+**** BEGIN LOGGING AT Fri Apr  1 15:52:01 2016
+
+Apr 01 15:52:01 *	Now talking on #citra-dev
+Apr 01 15:52:01 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 01 15:52:01 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 01 15:52:01 -NickServ-	brunodea__ is not a registered nickname.
+Apr 01 19:08:32 <bunnei>	Subv, re: https://github.com/citra-emu/citra/pull/1616 , not sure I see the compelling reason against the matter.... stubbing functions to get games booting is something historically we've been OK with... the argument being that they're logged as warnings and it's not some sort of game-specific hack thats detrimental to the long term growth of the emulator
+Apr 01 19:09:13 <bunnei>	the fact that the names of known function signatures are unknown doesn't really change that much IMO, it still gets logged and if something doesn't work, it's in the log for one to debug
+Apr 01 19:09:35 <bunnei>	even if it's an unknown name, at least it documents that it's something that's been seen before
+Apr 01 19:09:57 <bunnei>	and if it makes a few games boot, *shrugs*
+Apr 01 19:11:39 <bunnei>	from a "support" perspective, one less thing that people are glueing together to get games booting, which means an order of magnitude less people asking about it on our forums/reddit/issue tracker
+Apr 01 19:19:59 <bunnei>	fwiw I did add a followup comment to the PR -->
+Apr 01 19:20:00 <bunnei>	"<bunnei> Subv, re: https://github.com/citra-emu/citra/pull/1616 , not sure I see the compelling reason against the matter.... stubbing functions to get games booting is something historically we've been OK with... the argument being that they're logged as warnings and it's not some sort of game-specific hack thats detrimental to the long term growth of the emulator
+Apr 01 19:20:00 <bunnei>	<bunnei> the fact that the names of known function signatures are unknown doesn't really change that much IMO, it still gets logged and if something doesn't work, it's in the log for one to debug
+Apr 01 19:20:00 <bunnei>	<bunnei> even if it's an unknown name, at least it documents that it's something that's been seen before
+Apr 01 19:20:01 <bunnei>	<bunnei> and if it makes a few games boot, *shrugs*
+Apr 01 19:20:03 <bunnei>	<bunnei> from a "support" perspective, one less thing that people are glueing together to get games booting, which means an order of magnitude less people asking about it on our forums/reddit/issue tracker"
+Apr 01 19:20:08 <bunnei>	ahhhh!
+Apr 01 19:20:10 <bunnei>	take 2:
+Apr 01 19:20:15 <bunnei>	"As a side-note, the above comment was meant to be fairly "general" with regards to these kinds of changes... If you're stubbing functions because it helps some games boot, you should only be stubbing those specific functions (with some understanding of the consequence of doing so... As it's quite plausible for games to expect functions to error). You shouldn't just blindly stub every known function to return successfully. If that 
+Apr 01 19:20:19 <bunnei>	was the case, can you remove any of the stubs from this PR that were not tested?"
+Apr 01 19:28:13 <JayFoxRox>	I think stubbing everyhing is fine - at least it's shown what kind of functions will be necessary - it just has to be clear that the first stub-warning will already "taint" the emulation
+Apr 01 19:40:52 <Groose>	[citra] JamePeng opened pull request #1623: update the code of AM service! (master...update-am-service) https://git.io/vVlke
+Apr 01 20:01:30 <bunnei>	This JamePeng is very emphatic!
+Apr 01 20:03:21 <JayFoxRox>	I wish he was on irc more often
+Apr 01 20:03:49 <JayFoxRox>	I really dig that he is trying to help :) we talked about graphics programming the other day in a query
+Apr 01 20:04:35 <JayFoxRox>	it's a shame so many chinese people don't spend time on western projects. aside from the language barrier there is a whole different software and hardware infrastructure in place in asia and especially china
+Apr 01 20:05:30 <JayFoxRox>	(also I want to pitch the incomplete blendfunc to him so it gets implemented soon :P)
+Apr 01 20:07:02 <JayFoxRox>	[also, totally not trying to sound like a racist here BUT I think chinese people say hilarious things in english]
+Apr 01 20:23:35 <bunnei>	racist
+Apr 01 20:23:43 <bunnei>	;)
+Apr 01 20:47:19 <Groose>	[citra] JayFoxRox opened pull request #1624: Implement buffer-write allow registers (master...buffer-allow-write) https://git.io/vVl3U
+Apr 01 20:55:47 <JayFoxRox>	I think it's weird how I always PR to my own fork first to review all my changes, but everytime *AFTER* I submit the PR to the main project I do realize minor nits I didn't see before
+Apr 01 20:57:26 <bunnei>	heh I've never heard of anyone PRing to their own fork first
+Apr 01 21:00:13 <JayFoxRox>	bunnei: gives me time to prepare the PR message + keep local TODOs organized + I can take all the time to review my commits without risking to loose changes in case my browser crashes + I see what github will actually show for each commit.
+Apr 01 21:00:39 <JayFoxRox>	(+ you can ask other people what they think without having to disturb other devs of the main project)
+Apr 01 21:01:06 <JayFoxRox>	Lioncash: is that SyncColorWriteMask a late april fools? it's way less readable imho
+Apr 01 21:01:40 <JayFoxRox>	there would be no point in keeping the allow_color_write variable around then either if there is a lambda instead
+Apr 01 21:02:21 <Lioncash>	then don't keep it around :)
+Apr 01 21:02:32 <JayFoxRox>	+ default syntax for this would be camelcased lambda
+Apr 01 21:02:41 <JayFoxRox>	so auto ColorWriteEnabled
+Apr 01 21:03:40 <bunnei>	JayFoxRox, well, you to a topnotch job, so no complaints here :)
+Apr 01 21:03:57 <bunnei>	btw, didn't you say you were going to run out of time to work on Citra? ^^
+Apr 01 21:04:27 <JayFoxRox>	bunnei: yeah, I thought uni was starting on april first but it turns out it only starts april 4th. also I'm procrastinating more important stuff :P
+Apr 01 21:05:31 <JayFoxRox>	I just want to finish my remaining branches (GS + Buffer-allow crap)
+Apr 01 21:05:46 <bunnei>	JayFoxRox, any chance you'll still have a tiny bit of time after that to still work on Citra? I've got a 3ds sitting next to me here with your name on it ;p
+Apr 01 21:05:47 <JayFoxRox>	I might still merge one of my dummy stub branches and maybe the blend func thing if nobody else does it
+Apr 01 21:06:35 <JayFoxRox>	bunnei: I have absolutly no idea - I should actually start living a life and earn money etc. I'll probably still drop by occassionaly
+Apr 01 21:12:14 <JayFoxRox>	(also I guess I'll see some of you at certain events? - be it demoparties or 3..c3)
+Apr 01 21:14:38 <bunnei>	JayFoxRox, certainly if you come to the US!
+Apr 01 21:15:17 <bunnei>	I personally don't make it out to euro conferences very much
+Apr 01 22:13:31 <JayFoxRox>	bitfield to number. static_cast or just (cast)?
+Apr 01 22:17:28 <Lioncash>	static_cast
+Apr 01 22:48:38 <Groose>	[citra] JayFoxRox opened pull request #1625: Rasterizer: Allow all blend factors for alpha blend-func (master...sw-blend-func) https://git.io/vVlgK
+Apr 01 22:50:22 <JayFoxRox>	heh, half the code for almost twice the features :)
+Apr 01 23:16:47 <JayFoxRox>	thanks for the tag yuriks
+Apr 01 23:16:53 <yuriks>	JayFoxRox: and 400% more branches
+Apr 01 23:16:55 <yuriks>	:P
+Apr 01 23:17:01 <yuriks>	but it's the sw rast, who cares about the sw rast
+Apr 01 23:17:07 *	JayFoxRox does
+Apr 01 23:17:20 <JayFoxRox>	I think hwrast is way more important than the hw renderer for the future of the project
+Apr 01 23:17:48 <yuriks>	swrast*?
+Apr 01 23:17:56 <JayFoxRox>	ofc
+Apr 01 23:18:31 <JayFoxRox>	not only is it useful for porting (= no deps), it's also the reference for things which are otherwise hard to implement in HW :)
+Apr 01 23:18:38 <yuriks>	maybe "not caring" is a strong word
+Apr 01 23:19:03 <JayFoxRox>	so even if it is slow it's probably enough to generate interest in optimizing and perfecting the hw renderer (be it for porting or new features)
+Apr 01 23:19:23 <yuriks>	but it's stuck in this position where it's usefulness for users (usable speed) is directly opposite to it's usefulness for the codebase (simple reference code)
+Apr 01 23:20:57 <JayFoxRox>	so? it could get a massive speedup at some point when compiled as a OpenCL kernel or something - also users will certainly appreciate the ability to switch to the sw rast in case the hw renderer fails horribly (it might be rare but I think some features won't be emulated properly in hw for a long long time)
+Apr 01 23:21:26 <yuriks>	JayFoxRox: you can't magically speed it up by compiling at an openCL kernel, and that was kind of my point, that optimizing it defeats the point
+Apr 01 23:21:50 <JayFoxRox>	ofc you can, why not? if you have hundreds of threads running at once it will be faster
+Apr 01 23:22:10 <yuriks>	you'd need to do a lot of refactoring on it first
+Apr 01 23:22:45 <JayFoxRox>	not with advances in GPGPU compilers etc. there is a loop in the swrast which hardly does anything else than looping over pixels
+Apr 01 23:23:48 <yuriks>	that's fair, I'm over-reacting to my previous experiences with that part of the code.
+Apr 01 23:24:11 <JayFoxRox>	I'm still confident that OpenMP alone should speed it up a good bit
+Apr 01 23:24:28 <yuriks>	can we still get rid of all the inline lambdas though? :P
+Apr 01 23:25:01 <JayFoxRox>	I think they are mostly fine
+Apr 01 23:25:16 <JayFoxRox>	at least they keep the code nicely in one spot
+Apr 01 23:25:42 <yuriks>	that's a downside in my optinion, since there's no way to get the general picture of what the function is done
+Apr 01 23:25:46 <yuriks>	is doing*
+Apr 01 23:25:57 <JayFoxRox>	the whole thing should probably be more modular and each function call could have lambdas - I agree on that
+Apr 01 23:25:57 <yuriks>	you basically have to pattern match on the structure of the code to find your way around it :P
+Apr 01 23:26:42 <JayFoxRox>	I think the flow is very logical - if you know how a GPU pipeline works it's pretty easy. it's all in the correct order and everything where you'd expect it
+Apr 01 23:27:10 <JayFoxRox>	it's just a bit hard to see the interfaces from block to block at times. so that should probably be split into functions
+Apr 01 23:27:30 <JayFoxRox>	but I wouldn't do the pica_to_gl.h kind of thing for the sw rast and keep the lambdas instead
+Apr 01 23:28:01 <yuriks>	what do you mean?
+Apr 01 23:28:16 <yuriks>	I don't mean splitting it into files, just making it less of monolithic function
+Apr 01 23:28:24 <yuriks>	the lambdas have often been a source of perf problems in the past
+Apr 01 23:28:45 <JayFoxRox>	really? how so? aren't they just being inlined properly?
+Apr 01 23:29:08 <Lioncash>	Generally if it's a small lambda, yes
+Apr 01 23:29:09 <JayFoxRox>	it's a logical consequence that they will be the slowest part of that particular code
+Apr 01 23:29:22 <JayFoxRox>	so unless you mean a call overhead it's to be expected
+Apr 01 23:29:46 <yuriks>	JayFoxRox: MSVC tends to not inline, and also re-initialized them in loops, especially if you use static for no-capture lambdas that's sub-optimal
+Apr 01 23:29:52 <yuriks>	that's mostly been fixed I think though
+Apr 01 23:29:56 <JayFoxRox>	99% of what that code does is probably figuring out which state is set and jumping to the correct case, and only a small portion will be spend on actually doing math
+Apr 01 23:30:40 <yuriks>	one idea I had before was to pre-fill a function table with pointers at the start before entering the loop and just calling those
+Apr 01 23:30:46 <yuriks>	no idea if it would be much faster though
+Apr 01 23:30:58 <JayFoxRox>	yeah - it will make the code more complicated though
+Apr 01 23:31:49 <JayFoxRox>	all math would have to be implemented in seperate functions :/
+Apr 01 23:32:45 <JayFoxRox>	oh but C++ has lambda and std::function
+Apr 01 23:33:20 <JayFoxRox>	so it's probably as simple as moving the code out of the loop and wrapping everything in lambdas
+Apr 02 00:06:47 <archshift>	std::function is pretty slow, though
+Apr 02 00:07:36 <archshift>	...vtables...
+Apr 02 00:08:43 <yuriks>	aka function pointers :)
+Apr 02 00:08:47 <yuriks>	but pointer chasing, fair enough
+Apr 02 00:09:00 <yuriks>	yeah, ideally it's just a function pointer and then you pass the state
+Apr 02 00:35:29 FiSHLiM	hexchat_print called without a valid context.
+**** ENDING LOGGING AT Sat Apr  2 00:35:29 2016
+
+**** BEGIN LOGGING AT Sat Apr  2 00:35:49 2016
+
+Apr 02 00:35:49 *	Now talking on #citra-dev
+Apr 02 00:35:49 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 02 00:35:49 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 02 00:35:49 -NickServ-	You are now identified for brunodea.
+Apr 02 00:36:04 FiSHLiM plugin unloaded
+**** ENDING LOGGING AT Sat Apr  2 00:36:04 2016
+
+**** BEGIN LOGGING AT Tue Apr  5 21:43:48 2016
+
+Apr 05 21:43:48 *	Now talking on #citra-dev
+Apr 05 21:43:48 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 05 21:43:48 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 05 21:43:48 -NickServ-	You are now identified for brunodea.
+Apr 05 22:51:36 <JayFoxRox>	updated https://github.com/citra-emu/citra/pull/1634
+Apr 05 23:06:56 <yuriks>	Subv: yeah, MSVC likes to compile those to jumptables with one `mov eax, 0ximmediate` in each branch :P
+Apr 05 23:07:45 <yuriks>	honestly it wouldn't be so bad if C++ had the { [FOO] = 4, [BAR] = 6 } initialization syntax
+Apr 06 00:04:48 <Groose>	[citra] bunnei closed pull request #1435: frd:u: Initial stub some functions (master...frd_u) https://git.io/v2PYP
+**** BEGIN LOGGING AT Wed Apr  6 06:27:39 2016
+
+Apr 06 06:27:39 *	Now talking on #citra-dev
+Apr 06 06:27:39 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 06 06:27:39 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 06 06:27:39 -NickServ-	You are now identified for brunodea.
+Apr 06 08:07:25 <Groose>	[citra] polaris- opened pull request #1644: Adopted WinterMute's gdbstub changes (master...gdb-fixes) https://git.io/vVwvN
+Apr 06 09:07:23 <Groose>	[citra] mailwl opened pull request #1645: Fix thumb ADR instruction (master...thumb_pc) https://git.io/vVwq8
+Apr 06 09:26:23 <JayFoxRox>	:o
+Apr 06 09:26:36 *	ChanServ gives channel operator status to Lioncache
+Apr 06 12:16:12 <JayFoxRox>	https://github.com/mailwl/citra/blob/thumb_pc/src/core/arm/dyncom/arm_dyncom_interpreter.cpp#L4099 that might also need alignment Lioncash?
+Apr 06 12:16:34 <JayFoxRox>	if targetInstrSet == InstrSet_ARM then targetAddress = Align(PC,4) + imm32;
+Apr 06 12:21:35 <Lioncache>	 JayFoxRox: Yes, anything with Align() should be aligned.
+Apr 06 12:22:48 <Lioncache>	JayFoxRox: btw, which reference manual are you using that has the pseudocode like that?
+Apr 06 12:23:20 <Lioncache>	Seems like an out of date manual
+Apr 06 12:27:13 <JayFoxRox>	very likely, lost my arm silver login and use a version I found via google
+Apr 06 12:27:28 <Stary2001>	need an up to date arm7 copy? :p
+Apr 06 12:28:34 <Lioncache>	JayFoxRox: yeah, you want the "ARM Architecture Reference Manual ARM v7-A and ARM v7-R edition"
+Apr 06 12:29:51 <merry>	Lioncache: I just picked that up two days ago and it's <3
+Apr 06 12:31:23 <merry>	speaking of which I'll have to go over some of my impls for the jit with that in hand
+Apr 06 12:35:58 <JayFoxRox>	Lioncache: that's also the document name I'm using
+Apr 06 12:36:08 <JayFoxRox>	what's the ddi number of the one I should be using + revision?
+Apr 06 12:43:48 <Lioncache>	JayFoxRox: meh, it doesn't really matter
+Apr 06 12:44:16 <Lioncache>	Considering the only changes are errata changes, but they don't apply to the v6K
+Apr 06 12:49:10 <JayFoxRox>	Lioncache: grabbed the newest version from arm silver now and still has the same pseudocode - but maybe it's not even the right page I'm looking at for that piece of code
+Apr 06 12:56:08 <Lioncache>	JayFoxRox: I'm currently not on my desktop (I'm at work), so it's probably just document formatting/rendering oddities on my end (I normally use Windows/OSX, but my work PC uses Ubuntu).
+Apr 06 12:58:59 <Lioncache>	Alright, yeah. It's the default reader on Ubuntu being wonky with the doc
+Apr 06 14:01:45 <Groose>	[citra] lioncash pushed 2 new commits to master: https://git.io/vVrn5
+Apr 06 14:01:45 <Groose>	citra/master 06a4369 mailwl: Fix thumb ADR instruction alignment
+Apr 06 14:01:45 <Groose>	citra/master 0408f11 Mathew Maidment: Merge pull request #1645 from mailwl/thumb_pc...
+**** BEGIN LOGGING AT Thu Apr  7 16:43:00 2016
+
+Apr 07 16:43:00 *	Now talking on #citra-dev
+Apr 07 16:43:00 *	Topic for #citra-dev is: Citra Development Discussion | Release brainstorming: http://tinyurl.com/citra-release | Unofficial compat list: http://tinyurl.com/citra-updated-compat
+Apr 07 16:43:00 *	Topic for #citra-dev set by bunnei!~bunnei@ip68-9-185-55.ri.ri.cox.net (Sat Mar 26 13:17:44 2016)
+Apr 07 16:43:00 -NickServ-	You are now identified for brunodea.
+Apr 07 17:37:26 <frankil>	hola
+Apr 07 17:40:07 <frankil>	hola
+**** ENDING LOGGING AT Thu Apr  7 18:48:39 2016
+

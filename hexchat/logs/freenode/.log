@@ -1,0 +1,69 @@
+**** BEGIN LOGGING AT Sun Mar 27 19:16:45 2016
+
+Mar 27 19:16:45 *	Connecting to chat.freenode.net (193.219.128.49:6697)
+Mar 27 19:16:47 *	* Certification info:
+Mar 27 19:16:47 *	  Subject:
+Mar 27 19:16:47 *	    OU=Domain Control Validated
+Mar 27 19:16:47 *	    OU=Gandi Standard Wildcard SSL
+Mar 27 19:16:47 *	    CN=*.freenode.net
+Mar 27 19:16:47 *	  Issuer:
+Mar 27 19:16:47 *	    C=FR
+Mar 27 19:16:47 *	    ST=Paris
+Mar 27 19:16:47 *	    L=Paris
+Mar 27 19:16:47 *	    O=Gandi
+Mar 27 19:16:47 *	    CN=Gandi Standard SSL CA 2
+Mar 27 19:16:47 *	  Public key algorithm: rsaEncryption (2048 bits)
+Mar 27 19:16:47 *	  Sign algorithm sha256WithRSAEncryption
+Mar 27 19:16:47 *	  Valid since Dec 14 00:00:00 2015 GM to Feb 16 23:59:59 2017 GM
+Mar 27 19:16:47 *	* Cipher info:
+Mar 27 19:16:47 *	  Version: TLSv1/SSLv3, cipher DHE-RSA-AES256-GCM-SHA384 (256 bits)
+Mar 27 19:16:47 *	Connected. Now logging in.
+**** BEGIN LOGGING AT Sun Mar 27 21:34:10 2016
+
+Mar 27 21:34:10 *	brunodea sets mode +Z on brunodea
+Mar 27 21:34:10 *	brunodea sets mode +i on brunodea
+Mar 27 21:34:10 -NickServ-	This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+**** ENDING LOGGING AT Sun Mar 27 21:34:16 2016
+
+**** BEGIN LOGGING AT Sun Mar 27 22:43:02 2016
+
+Mar 27 22:43:02 *	brunodea sets mode +Z on brunodea
+Mar 27 22:43:02 *	brunodea sets mode +i on brunodea
+Mar 27 22:43:02 -NickServ-	This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+**** ENDING LOGGING AT Sun Mar 27 22:43:08 2016
+
+**** BEGIN LOGGING AT Wed Mar 30 09:44:24 2016
+
+Mar 30 09:44:24 *	brunodea sets mode +Z on brunodea
+Mar 30 09:44:24 *	brunodea sets mode +i on brunodea
+Mar 30 09:44:24 -NickServ-	This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+**** ENDING LOGGING AT Wed Mar 30 09:44:29 2016
+
+**** BEGIN LOGGING AT Thu Mar 31 00:30:59 2016
+
+Mar 31 00:30:59 *	brunodea is already in use. Retrying with brunodea_...
+Mar 31 00:30:59 *	brunodea_ sets mode +Z on brunodea_
+Mar 31 00:30:59 *	brunodea_ sets mode +i on brunodea_
+**** ENDING LOGGING AT Thu Mar 31 00:31:05 2016
+
+**** BEGIN LOGGING AT Thu Mar 31 11:50:52 2016
+
+Mar 31 11:50:52 *	brunodea sets mode +Z on brunodea
+Mar 31 11:50:52 *	brunodea sets mode +i on brunodea
+Mar 31 11:50:52 -NickServ-	This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+**** ENDING LOGGING AT Thu Mar 31 11:50:58 2016
+
+**** BEGIN LOGGING AT Fri Apr  1 15:23:55 2016
+
+Apr 01 15:23:55 *	brunodea_ sets mode +Z on brunodea_
+Apr 01 15:23:55 *	brunodea_ sets mode +i on brunodea_
+Apr 01 15:24:00 -NickServ-	brunodea_ is not a registered nickname.
+**** ENDING LOGGING AT Fri Apr  1 15:24:00 2016
+
+**** BEGIN LOGGING AT Fri Apr  1 15:24:18 2016
+
+Apr 01 15:24:18 *	brunodea sets mode +Z on brunodea
+Apr 01 15:24:18 *	brunodea sets mode +i on brunodea
+Apr 01 15:24:18 -NickServ-	This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+**** ENDING LOGGING AT Fri Apr  1 15:24:24 2016
+

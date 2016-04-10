@@ -1,0 +1,597 @@
+T 1459952419 18<Yoric18>	Just to be sure that the timer callback has a well-defined lifetime.
+T 1459952421 18<sinclair18>	why does Rust not have a ~ NOT bitwise operator?
+T 1459952446 18<benh18>	it's just spelled !
+T 1459952447 18<Mutabah18>	sinclair: ! does the same job
+T 1459952449 18<kvark18>	bluss: very nice, thank you!
+T 1459952457 18<Mutabah18>	playbot: !128u8
+T 1459952458 -18playbot/22#rust-	127
+T 1459952474 18<sinclair18>	hmm, alright
+T 1459952498 18<sinclair18>	playbot: !!128u8
+T 1459952499 -18playbot/22#rust-	128
+T 1459952503 18<sinclair18>	nice
+T 1459952505 18<sinclair18>	Mutabah: cheers
+T 1459952734 18<thills18>	Yoric:  OMG  that was it!
+T 1459952765 18<Yoric18>	thills: I knew there would be a "ahah" moment :)
+T 1459952780 18<Yoric18>	So the timer is cancelled as soon as the guard leaves the scope.
+T 1459952787 18<Yoric18>	s/leaves the scope/is dropped/
+T 1459952797 18<thills18>	Yoric: yes, that makes sense
+T 1459952805 18<Yoric18>	This is a mechanism to make sure that we don't leave timers hanging around if we have forgotten about them.
+T 1459952820 18<Yoric18>	But, well, you have seen the drawback :)
+T 1459952829 18<thills18>	Yoric: Yes, I can see how that can be a mess
+T 1459952883 18<thills18>	Yoric: wow.  thanks so much
+T 1459952894 18<Yoric18>	My pleasure.
+T 1459952901 18<Yoric18>	thills: How's the work on Taxonomy, btw? Are you still on it?
+T 1459952919 18<thills18>	Yoric: no, I'm working on metrics
+T 1459952928 18<Yoric18>	ok
+T 1459952935 18<Yoric18>	Metrics in Rust? Cool :)
+T 1459952965 18<thills18>	Yoric: yes, we're hoping this can be used by other projects too
+T 1459953533 18<sinclair18>	WindowsBunny: heya
+T 1459953544 18<sinclair18>	WindowsBunny: writing windows drivers using rust
+T 1459953561 18<sinclair18>	WindowsBunny: if i wanted to do that, how would i approach thing ?
+T 1459953591 18<sinclair18>	*things
+T 1459954716 18<Binero18>	Out of interest, does rust still use libc internally? 
+T 1459954736 18<Ms2ger18>	Yes
+T 1459954975 18<phaazon18>	hey, I’ve been wondering something about dynamic dispatch
+T 1459954979 18<phaazon18>	imagine this trait:
+T 1459954981 18<wyvern18>	thills: metrics as in similar to dropwizard metrics?
+T 1459954991 18<phaazon18>	trait Foo { fn foo() -> Self }
+T 1459954998 18<phaazon18>	now I imagine bar:
+T 1459955019 18<phaazon18>	fn bar(foo: &Foo);
+T 1459955034 18<phaazon18>	how can I use that to retrieve the result of foo?
+T 1459955034 18<phaazon18>	like
+T 1459955055 18<phaazon18>	fn bar<T: Foo>(f: &Foo) -> T (
+T 1459955078 18<phaazon18>	I hate to do that, but it might be necessary in my case
+T 1459955188 18<phaazon18>	lib/resource.rs:51:1: 53:2 error: the trait `resource::Test` cannot be made into an object [E0038]
+T 1459955191 18<phaazon18>	ah
+T 1459955236 18<phaazon18>	I guess I need ?Sized
+T 1459955258 18<Binero18>	phaazon: Did you fix whatever you tried to do? 
+T 1459955273 18<phaazon18>	about what Binero?
+T 1459955330 18<Binero18>	phaazon: I don't know. You asked for help and then appeared to answer your own question 
+T 1459955343 18<phaazon18>	well
+T 1459955349 18<phaazon18>	I’m trying to build a resource manager
+T 1459955354 18<phaazon18>	with caching
+T 1459955361 18<phaazon18>	and I feel like I might need dynamic dispatch
+T 1459955398 18<phaazon18>	what is the feature to use to have ?Sized?
+T 1459955413 18<Binero18>	You mean have a trait be optionally sized or not? 
+T 1459955428 18<phaazon18>	Binero: well, the idea is that I have a trait
+T 1459955429 18<phaazon18>	Resource
+T 1459955437 18<phaazon18>	which requires a type to implement load(), unload() and reload()
+T 1459955440 18<Binero18>	You can only accept pointers to traits 
+T 1459955453 18<phaazon18>	now I want to have a heteregenous list of resources
+T 1459955456 18<phaazon18>	so, &Resource
+T 1459955467 18<phaazon18>	but I wonder how I can restore back the type
+T 1459955495 18<phaazon18>	if I do a static dispatch, which I prefer, I need to modify the ResourceManager type each type I add a new type to be supported as a resoruce
+T 1459955497 18<Binero18>	So you have a Resource<T>? 
+T 1459955498 18<phaazon18>	which is boring
+T 1459955501 18<Binero18>	And you want to turn it into a T? 
+T 1459955507 18<phaazon18>	no
+T 1459955511 18<phaazon18>	I have a Resoruce
+T 1459955513 18<phaazon18>	Resource
+T 1459955514 18<phaazon18>	it’s a trait
+T 1459955526 18<phaazon18>	trait Resource { fn load(…)… }
+T 1459955563 18<Binero18>	What do you want to do with it then? 
+T 1459955571 18<Binero18>	what do you mean with "restore back the type"
+T 1459955580 18<phaazon18>	convert a Resource into its implementor
+T 1459955582 18<Binero18>	you want to get the object that implements the Resource trait? 
+T 1459955584 18<phaazon18>	a &Resource*
+T 1459955589 18<Binero18>	ah
+T 1459955590 18<phaazon18>	like
+T 1459955595 18<phaazon18>	impl Resource for Car
+T 1459955599 18<phaazon18>	I want a function like
+T 1459955607 18<phaazon18>	fn get(res: &Resource) -> Car
+T 1459955609 18<Binero18>	You can't change a Resource into Car 
+T 1459955609 18<phaazon18>	or something like that
+T 1459955614 18<Binero18>	But
+T 1459955619 18<chris_9918>	Just wondering if anyone could help i'm getting this : error: mismatched types: expected `u32`, found `u64` [E0308] gobject_sys::g_signal_handler_block (stylecombo.to_glib_none().0,handle); when i compile for windows, but gobject_sys::g_signal_handler_block seems to expect a c_long according to the git source for gtk-rs (this works fine in linux)
+T 1459955625 18<phaazon18>	I’m looking for better options
+T 1459955628 18<Binero18>	hmm
+T 1459955629 18<phaazon18>	because I don’t like dynamic dispatching
+T 1459955639 18<phaazon18>	the perfect option to me
+T 1459955641 18<Binero18>	Why not do 
+T 1459955647 18<phaazon18>	would be to have as many maps as types
+T 1459955651 18<phaazon18>	but where should I put those maps?
+T 1459955677 18<Binero18>	phaazon: Can you explain what you are trying to do in general? 
+T 1459955688 18<phaazon18>	yeah, a caching resource manager
+T 1459955695 18<phaazon18>	imagine you have resources, like objects, textures and lights
+T 1459955698 18<Binero18>	and Resource is anything that can be cached? 
+T 1459955702 18<phaazon18>	those are on filesystem
+T 1459955707 18<phaazon18>	Binero: almost
+T 1459955723 18<phaazon18>	a Resource is anything that can be loaded from, unloaded and reloaded from the disk
+T 1459955728 18<Binero18>	I see
+T 1459955728 18<phaazon18>	and can then be cached into a map
+T 1459955731 18<phaazon18>	so
+T 1459955732 18<phaazon18>	actually
+T 1459955735 18<phaazon18>	I have a struct manager
+T 1459955736 18<phaazon18>	Manager*
+T 1459955738 18<phaazon18>	with, for instance
+T 1459955746 18<Binero18>	Resource { type Output = Car; } ? 
+T 1459955755 18<phaazon18>	struct Manager { lights: BTreeMap<String, Arc<Light>>, …
+T 1459955762 18<phaazon18>	no
+T 1459955773 18<phaazon18>	Output ~ Self
+T 1459955802 18<Binero18>	If Resource is a source to load from, surely you don't want to get(resource) -> Resource
+T 1459955810 18<Binero18>	you'd want to get(resource) -> Output
+T 1459955819 18<phaazon18>	well, yeah
+T 1459955822 18<phaazon18>	that’s why I have a trait
+T 1459955823 18<phaazon18>	so
+T 1459955827 18<phaazon18>	the trait is like
+T 1459955834 18<Binero18>	And every Resource can only load one type? 
+T 1459955842 18<phaazon18>	trait Resource { fn load(…) -> Result<Self, …>; }
+T 1459955848 18<phaazon18>	Binero: yeah
+T 1459955854 18<Binero18>	right
+T 1459955855 18<phaazon18>	that’s the point
+T 1459955858 18<phaazon18>	implementing Resource for Light
+T 1459955863 18<phaazon18>	for Car
+T 1459955869 18<phaazon18>	and so on
+T 1459955870 18<Binero18>	Does load take &self? 
+T 1459955881 18<phaazon18>		fn load(manager: &mut Manager, name: String, force: bool) -> Result<Managed<Self>, ResourceError>;
+T 1459955885 18<phaazon18>	this is my load signature
+T 1459955895 18<Binero18>	I see 
+T 1459955899 18<phaazon18>	and Managed is just like Arc<Self>
+T 1459955902 18<phaazon18>	oh no
+T 1459955905 18<phaazon18>	it’s Weak<Self>
+T 1459955909 18<phaazon18>	doesn’t really matter here
+T 1459955931 18<Binero18>	So where is the issue? 
+T 1459955938 18<phaazon18>	the issue is the manager type
+T 1459955949 18<phaazon18>	imagine I want to have Bike as resources as well
+T 1459955952 18<phaazon18>	I have to implement Resource
+T 1459955961 18<phaazon18>	to state how I load that from the disk
+T 1459955963 18<phaazon18>	which is okay
+T 1459955970 18<phaazon18>	but I also have to change Manager’s struct
+T 1459955973 18<phaazon18>	which is not okay to me
+T 1459955979 18<Binero18>	Why do you have to change Manager's struct? 
+T 1459955984 18<phaazon18>	to add a new map!
+T 1459955989 18<phaazon18>	BTreeMap<String, Bike>
+T 1459955991 18<Binero18>	I see 
+T 1459955999 18<Binero18>	You want one map with all the type s
+T 1459956004 18<phaazon18>	yeah
+T 1459956005 18<phaazon18>	or
+T 1459956008 18<phaazon18>	a way to simulate it
+T 1459956013 18<feti18>	Please use sentences, you are killing my eyeballs ;)
+T 1459956014 18<phaazon18>	I don’t know how to do that
+T 1459956015 18<feti18>	</rant>
+T 1459956029 18<phaazon18>	feti: you mean comma, right? :D
+T 1459956047 18<feti18>	Well, I just mean in a single line. I don't care about your grammar :)
+T 1459956049 18<Binero18>	phaazon: he doesn't like
+T 1459956051 18<feti18>	Be as ugly as you'd like! haha
+T 1459956051 18<Binero18>	that we 
+T 1459956053 18<Binero18>	do this 
+T 1459956061 18<feti18>	It's just hard for an old man to follow. :)
+T 1459956068 18<Binero18>	understandable 
+T 1459956069 18<phaazon18>	I know, but I can’t help it, sorry! I’ll try to though
+T 1459956079 18<feti18>	It's ok, bud.
+T 1459956083 18<phaazon18>	aw :3
+T 1459956088 18<phaazon18>	so, Binero, any idea?
+T 1459956097 18<Binero18>	phaazon: Why not just use a different Manager for every type of object? 
+T 1459956100 18<phaazon18>	the idea is that each type should have a map.
+T 1459956108 18<phaazon18>	Binero: because of dependencies
+T 1459956122 18<Binero18>	phaazon: A Car might require a light etc? 
+T 1459956128 18<phaazon18>	imagine my Car needing a Texture. the load() function needs to access that
+T 1459956130 18<phaazon18>	yeah
+T 1459956189 18<Binero18>	phaazon: https://doc.rust-lang.org/std/any/trait.Any.html
+T 1459956224 18<phaazon18>	yeah, dynamic dispatch
+T 1459956227 18<phaazon18>	I don’t really want that
+T 1459956232 18<phaazon18>	there might be a way to get away from this
+T 1459956241 18<Binero18>	If you use different maps, sure. 
+T 1459956246 18<phaazon18>	maybe singletons…
+T 1459956251 18<Binero18>	oh god 
+T 1459956251 18<phaazon18>	but I don’t like that :(
+T 1459956256 18<phaazon18>	like
+T 1459956258 18<phaazon18>	in the Resource trait
+T 1459956269 18<phaazon18>	I could have a function returning the map for the type
+T 1459956272 18<phaazon18>	and would fix everything
+T 1459956294 18<Binero18>	phaazon: Why not just pass the maps around? 
+T 1459956311 18<phaazon18>	that could be an idea, yeah
+T 1459956320 18<phaazon18>	like, a Car would require a Car map and a Texture map
+T 1459956326 18<Binero18>	exactly. 
+T 1459956336 18<phaazon18>	hm
+T 1459956348 18<phaazon18>	I need to think that up
+T 1459956361 18<phaazon18>	that’s ridiculously simple, so I like it. :)
+T 1459956510 18<Binero18>	phaazon: You could also just make one big type with different maps in it, and then for every variant of Resource you have another get()
+T 1459956525 18<Binero18>	get_car(), get_light(), get_whatever()
+T 1459956526 18<phaazon18>	Binero: that’s the issue I want to get away
+T 1459956531 18<Binero18>	You could even write a macro to generate that 
+T 1459956538 18<phaazon18>	because if you do that, each time you add a type of resource, you change a lot of work
+T 1459956542 18<phaazon18>	and a lot of code
+T 1459956548 18<Binero18>	phaazon: Use a macro 
+T 1459956559 18<phaazon18>	I think passing around maps is good enough
+T 1459956849 18<Binero18>	phaazon: How about have a Get<Type> trait? You could just do impl Get<Car> for ResourceManager, impl Get<Light> for ResourceManager. Could easily be code-generated using a macro. 
+T 1459956877 18<phaazon18>	Binero: you still need to have ResourceManager having a lot of maps :/
+T 1459956889 18<Binero18>	phaazon: They can all be generated 
+T 1459956900 18<Binero18>	phaazon: You'd end up with many maps either way. 
+T 1459956904 18<phaazon18>	I don’t like code generation
+T 1459956907 18<phaazon18>	it’s messy
+T 1459956933 18<phaazon18>	Binero: yeah, but I’d rather like to defer those maps creation as many as possible
+T 1459956974 18<Binero18>	phaazon: How would they defer? Don't they just hold weak references to the objects? 
+T 1459956994 18<phaazon18>	Binero: I mean
+T 1459956999 18<phaazon18>	in the main of the application
+T 1459957003 18<phaazon18>	I can create the maps I really need
+T 1459957020 18<phaazon18>	and then pass them to the load function that will load the whole gathered scene or whatever
+T 1459957365 18<chris_9918>	At the moment is there no way to force cargo, to compile in a custom directory?
+T 1459957438 18<steveklabnik18>	i thought there was a flag or something
+T 1459957445 18<jwilm18>	chris_99: you can add a [build.target-dir] option to your .cargo/config
+T 1459957465 18<jwilm18>	also CARGO_TARGET_DIR environment variable
+T 1459957485 18<chris_9918>	ooh awesome, thanks!
+T 1459957498 18<chris_9918>	the env variable would be perfect here, cheers
+T 1459957716 18<phaazon18>	wtf
+T 1459957723 18<phaazon18>	I pass a &mut BTreeMap to a function
+T 1459957728 18<phaazon18>	which does a map.get()…
+T 1459957737 18<phaazon18>	and I get an error when I try to use map afterwards
+T 1459957744 18<phaazon18>	stating that there’s an immutable borrow on it
+T 1459957756 18<phaazon18>	get expects a &BTreeMap, not BTreeMap, wtf?
+T 1459957787 18<talchas18>	at a guess, are you doing something like "if let Some(x) = map.get(stuff) { return x }"?
+T 1459957805 18<phaazon18>	I did that in a match at first, yes
+T 1459957810 18<phaazon18>	then I moved that to a let
+T 1459957816 18<phaazon18>	let found = map.get(stuff);
+T 1459957819 18<phaazon18>	and match on the result
+T 1459957825 18<phaazon18>	but I guess it’s still borrowed
+T 1459957832 18<talchas18>	yeah
+T 1459957835 18<phaazon18>	because found is Option<&T>
+T 1459957884 18<talchas18>	it can work in other cases, but when you're returning it, the lifetime in the return case has to be the full one
+T 1459957923 18<talchas18>	and then it is borrowed in the None case, because rustc doesn't know that Option<&T>'s None doesn't actually have a borrow
+T 1459957955 18<talchas18>	if it fits at all, map.entry() will fix this
+T 1459957982 18<erbse18>	hi, I'm working with this code http://pastebin.com/3HDBthdg. but rust keep telling me the trait `Queryable` cannot be made into an object, how can I resolve this? I don't want return Self because the type may different.
+T 1459958007 18<maurer18>	Is there a way for me to case out on which arm of an enum with fields without explicitly mentioning all the fields?
+T 1459958016 18<talchas18>	erbse: the issue there is the <Pred>
+T 1459958027 18<steveklabnik18>	maurer: .. will let you elide
+T 1459958034 18<martin-li18>	how to enlarge a slice?
+T 1459958038 18<talchas18>	erbse: because generics are done at compile time, and trait objects can't do that
+T 1459958047 18<maurer18>	steveklabnik: thanks, that was what I was looking for
+T 1459958071 18<erbse18>	talchas: oh... I see
+T 1459958072 18<mbrubeck18>	maurer: A `Vec` owns a slice that it can resize
+T 1459958096 18<dikaiosune18>	martin-li: ^
+T 1459958118 18<erbse18>	I known how to solve it now, thanks talchas
+T 1459958122 18<martin-li18>	Yes, but how to do that to a &mut [T]?
+T 1459958151 18<dikaiosune18>	martin-li: slices are fixed references, so you'd have to take a new slice of the underlying Vec (or array)
+T 1459958179 18<mbrubeck18>	You can "shrink" the slice by taking a subslice of it
+T 1459958183 18<dikaiosune18>	mbrubeck: true
+T 1459958192 18<mbrubeck18>	But with just an &mut [T] you don't have access to anything outside of that slice
+T 1459958226 18<mbrubeck18>	You'll need an &mut Vec<T> if you want to be able to resize in arbitrary ways
+T 1459958528 18<phaazon18>	hm, how can I mutate the value inside the Arc?
+T 1459958533 18<phaazon18>	I have several Weak to it
+T 1459958569 18<phaazon18>	make_mut?
+T 1459958570 18<phaazon18>	get_mut?
+T 1459958575 18<talchas18>	have Arc<RwLock<T>> instead generally
+T 1459959722 22*	26ChanServ sets mode 24+a on 22#rust brson
+T 1459959722 22*	26ChanServ gives channel operator status to 18brson
+T 1459960102 18<jonhoo18>	Hi all! I'm working on a multi-threaded data flow-like system, and have now twice run into the same situation
+T 1459960134 18<jonhoo18>	It basically boils down to wanting the ability to spawn threads that can borrow from their environment, and thus be assigned a lifetime
+T 1459960139 18<jonhoo18>	Demonstrated and commented here: https://play.rust-lang.org/?gist=8f7db780b338db6fa07eafff8a03873a
+T 1459960162 18<jonhoo18>	Are these kinds of scoped threads implemented anywhere?
+T 1459960170 18<jonhoo18>	I don't think the crossbeam implementation does quite what I want
+T 1459960195 18<mbrubeck18>	jonhoo: I was about to say "crossbeam"... can you explain why not?
+T 1459960209 18<steveklabnik18>	!crate scoped-pool
+T 1459960209 18<rustbot18>	scoped-pool (0.1.9) - A flexible thread pool providing scoped threads. -> https://crates.io/crates/scoped-pool
+T 1459960215 18<steveklabnik18>	!crate scoped_threadpool
+T 1459960216 18<rustbot18>	scoped_threadpool (0.1.7) - A library for scoped and cached threadpools. -> https://crates.io/crates/scoped_threadpool
+T 1459960220 18<steveklabnik18>	those and crossbeam are the two i know of
+T 1459960256 18<jonhoo18>	crossbeam doesn't do it because (afaict) they spawned threads aren't allowed to outlive the current stack frame?
+T 1459960270 18<jonhoo18>	the *pool implementations give me pools, but I don't actually want a thread pool
+T 1459960276 18<jonhoo18>	I want control over when the threads terminate
+T 1459960285 18<steveklabnik18>	it sounds like these two requirements are at odds
+T 1459960296 18<jonhoo18>	how so?
+T 1459960323 18<steveklabnik18>	well, i mean scoped threads might not be what you want
+T 1459960339 18<steveklabnik18>	like, if you want to borrow, but you want them to outlive the current frame... that's gonna be unsound
+T 1459960344 18<mbrubeck18>	Can you move a crossbeam scope?
+T 1459960346 18<steveklabnik18>	since it's a use after free?
+T 1459960357 18<jonhoo18>	not if the borrow I'm using was passed into the current function
+T 1459960404 18<nemo18>	Say... why does rustup refetch the toolchain every time it is run?  seems a bit inefficient.  What if I already have a local copy.  It can't check a hash?
+T 1459960415 18<jonhoo18>	mbrubeck: I don't know actually...
+T 1459960422 18<jonhoo18>	mbrubeck: if I could, that might help with this
+T 1459960433 18<steveklabnik18>	jonhoo: ah, i see
+T 1459960456 18<mbrubeck18>	jonhoo: My first idea is to do something like the old `std::thread::scoped`, which you can find here https://crates.io/crates/thread-scoped
+T 1459960471 18<steveklabnik18>	nemo: i don't think it actually refetches the whole thing. i think that messsage is about fetching the latest hash, which it then compares and moves on
+T 1459960472 18<jonhoo18>	steveklabnik: have a look at https://play.rust-lang.org/?gist=8f7db780b338db6fa07eafff8a03873a for an example
+T 1459960482 18<nemo18>	steveklabnik: well... I thought that too, but I ran ps and it was doing:
+T 1459960493 18<mbrubeck18>	jonhoo: thread-scoped is unsafe because you can get memory unsafety if you manage to leak its guard object, but safe otherwise
+T 1459960494 18<nemo18>	curl -# -C - -f -O http://static-rust-lang-org.s3-website-us-west-1.amazonaws.com/dist/rust-1.7.0-x86_64-unknown-linux-gnu.tar.gz
+T 1459960498 18<nemo18>	every single time
+T 1459960506 18<steveklabnik18>	nemo: whoah, so yeah, i would agree with you. seems bad
+T 1459960508 18<nemo18>	steveklabnik: also it took a long time
+T 1459960516 18<nemo18>	which is usually a sign of burning a lot of bandwidth
+T 1459960525 18<jonhoo18>	mbrubeck: hmm, that might work then
+T 1459960525 18<nemo18>	even if you guys have tons of bandwidth, the remote may not ☺
+T 1459960539 18<jonhoo18>	mbrubeck: makes me sad that this has to be unsafe though
+T 1459960564 18<nemo18>	steveklabnik: I ran it twice since I hadn't updated in a while and I wasn't totally sure how your updater worked, if it had smart checkpoints like, oh, firefox... (firefox you sometimes have to update a couple of times due to that)
+T 1459960585 18<nemo18>	steveklabnik: but it seems it doesn't keep track of anything locally. not binary diffs, not current update hash, not timestamp.. ☺
+T 1459960706 18<mbrubeck18>	jonhoo: Note that it's not just dropping you need to worry about
+T 1459960730 18<mbrubeck18>	jonhoo: If the Manager is moved after .start() is called, then the threads would have a dangling pointer
+T 1459960778 18<jonhoo18>	but moving the Manager shouldn't be possible since the threads have a borrow of Manager, right?
+T 1459960908 18<mbrubeck18>	jonhoo: Oh right... so if you use the thread-scoped concept, then `start` would return a guard object that borrows Manager (preventing it from being moved), and it's the guard object that would join the threads when dropped.
+T 1459960943 18<mbrubeck18>	jonhoo: In your current code, the signature of `start` means that Manager is only borrowed until `start` returns.
+T 1459960956 18<mbrubeck18>	(which of course is why thread::spawn can't capture `self`)
+T 1459960965 18<jonhoo18>	mbrubeck: I was imagining storing the guard objects inside Manager, and make Manager a Manager<'a>
+T 1459960986 18<mbrubeck18>	ah, yeah, and then you could have `fn start(&'a self)`
+T 1459960991 18<jonhoo18>	yup
+T 1459961030 18<jonhoo18>	I believe that should prevent Manager from being moved
+T 1459961045 18<jonhoo18>	And I think then the only issue is if Manager is leaked
+T 1459961115 18<jonhoo18>	actually, no, that shouldn't be unsound
+T 1459961128 18<jonhoo18>	it would be if Manager was free'd, but not dropped
+T 1459961574 18<fqtw18>	is there a rust ipc lib that works on windows?
+T 1459961962 22*	26ChanServ sets mode 24+a on 22#rust pcwalton
+T 1459961962 22*	26ChanServ gives channel operator status to 18pcwalton
+T 1460058166 19*	Now talking on 22#rust
+T 1460058166 22*	Topic for 22#rust is: Rust general discussion | Current release: 1.7 | | Playground https://play.rust-lang.org/ | Forum  https://users.rust-lang.org/ | New user channel: #rust-beginners  | Conduct https://www.rust-lang.org/conduct.html | Logs  https://botbot.me/mozilla/rust
+T 1460058166 22*	Topic for 22#rust set by 26steveklabnik!root@moz-fft.uo8.55.45.IP (24Thu Mar  3 16:09:14 2016)
+T 1460058177 18<Gankro18>	Manishearth: I am legitimately surprised you have not yet written some lint against mem::forget. I guess it's not clear when it is/isn't valid?
+T 1460058200 18<seanmonstar18>	proc: setting the env variables?
+T 1460058212 18<proc18>	seanmonstar: I'm using the CMD from them provided there
+T 1460058220 18<proc18>	seanmonstar: and the paths are correct
+T 1460058246 18<proc18>	( as in https://github.com/sfackler/rust-openssl#windows )
+T 1460058379 18<seanmonstar18>	proc: hm, wonder the reason that the msvc tests are disabled https://github.com/sfackler/rust-openssl/blob/master/appveyor.yml#L8
+T 1460058400 18<proc18>	seanmonstar: no comment
+T 1460058403 18<sfackler18>	seanmonstar: some problems with the runtime IIRC
+T 1460058406 18<Thinkofname18>	proc: try setting DEP_OPENSSL_INCLUDE to the openssl include folder as well
+T 1460058407 18<sfackler18>	just on appveyor
+T 1460058435 18<seanmonstar18>	sfackler: ah, but it will build with msvc?
+T 1460058437 18<Thinkofname18>	I use that env for the msvc on appvoyer, seems to work fine
+T 1460058485 18<proc18>	Thinkofname: openssl pre installed for 64bit ?
+T 1460058511 18<Thinkofname18>	No, I have the CI download it
+T 1460058514 18<b5218>	Can i get rid of the type variable O in line 13? http://is.gd/lkPZ1L
+T 1460058518 18<sfackler18>	seanmonstar: yeah
+T 1460058530 18<Thinkofname18>	proc: http://hastebin.com/iqifekoyiy.tex
+T 1460058531 18<sfackler18>	seanmonstar: https://ci.appveyor.com/project/sfackler/rust-openssl/build/1.0.378/job/k3xgu0hcnpeaub6t
+T 1460058554 18<sfackler18>	it's some configuration problem on the test vm that I haven't bothered to figure out how to fix
+T 1460058718 18<proc18>	Thinkofname: thanks for the hint with the openssl source
+T 1460058725 18<seanmonstar18>	b52: if you remove the AsRef bound from T
+T 1460058742 18<proc18>	Thinkofname: I'll come back later when I've setup everything and can say if that works
+T 1460058762 18<b5218>	seanmonstar?
+T 1460058780 18<seanmonstar18>	b52: to get rid of the O type param
+T 1460058802 18<seanmonstar18>	b52: struct Foo<T> { os: T }
+T 1460058827 18<mbrubeck18>	You can add the bound on an `impl` or `fn` that uses Foo instead on Foo itself
+T 1460058836 18<seanmonstar18>	exactly ^
+T 1460058983 18<mbrubeck18>	http://is.gd/MlC5ul
+T 1460059246 18<autrilla18>	What's &[f32] as a parameter type? (I'm confused by the brackets)
+T 1460059258 18<durka4218>	a slice of f32's
+T 1460059259 18<tjpeden18>	I'm struggling pretty hard with some lifetime issues, I'm trying to take a few paths as command line params and set them as properties on a struct and it's not going well
+T 1460059301 18<feti18>	tjpeden: Ask yourself if you need the paths to exist outside of the struct or not. If not, then don't use a reference and give the struct a copy of the string.
+T 1460059335 18<tjpeden18>	feti: that's probably the better idea, huh? lol
+T 1460059346 18<feti18>	It sounds like it based on what you are doing.
+T 1460059366 18<feti18>	So the struct will have a String, not &String, not &str.
+T 1460059388 18<tjpeden18>	Right
+T 1460059402 18<tjpeden18>	the 4th parameter was already a string
+T 1460059917 18<fqtw18>	can rusttype show all emojis?
+T 1460059945 22*	26ChanServ sets mode 24+a on 22#rust pcwalton
+T 1460059945 22*	26ChanServ gives channel operator status to 18pcwalton
+T 1460059965 18<Yaniel18>	can it show emojis at all?
+T 1460059971 18<Yaniel18>	they're png data AFAIK
+T 1460059977 18<fqtw18>	Yaniel: they are unicode
+T 1460060015 18<Yaniel18>	yes but stored as png?
+T 1460060018 18<Tiffany18>	color emoji are encoded as png or svg graphics embedded into fonts depending on vendor, and replaced using images in some web applications like twitter, but they are actually unicode codepoints for which traditional glyphs exist
+T 1460060033 18<Yaniel18>	ah
+T 1460060035 18<fqtw18>	🔥
+T 1460060037 18<Tiffany18>	symbola, for example, will give you traditional black and white outlines
+T 1460060044 18<fqtw18>	The Fire emoji was approved as part of Unicode 6.0 in 2010
+T 1460060068 18<fqtw18>	so can rusttype display unicode emojis?
+T 1460060090 18<Tiffany18>	I would think rusttype would be able to handle unicode fine
+T 1460060147 18<Tiffany18>	however, most systems don't ship with fonts like symbola
+T 1460060154 18<Tiffany18>	and it's unlikely rusttype supports colour emoji
+T 1460060163 18<Tiffany18>	which is what is shipped out of the box on windows 10, OS X, android, etc.
+T 1460060182 18<fqtw18>	Tiffany: so they will only be black and white?
+T 1460060190 18<Tiffany18>	yeah, probably
+T 1460060195 18<fqtw18>	which font should i use on windows for unicode emojis with rusttype?
+T 1460060228 18<Tiffany18>	I'm not sure windows ships with a black and white emoji font
+T 1460060231 18<Tiffany18>	but you can download symbola
+T 1460060242 18<fqtw18>	Tiffany: maybe one of the ubuntu fonts?
+T 1460060402 18<Yaniel18>	symbola is likely to work if it's just the usual ttf stuff
+T 1460060423 18<Tiffany18>	symbola is indeed just usual ttf stuff
+T 1460060789 18<osa118>	is there a way to see source of macros in the docs? I need something like debug_writeln!, I was hoping to cheat by looking at debug_assert!
+T 1460060857 18<sfackler18>	osa1: https://github.com/rust-lang/rust/blob/master/src/libcore/macros.rs#L135
+T 1460060875 18<osa118>	sfackler: awesome, thanks
+T 1460061229 18<hoodie18>	hey there, I have a question about a little borrowchecker problem I have
+T 1460061231 18<jas018>	Strange idea:
+T 1460061271 18<jas018>	Could rust do return value Result<> checking similar to how null checks are (not) done in setting a ptr and then dereffing it instead of branching?
+T 1460061309 18<joy118>	can i have macro generators? I.e. i have a macro macro_rules! realvec { …. T::new( ) }. I would like to generate macros called T1vec, T2Vec for T=T1 and T=T2
+T 1460061336 18<joy118>	one way is to copy paste the macro code replacing T::new with T1::new and T2::new … and so on. Can i generate this via code?
+T 1460061397 18<jas018>	you can't make them a single macro?
+T 1460061447 18<joy118>	jas0: how would i specialize on T? 
+T 1460061499 18<jas018>	I don't really understand what you are trying to do. Is the macro body different or are you just chaninging the types?
+T 1460061541 18<joy118>	jas0: this https://gist.github.com/anonymous/ba508c8318356cce25921f3aca8d8296
+T 1460061560 18<joy118>	i want integervec  and instead of Rnumeric,:: it will Rinteger::
+T 1460061659 18<talchas18>	well, you can do tyvec { ($t:ty; $n:expr; $elem:expr) => {let p = <$t>::with_length_default ... } } and so on
+T 1460061668 18<jas018>	joy1, concat_idents doesn't do what you want?
+T 1460061683 18<talchas18>	and if you want you could define integervec and and realvec in terms of that
+T 1460061691 18<talchas18>	concat_ident basically never does what you want
+T 1460061696 18<jas018>	lol
+T 1460061768 18<joy118>	talchas: i see, the $t in tyvec { ($t:ty; specifies the type upfront, correct?
+T 1460061790 18<talchas18>	well, you specify it when you invoke tyvec
+T 1460061805 18<talchas18>	you'd do tyvec![Rnumeric; stuff]
+T 1460061830 18<joy118>	yes, i'm also thinking of API design and what would the programmer like to use. Something like u = realvec![ 1.0,2.0.,3.0] or u = tyvec![Rnumeric; 1,2,3] ...
+T 1460061850 18<b5218>	a slice spans continuous memory, right?
+T 1460061876 18<mbrubeck18>	b52: right
+T 1460061901 18<talchas18>	joy1: yeah, that's up to you, you can define realvec in terms of tyvec though for reducing copy-paste
+T 1460062088 18<joy118>	talchas: yes! good idea
+T 1460062158 18<joy118>	#rust is one the most helpful language channels ever 
+T 1460062388 18<proc18>	Thinkofname: I've tried it with http://pastebin.com/htE5CnAL the whole openssl 64bot msvc 2015 folder is inside the project folder where cargo.toml resides
+T 1460062428 18<proc18>	but I'm still getting the 'cannot open include file "openssl/ssl.h"' error
+T 1460062439 22*	26ChanServ sets mode 24+a on 22#rust niconii
+T 1460062439 22*	26ChanServ gives channel operator status to 18niconii
+T 1460062464 18<Binero18>	Is there a way to get the square root of a u8? 
+T 1460062488 18<Thinkofname18>	proc: tried an absolute path?
+T 1460062497 18<proc18>	Thinkofname: y, shortened it
+T 1460062503 18<bluss18>	Binero: no function for it
+T 1460062504 18<proc18>	Thinkofname: with / instead of \
+T 1460062533 18<Binero18>	Why don't we have a function for it? Seems like a trivial thing.. 
+T 1460062543 18<Binero18>	well, not trivial, but universal 
+T 1460062546 18<bluss18>	Binero: it's a loop of maximally 16 iterations to search for the answer (just amusing to me)
+T 1460062560 18<bluss18>	Binero: hm I don't think there is any for integer sqrt, not sure why
+T 1460062595 18<b5218>	any idea why http://is.gd/mq8GB5 results in a conflicting implementation?
+T 1460062627 18<Thinkofname18>	proc: hmm, not sure then. Works for me 
+T 1460062629 18<feti18>	What's the best way to store a [u8] in an enum? Does it need to be boxed since it's not Sized ?
+T 1460062648 18<bluss18>	b52: they do overlap, T may be a reference in the first impl (line 7)
+T 1460062675 18<Binero18>	feti: Vec<T>, Box<[T]> or &[T]
+T 1460062690 18<Binero18>	Depends on what you need. 
+T 1460062708 18<b5218>	because I it might be possible to implement Asd for &'a Asd ?
+T 1460062722 18<proc18>	Thinkofname: well you're copying the whole thing into the rust lib folder
+T 1460062729 18<feti18>	Binero: Figured as much. hmmm.. Vec makes the most sense then.
+T 1460062732 18<bluss18>	b52: yes
+T 1460062739 18<bluss18>	b52: or Asd for &'a T
+T 1460062747 18<b5218>	Is there a way to get the desired behavior?
+T 1460062748 18<proc18>	Thinkofname: let's see if that works, though I'm not a fan of polluting that global used place..
+T 1460062773 18<proc18>	(if only there were symlinks on windows..)
+T 1460062774 18<Thinkofname18>	proc: yeah its only for the CI which is thrown away after the build
+T 1460062858 18<jeffbradberry18>	Binero: what about (x as f64).sqrt()?
+T 1460062883 18<Binero18>	jeffbradberry: (x as f64).sqrt() as u8 could work I suppose
+T 1460062892 18<Binero18>	good idea 
+T 1460062906 18<talchas18>	heck, f32 is fine too
+T 1460062924 18<talchas18>	who knows which is faster, wasn't there something about doubles sometimes being faster than floats?
+T 1460062934 18<Binero18>	If an f16 existed it'd be able to handle it 
+T 1460062939 18<talchas18>	yeah
+T 1460062963 18<Binero18>	Why would doubles be faster? 
+T 1460062983 22*	26ChanServ sets mode 24+a on 22#rust burntsushi
+T 1460062983 22*	26ChanServ gives channel operator status to 18burntsushi
+T 1460062997 18<ubsan_18>	they should be the same speed...
+T 1460063032 18<Binero18>	They should be slower on 32 bit systems 
+T 1460063035 18<bluss18>	b52: specialization maybe (unstable feature)
+T 1460063036 18<talchas18>	I don't know, it's something I vaguely remember hearing once or something
+T 1460063046 18<ubsan_18>	I don't think si
+T 1460063047 18<ubsan_18>	*so
+T 1460063053 18<ubsan_18>	it should be using SSE
+T 1460063056 18<bluss18>	Binero: most 32 bit systems have 64-bit float units natively
+T 1460063060 18<proc18>	Thinkofname: but that won't work eventhough, as you only copy the dll's, and he's mocking about the damn .h files..
+T 1460063070 18<Binero18>	interesting 
+T 1460063070 18<proc18>	*it
+T 1460063081 18<talchas18>	(and if I did, it would have been years ago, and even if it /was/ true then, that wouldn't mean it's true now)
+T 1460063128 18<ubsan_18>	for one float op, it should be the same speed
+T 1460063138 18<ubsan_18>	although... sqrt might be different
+T 1460063142 18<ubsan_18>	I dunno
+T 1460063217 18<Binero18>	All I know is that I'm sending 250 million of these to the GPU, and I don't want to quadruple that. 
+T 1460063238 18<ubsan_18>	ah
+T 1460063239 18<Binero18>	and certainly not oct-duple it 
+T 1460063242 18<ubsan_18>	use f32
+T 1460063245 18<Binero18>	u8 
+T 1460063311 18<ubsan_18>	oh...
+T 1460063312 18<ubsan_18>	hmm
+T 1460063315 18<vfs18>	where do i read more about this http://is.gd/qxqdqJ ? book doesn't mention this kind impls (iirc)
+T 1460063320 18<ubsan_18>	so are you sqrting on the GPU?
+T 1460063327 18<Binero18>	No, on the CPU 
+T 1460063363 18<Binero18>	calculating the sqrt, compressing 4 u8s into a u32, sending them to the GPU and then calculate further on them on the CPU 
+T 1460063389 18<ubsan_18>	hmm
+T 1460063393 18<ubsan_18>	interesting
+T 1460063443 18<ubsan_18>	I mean... I imagine a lookup table would actually be the fastest here?
+T 1460063461 18<ubsan_18>	because it would fit in two cache lines?
+T 1460063474 18<Binero18>	Good point 
+T 1460063775 18<bstrie18>	what does it mean to take the address of a ZST
+T 1460063782 18<bstrie18>	like in let x = &()
+T 1460063804 18<mbrubeck18>	it means "give me some address"
+T 1460063852 18<bstrie18>	mbrubeck: what does that address actually point to?
+T 1460063854 18<mbrubeck18>	some non-null address, I guess
+T 1460063866 18<ubsan_18>	bstrie: it could give you any address that isn't 0
+T 1460063868 18<mbrubeck18>	I don't think it matters.  Aside from null I don't think there are any wrong answers
+T 1460063873 18<Binero18>	Why wouldn't it be null? 
+T 1460063881 18<kmc18>	i think it's usually 1
+T 1460063885 18<ubsan_18>	but it does give you an address on the current stack
+T 1460063886 18<mbrubeck18>	That breaks an invariant on &T
+T 1460063890 18<mbrubeck18>	(null, that is)
+T 1460063891 18<kmc18>	playbot: &() as *const () as usize
+T 1460063892 -18playbot/22#rust-	139757566826945
+T 1460063906 18<ubsan_18>	kmc: that's true of Box<()> and the other smart pointers
+T 1460063909 18<kmc18>	oh right, not whe it's on the stack
+T 1460063912 18<Binero18>	playbot: &() as *const as usize
+T 1460063912 -18playbot/22#rust-	<anon>:9:23: 9:25 error: expected identifier, found keyword `as`
+T 1460063913 -18playbot/22#rust-	<anon>:9         &() as *const as usize
+T 1460063913 -18playbot/22#rust-	output truncated; full output at: http://bit.ly/22g8GQ9
+T 1460063915 18<ubsan_18>	actually
+T 1460063919 18<ubsan_18>	that might be a const?
+T 1460063927 18<ubsan_18>	so may be in static memory
+T 1460063930 18<ubsan_18>	in the future
+T 1460063932 18<Binero18>	playbot: &() as *const () as usize
+T 1460063933 -18playbot/22#rust-	139769649174977
+T 1460063936 18<ubsan_18>	but currently, on the stack
+T 1460063939 18<Binero18>	ah, it is random 
+T 1460063940 18<staticassert18>	Does a ZST involve an allocation?
+T 1460063942 18<mbrubeck18>	`&[]` is in static memory
+T 1460063953 18<ubsan_18>	staticassert: depends
+T 1460063965 18<staticassert18>	I'm considering stack allocation in this case as well as heap.
+T 1460063966 18<ubsan_18>	not when it's on the stack or in a smart pointer
+T 1460064000 18<ubsan_18>	but for example, in an Rc, you have to allocate the counts
+T 1460064024 18<mbrubeck18>	playbot: std::mem::align_of::<()>()
+T 1460064025 -18playbot/22#rust-	1
+T 1460064034 18<staticassert18>	Makes sense.
+T 1460064034 18<ubsan_18>	playbot: let x = (); let y = (); &x as *const _ == &y as *const ()
+T 1460064035 -18playbot/22#rust-	false
+T 1460064042 18<ubsan_18>	hmm
+T 1460064047 18<ubsan_18>	sometimes that returns true
+T 1460064053 18<mbrubeck18>	ubsan_: IIRC that returns true in optimized builds
+T 1460064059 18<ubsan_18>	right
+T 1460064068 18<ubsan_18>	isn't playbot optimized?
+T 1460064077 18<staticassert18>	Is that comparing the pointers or the address being pointed to?
+T 1460064085 18<mbrubeck18>	playbot: cfg!(debug_assertions)
+T 1460064086 -18playbot/22#rust-	false
+T 1460064089 18<mbrubeck18>	hmm
+T 1460064091 18<ubsan_18>	(this is the beautiful area of implementation defined behavior)
+T 1460064097 18<ubsan_18>	staticassert: address
+T 1460064102 18<staticassert18>	Gotcha
+T 1460064114 18<ubsan_18>	playbot: let x = (); let y = (); &x as *const _ as usize - &y as *const _ as usize
+T 1460064114 -18playbot/22#rust-	0
+T 1460064118 18<ubsan_18>	see
+T 1460064119 18<ubsan_18>	wtf
+T 1460064125 18<mbrubeck18>	lol
+T 1460064127 18<staticassert18>	lmao
+T 1460064131 18<ubsan_18>	playbot: let x = (); let y = (); &x as *const _ == &y as *const _
+T 1460064132 -18playbot/22#rust-	false
+T 1460064134 18<ubsan_18>	haha
+T 1460064136 18<ubsan_18>	lol
+T 1460064150 18<staticassert18>	How is == implemented for &T ?
+T 1460064152 18<ubsan_18>	it's the == that makes it return false
+T 1460064153 18<Binero18>	playbot: 10usize - 11usize
+T 1460064155 -18playbot/22#rust-	<anon>:9:9: 9:26 warning: attempted to sub with overflow
+T 1460064155 -18playbot/22#rust-	<anon>:9         10usize - 11usize
+T 1460064155 -18playbot/22#rust-	output truncated; full output at: http://bit.ly/1VBNpQO
+T 1460064160 18<ubsan_18>	staticassert: T == T
+T 1460064167 18<staticassert18>	:|
+T 1460064176 18<ubsan_18>	staticassert: what?
+T 1460064182 18<ubsan_18>	that makes the most sense
+T 1460064194 18<ubsan_18>	you don't want Java's .equals xP
+T 1460064196 18<staticassert18>	Yeah, it does, the fact that subtraction is 0 in that case is funny
+T 1460064200 18<kamalmarhubi18>	is there a way to query a code base for expressions of a given type?
+T 1460064207 18<ubsan_18>	impl def ftw!
+T 1460064219 18<kamalmarhubi18>	or am I off in imaginary magical tool land again (it happens...)
+T 1460064252 18<ubsan_18>	kamalmarhubi: grep?
+T 1460064300 18<kamalmarhubi18>	ubsan_: not really
+T 1460064316 18<ubsan_18>	I dunno what you mean
+T 1460064319 18<kamalmarhubi18>	I want to find all epxressions of type PResult in a codebase using syntext_syntax
+T 1460064327 18<ubsan_18>	ah
+T 1460064335 18<kamalmarhubi18>	as a specific example
+T 1460064338 18<bstrie18>	kamalmarhubi: syntex just does parsing, you'd need something that did typechecking
+T 1460064342 18<jeffbradberry18>	kamalmarhubi: DXR
+T 1460064352 18<kamalmarhubi18>	bstrie: oh I know that
+T 1460064352 18<jeffbradberry18>	https://github.com/mozilla/dxr/
+T 1460064358 18<kamalmarhubi18>	bstrie: it's just my specific example
+T 1460064370 18<kamalmarhubi18>	example query
+T 1460064464 18<kamalmarhubi18>	jeffbradberry: it doesn't look like that'd do it... there's type, but only for references
+T 1460064481 18<kamalmarhubi18>	as in references to a type
+T 1460064511 18<kamalmarhubi18>	I want to find all expressions with a given type, regardless of whether the type is referenced in them or not
+T 1460064553 18<jeffbradberry18>	I think it does more than that.  The Rust plugin hooks into the compiler to get its information.
+T 1460064555 18<dikaiosune18>	is there even a crate available which can give you a typechecked AST? syntax just parses, correct?
+T 1460064580 18<proc18>	ugh, if I don't specify any openssl libs, hmac.h isn't found, but if I do specify one, then ssl.h isn't found
+T 1460064591 18<kamalmarhubi18>	dikaiosune: I imagine it'd be a tool using librustc
+T 1460064593 18<proc18>	as if it's ignoring any openssl env vars
+T 1460064613 18<dikaiosune18>	kamalmarhubi: yeah, funny that you brought it up, i was tinkering last night with trying to get a typechecked AST to stick in elasticsearch
+T 1460064635 18<kamalmarhubi18>	dikaiosune: but not using dxr?
+T 1460064638 18<kvark18>	Hello there! I need to access Box<Any> as &Trait, where Trait: Any. It looks like downcast_ref() requires Sized for some reason: http://is.gd/GOdQCh
+T 1460064652 18<dikaiosune18>	isn't dxr just parsing? i didn't look too closely, but it didn't look like it did any type inference
+T 1460064670 18<kamalmarhubi18>	dikaiosune: it does more than that if I read correctly
+T 1460064674 18<jeffbradberry18>	dikaiosune: no, it hooks into the compiler
+T 1460064678 18<dikaiosune18>	ooh
+T 1460064683 18<jeffbradberry18>	and gets real information out
+T 1460064701 18*	kamalmarhubi wonders if there is a `cargo dxr` command out there
+T 1460064727 18<kamalmarhubi18>	nope
+T 1460064808 18<talchas18>	kvark: Any doesn't provide any way to do that
+T 1460064857 18<talchas18>	(the entire way it's implemented just doesn't work like that)
+T 1460064970 18<kvark18>	talchas: basically, I need to iterate over anymap values which all implement some trait Foo and do something to them (according to Foo methods)
+T 1460065004 18<kvark18>	talchas: it seems to me that with this downcasting non being allowed anymap can't be iterated at all
+T 1460065018 18<kamalmarhubi18>	urgh docker to run it :/
+T 1460065031 18<kvark18>	talchas: and that's putting a big fat cross onto many wonderful things one could do
+T 1460065036 18<talchas18>	well, you can downcast to a /type/
+T 1460065053 18<talchas18>	but a trait object isn't just a type
+T 1460065068 18<kvark18>	talchas: you can downcast a single element to a type, but when iterating you can't iterate types
+T 1460065094 18<talchas18>	what you /can/ do is have your Trait: Any and use Box<Trait> instead of Box<Any>
+T 1460065112 18<kvark18>	talchas: damn, that's so simple, thank you!
+T 1460065121 18<talchas18>	and if you need to downcast to a specific type, use the Any methods via the mopa crate, and otherwise just use the trait methods
+T 1460065136 18<talchas18>	that said, I'm not sure if anymap in particular supports this
+T 1460065188 18<kvark18>	talchas: I said anymap in a general sense, not as a particular crate. Didn't expect the need for another crate to do Any methods though
+T 1460065247 18<talchas18>	well, you can implement them manually, but why bother
+T 1460065284 18<talchas18>	(the fact that Box<TraitRequiringAny> doesn't work like Box<Any> is silly though)
+T 1460065328 18<kvark18>	ugh
+T 1460065472 18<talchas18>	(it makes perfect sense in terms of how impls work and all, it just sucks)
+T 1460065635 22*	26ChanServ gives channel operator status to 18jdm

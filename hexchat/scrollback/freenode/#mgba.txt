@@ -1,0 +1,268 @@
+T 1459117905 19*	Now talking on 22#mgba
+T 1459117905 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459117905 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459118435 Python interface unloaded
+T 1459118452 19*	Now talking on 22#mgba
+T 1459118452 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459118452 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459119073 24*	Surkow|laptop has quit (Quit: Bye bye - Laptop goes to sleep - NOP NOP NOP)
+T 1459121325 24*	sergio-br2 has quit (Ping timeout: 244 seconds)
+T 1459122048 24*	xerpi has quit (Remote host closed the connection)
+T 1459122390 23*	sergio-br2 (~sergio@201.83.86.24823) has joined
+T 1459122588 18<sergio-br218>	yo
+T 1459122703 24*	pauldachz has quit (Ping timeout: 250 seconds)
+T 1459122899 23*	pauldachz (~pauldachz@c-24-13-38-95.hsd1.il.comcast.net23) has joined
+T 1459122907 18<sergio-br218>	https://www.reddit.com/r/emulation/comments/4bo006/cemu_140_pikmin_3_playable/d1erk47
+T 1459122917 18<sergio-br218>	"No one gives a shit about that console. We want its games."
+T 1459123672 18<t27duck18>	lol
+T 1459123682 18<t27duck18>	it's funny because it's true
+T 1459123712 18<t27duck18>	it's going to be an utter cluster fuck when Nintendo goes 3rd party
+T 1459123717 18<t27duck18>	shall be glorious
+T 1459123731 18<sergio-br218>	like sega?
+T 1459123737 18<t27duck18>	but better
+T 1459123748 18<t27duck18>	Sega got bought out
+T 1459123790 18<t27duck18>	I still would love someone to give a straight answer about minimum system requirements for cemu... amongst other bits of info
+T 1459123852 24*	pauldachz has quit (Read error: Connection reset by peer)
+T 1459123898 23*	pauldachz (~pauldachz@c-24-13-38-95.hsd1.il.comcast.net23) has joined
+T 1459123971 18<sergio-br218>	t27duck, it's closed source, stay away
+T 1459123978 18<t27duck18>	you can't make me
+T 1459123984 18<t27duck18>	you're not my dad
+T 1459124007 18<sergio-br218>	it's only windows compatible
+T 1459124049 18<sergio-br218>	how many emulators today are only windows compatible? really?
+T 1459124069 18<t27duck18>	sergio-br2: project 64
+T 1459124094 18<sergio-br218>	it's open source at least
+T 1459124201 23*	FL4SHK (~fl4shk@2601:486:2:9870:222:19ff:fe31:192923) has joined
+T 1459125227 18<sergio-br218>	what's Dump Source in dat-o-matic?
+T 1459125231 24*	brunodea has quit (Ping timeout: 244 seconds)
+T 1459125231 20*	Disconnected (20Remote host closed socket)
+T 1459125256 19*	Now talking on 22#mgba
+T 1459125256 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459125256 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459125587 24*	pauldachz has quit (Ping timeout: 260 seconds)
+T 1459126245 24*	Joefish has quit (Ping timeout: 276 seconds)
+T 1459127266 24*	waddlesplash has quit (Quit: Connection closed for inactivity)
+T 1459129365 20*	Disconnected (20Invalid argument)
+T 1459129382 22*	26brunodea sets mode 24+Z on 22brunodea
+T 1459129382 22*	26brunodea sets mode 24+i on 22brunodea
+T 1459129382 -18NickServ-	This nickname is registered. Please choose a different nickname, or identify via /msg NickServ identify <password>.
+T 1459129388 19*	Now talking on 22#mgba
+T 1459129388 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459129388 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459129388 -18NickServ-	You are now identified for brunodea.
+T 1459129726 24*	t27duck has quit (Quit: Textual IRC Client: www.textualapp.com)
+T 1459132095 24*	sergio-br2 has quit (Ping timeout: 276 seconds)
+T 1459143876 24*	lemmu has quit (Quit: sleep)
+T 1459219892 19*	Now talking on 22#mgba
+T 1459219892 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459219892 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459220500 24*	sergio-br2 has quit (Ping timeout: 264 seconds)
+T 1459227275 24*	lemmu has quit (Quit: sleep)
+T 1459230766 23*	vintageashtray (~chatzilla@adsl196-14-230-206-196.adsl196-8.iam.net.ma23) has joined
+T 1459277137 19*	Now talking on 22#mgba
+T 1459277137 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459277137 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459277364 23*	AntonioND (~Antonio__@2.219.71.19223) has joined
+T 1459277562 23*	radius (~radius@mail.polygoncorp.com23) has joined
+T 1459281841 24*	GigaFL4SHK has quit (Quit: WeeChat 1.3)
+T 1459281858 23*	FL4SHK (~fl4shk@2601:486:2:9870:222:19ff:fe31:192923) has joined
+T 1459282201 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459283042 23*	darkf (~darkf@unaffiliated/darkf23) has joined
+T 1459283927 24*	AntonioND has quit (Quit: Leaving)
+T 1459285463 23*	t27duck (~t27duck@107-147-64-159.res.bhn.net23) has joined
+T 1459287870 24*	lemmu has quit (Quit: sleep)
+T 1459287921 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459289923 23*	sergio-br2 (~sergio@201.83.86.24823) has joined
+T 1459290213 23*	Ivoah (uid49352@gateway/web/irccloud.com/x-qcswkcewulifxkkt23) has joined
+T 1459293150 24*	PMT has quit (Ping timeout: 248 seconds)
+T 1459293162 23*	PMT (~PMT@c-50-181-44-171.hsd1.md.comcast.net23) has joined
+T 1459293335 23*	vintageashtray_ (~chatzilla@adsl196-53-145-217-196.adsl196-13.iam.net.ma23) has joined
+T 1459293552 24*	vintageashtray has quit (Ping timeout: 260 seconds)
+T 1459293556 24*	28vintageashtray_ is now known as 18vintageashtray
+T 1459293762 24*	xerpi has quit (Remote host closed the connection)
+T 1459293858 24*	PMT has quit (Ping timeout: 268 seconds)
+T 1459297332 23*	PMT (~PMT@c-50-181-44-171.hsd1.md.comcast.net23) has joined
+T 1459298987 23*	pauldachz (~pauldachz@c-24-13-38-95.hsd1.il.comcast.net23) has joined
+T 1459299449 24*	rewrite has quit (Ping timeout: 244 seconds)
+T 1459299634 23*	rewrite (~rewrite@208.100.19.17323) has joined
+T 1459299634 24*	rewrite has quit (Changing host)
+T 1459299634 23*	rewrite (~rewrite@unaffiliated/rewrite23) has joined
+T 1459299848 24*	lemmu has quit (Quit: sleep)
+T 1459301956 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459302245 24*	darkf has quit (Read error: Connection reset by peer)
+T 1459302271 23*	darkf (~darkf@unaffiliated/darkf23) has joined
+T 1459302819 24*	sergio-br2 has quit (Ping timeout: 248 seconds)
+T 1459303049 24*	t27duck has quit (Quit: Textual IRC Client: www.textualapp.com)
+T 1459304500 24*	Surkow|laptop has quit (Ping timeout: 252 seconds)
+T 1459305957 24*	koris has quit (Ping timeout: 276 seconds)
+T 1459306862 23*	koris (~koris@185.133.32.1923) has joined
+T 1459308238 24*	darkf has quit (Read error: Connection reset by peer)
+T 1459308268 23*	darkf (~darkf@unaffiliated/darkf23) has joined
+T 1459311258 24*	lemmu has quit (Quit: sleep)
+T 1459314130 24*	Two-Tone- has quit (Quit: Leaving.)
+T 1459315032 23*	Joefish_ (~Joefish@p5B120861.dip0.t-ipconnect.de23) has joined
+T 1459340263 19*	Now talking on 22#mgba
+T 1459340263 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459340263 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459341394 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459341843 20*	Disconnected (20Invalid argument)
+T 1459341869 19*	Now talking on 22#mgba
+T 1459341869 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459341869 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459344594 23*	Surkow|laptop (~asdf@54680E40.cm-12-1a.dynamic.ziggo.nl23) has joined
+T 1459344725 24*	28Showers is now known as 18Vaporeon`
+T 1459347190 24*	darkf has quit (Quit: Leaving)
+T 1459349162 24*	lemmu has quit (Quit: sleep)
+T 1459354575 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459355952 24*	xerpi has quit (Quit: Leaving)
+T 1459356561 24*	lemmu has quit (Quit: sleep)
+T 1459357500 24*	vintageashtray has quit (Quit: ChatZilla 0.9.92 [Firefox 40.0/20150807085045])
+T 1459357537 23*	vintageashtray (~chatzilla@adsl196-100-187-217-196.adsl196-14.iam.net.ma23) has joined
+T 1459358240 23*	xerpi (~xerpi@186.Red-88-7-96.staticIP.rima-tde.net23) has joined
+T 1459363031 20*	Disconnected (20Network is unreachable)
+T 1459377511 19*	Now talking on 22#mgba
+T 1459377511 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459377511 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459379739 23*	vintageashtray_ (~chatzilla@adsl196-100-187-217-196.adsl196-14.iam.net.ma23) has joined
+T 1459379914 24*	vintageashtray has quit (Ping timeout: 240 seconds)
+T 1459379914 24*	28vintageashtray_ is now known as 18vintageashtray
+T 1459380065 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459380190 24*	xerpi has quit (Remote host closed the connection)
+T 1459383632 18<ds8418218>	Hey endrift, are you going to merge the new Gameboy stuff into mGBA Android?
+T 1459383678 18<endrift18>	Eventually.
+T 1459383692 18<FL4SHK18>	GB and GBC debugger will feature a cheat search
+T 1459383702 18<FL4SHK18>	and it'll be helpful in hacking GB games!
+T 1459383707 18<endrift18>	A lot of stuff needs to be rewritten
+T 1459383747 18<ds8418218>	I've already redone half of the frontend to make it a bit more modular
+T 1459384110 18<ds8418218>	I'll probably reopen Android Studio and make the project use the new Jack and Jill compilers so I can kill RetroLambda
+T 1459384128 18<endrift18>	Oh my god what is ANY of that
+T 1459384144 18<endrift18>	you sound like you're over complicating goddamn everything
+T 1459384249 18<ds8418218>	endrift: If you don't overcomplicate Android you're going to have a bad time
+T 1459384261 18<endrift18>	I think you have that backwards
+T 1459384280 18<endrift18>	If you use Android, you're going to overcomplicate things and have a bad time
+T 1459384301 18<ds8418218>	...
+T 1459384318 18<endrift18>	Android SDKs are shit
+T 1459384323 18<endrift18>	Java is that bad.
+T 1459384437 18<ds8418218>	endrift: All those changes really do is allow the UI to be changed independently of the backing code
+T 1459384452 18<ds8418218>	Which is also exactly what Google now wants developers to do
+T 1459384471 18<endrift18>	what you're describing is called MV*
+T 1459384477 18<endrift18>	and uhhhh what changed
+T 1459384512 18<ds8418218>	I've actually fixed some timing related crashes while moving over to MVP
+T 1459384524 18<endrift18>	in what
+T 1459391108 19*	Now talking on 22#mgba
+T 1459391108 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459391108 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459391262 24*	t27duck has quit (Quit: Textual IRC Client: www.textualapp.com)
+T 1459393969 24*	sergio-br2 has quit (Ping timeout: 244 seconds)
+T 1459394403 24*	Surkow|laptop has quit (Ping timeout: 244 seconds)
+T 1459394811 24*	darkf has quit (Ping timeout: 246 seconds)
+T 1459395039 24*	archshift has quit (Ping timeout: 246 seconds)
+T 1459395039 24*	brunodea has quit (Ping timeout: 246 seconds)
+T 1459395039 20*	Disconnected (20Remote host closed socket)
+T 1459395065 19*	Now talking on 22#mgba
+T 1459395065 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459395065 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459395168 24*	darkf has quit (Ping timeout: 246 seconds)
+T 1459395170 24*	archshift has quit (Ping timeout: 246 seconds)
+T 1459395206 24*	brunodea has quit (Ping timeout: 246 seconds)
+T 1459395207 24*	FireFly has quit (Ping timeout: 246 seconds)
+T 1459395211 23*	Effilry (~firefly@firefly.xen.prgmr.com23) has joined
+T 1459395220 24*	Effilry has quit (Changing host)
+T 1459395220 23*	Effilry (~firefly@oftn/oswg-member/FireFly23) has joined
+T 1459395302 24*	28archshift_ is now known as 18archshift
+T 1459397067 24*	lemmu has quit (Quit: sleep)
+T 1459426978 19*	Now talking on 22#mgba
+T 1459426978 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459426978 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459431065 20*	Disconnected (20Invalid argument)
+T 1459435858 19*	Now talking on 22#mgba
+T 1459435858 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459435858 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459440851 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459440902 24*	darklink_ has quit (Ping timeout: 260 seconds)
+T 1459441066 23*	darklink (~darklink@p2003007F4F393079BA27EBFFFE2EA6A3.dip0.t-ipconnect.de23) has joined
+T 1459441089 24*	28darklink is now known as 18darklink_
+T 1459443403 24*	lemmu has quit (Quit: sleep)
+T 1459443840 23*	brunodea_ (~brunodea@189.58.217.149.dynamic.adsl.gvt.net.br23) has joined
+T 1459443840 19*	Now talking on 22#mgba
+T 1459443840 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459443840 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459447235 24*	JMC4789 has quit (Ping timeout: 250 seconds)
+T 1459447235 24*	JMC4789 has quit (Ping timeout: 250 seconds)
+T 1459448029 23*	JMC4789 (~justin@2601:40f:4200:4f10:5024:60cf:ddb8:31e23) has joined
+T 1459448029 23*	JMC4789 (~justin@2601:40f:4200:4f10:5024:60cf:ddb8:31e23) has joined
+T 1459448405 23*	AntonioND (~Antonio__@2.219.71.19223) has joined
+T 1459448405 23*	AntonioND (~Antonio__@2.219.71.19223) has joined
+T 1459449544 23*	Two-Tone- (~Two_Tone@184-155-213-74.cpe.cableone.net23) has joined
+T 1459449544 23*	Two-Tone- (~Two_Tone@184-155-213-74.cpe.cableone.net23) has joined
+T 1459452312 24*	Two-Tone- has quit (Read error: Connection reset by peer)
+T 1459452312 24*	Two-Tone- has quit (Read error: Connection reset by peer)
+T 1459452453 23*	Two-Tone- (~Two_Tone@184-155-213-74.cpe.cableone.net23) has joined
+T 1459452453 23*	Two-Tone- (~Two_Tone@184-155-213-74.cpe.cableone.net23) has joined
+T 1459454516 24*	AntonioND has quit (Quit: Leaving)
+T 1459454516 24*	AntonioND has quit (Quit: Leaving)
+T 1459455073 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459455073 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459456160 23*	sergio-br2 (~sergio@201.83.86.24823) has joined
+T 1459456160 23*	sergio-br2 (~sergio@201.83.86.24823) has joined
+T 1459456425 23*	t27duck (~t27duck@107-147-64-159.res.bhn.net23) has joined
+T 1459456425 23*	t27duck (~t27duck@107-147-64-159.res.bhn.net23) has joined
+T 1459457090 23*	xerpi (~xerpi@14.Red-83-43-94.dynamicIP.rima-tde.net23) has joined
+T 1459457090 23*	xerpi (~xerpi@14.Red-83-43-94.dynamicIP.rima-tde.net23) has joined
+T 1459457897 24*	brunodea_ has quit (Quit: Leaving)
+T 1459457912 23*	brunodea_ (~brunodea@189.58.217.149.dynamic.adsl.gvt.net.br23) has joined
+T 1459457912 19*	Now talking on 22#mgba
+T 1459457912 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459457912 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459460926 23*	darkf (~darkf@unaffiliated/darkf23) has joined
+T 1459465929 23*	vintageashtray_ (~chatzilla@adsl196-11-151-217-196.adsl196-13.iam.net.ma23) has joined
+T 1459466107 24*	vintageashtray has quit (Ping timeout: 244 seconds)
+T 1459466119 24*	28vintageashtray_ is now known as 18vintageashtray
+T 1459466658 24*	xerpi has quit (Remote host closed the connection)
+T 1459466843 24*	lemmu has quit (Quit: sleep)
+T 1459467472 24*	Surkow|laptop has quit (Quit: Bye bye - Laptop goes to sleep - NOP NOP NOP)
+T 1459473261 23*	lemmu (~lemmu@76.78.73.1223) has joined
+T 1459476182 24*	t27duck has quit (Quit: Textual IRC Client: www.textualapp.com)
+T 1459479529 24*	sergio-br2 has quit (Ping timeout: 244 seconds)
+T 1459480331 24*	brunodea_ has quit (Quit: Leaving)
+T 1459511634 19*	Now talking on 22#mgba
+T 1459511634 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459511634 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459518771 19*	Now talking on 22#mgba
+T 1459518771 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459518771 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459535015 20*	Disconnected (20Invalid argument)
+T 1459535036 20*	Disconnected (20Invalid argument)
+T 1459535040 19*	Now talking on 22#mgba
+T 1459535040 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459535040 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459535064 19*	Now talking on 22#mgba
+T 1459535064 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459535064 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459536720 19*	Now talking on 22#mgba
+T 1459536720 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459536720 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459548232 18<Extrems18>	It's surprisingly hard to detect a cartridge's size.
+T 1459548398 18<Surkow|laptop18>	gba or gbc?
+T 1459548419 18<Extrems18>	GBA
+T 1459548998 18<endrift18>	yeah, you have to do tricks with comparing previously dumped parts with newly dumped parts
+T 1459549076 18<Extrems18>	Ah, I opted for comparing DMA and CPU read.
+T 1459549289 18<endrift18>	oh?
+T 1459549379 18<Extrems18>	DMA reads out 0x00 or 0xFF.
+T 1459549423 18<endrift18>	past the end of the cartridge you mean?
+T 1459549428 18<Extrems18>	Yeah.
+T 1459549434 18<endrift18>	I did not know that
+T 1459549441 18<endrift18>	that explains something I saw though
+T 1459549469 18<endrift18>	I figured I implemented it wrong when I thought about how the cartridge interface works
+T 1459549474 18<endrift18>	but I never got around to testing it
+T 1459568148 19*	Now talking on 22#mgba
+T 1459568148 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459568148 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459903428 19*	Now talking on 22#mgba
+T 1459903428 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459903428 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1459934858 19*	Now talking on 22#mgba
+T 1459934858 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1459934858 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
+T 1460058180 19*	Now talking on 22#mgba
+T 1460058180 22*	Topic for 22#mgba is: Official mGBA IRC Channel :: https://mgba.io/ :: https://forums.mgba.io/ :: Latest stable: 0.4.0 :: Upcoming stable: 0.4.1 (ETA Early March) :: Call for devs! https://mgba.io/2015/06/09/call-for-devs/ :: TODO list: https://forums.mgba.io/showthread.php?tid=3
+T 1460058180 22*	Topic for 22#mgba set by 26endrift!~endrift@endrift.com (24Wed Feb  3 03:49:48 2016)
