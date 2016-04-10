@@ -79,3 +79,6 @@ set guioptions-=r "remove right-hand scroll bar
 
 " Kill the capslock when leaving insert mode.
 autocmd InsertLeave * set iminsert=0
+
+" Set incremental search
+set is
