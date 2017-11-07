@@ -36,7 +36,9 @@
 				<value type="int" value="9"/>
 				<value type="int" value="10"/>
 				<value type="int" value="11"/>
+				<!--
 				<value type="int" value="12"/>
+				-->
 				<value type="int" value="13"/>
 				<value type="int" value="14"/>
 				<value type="int" value="15"/>
@@ -99,16 +101,16 @@
 			<property name="command" type="string" value="xfce4-mixer"/>
 			<property name="enable-keyboard-shortcuts" type="bool" value="true"/>
 		</property>
+		<!--
 		<property name="plugin-12" type="string" value="systray">
 			<property name="names-visible" type="string" value="array">
 				<value type="string" value="thunar"/>
-				<!--
 				<value type="string" value="firefox"/>
 				<value type="string" value="hexchat"/>
 				<value type="string" value="zeal"/>
-				-->
 			</property>
 		</property>
+		-->
 		<property name="plugin-13" type="string" value="datetime"/>
 		<property name="plugin-14" type="string" value="actions">
 			<property name="appearance" type="uint" value="1"/>
