@@ -16,4 +16,7 @@ end='$\[\e[1;37m\]\[\e[m\] '
 PS1="${user} ${lbracket}${dir}${rbracket} "'\[\e[1;33m\]$(__git_ps1 "(%s)")\[\e[m\]'"\n${end}"
 
 alias ls='ls --color=auto'
-alias ll='ls -l'
+alias ll='ls -l -a --color=auto'
+
+alias upbash='vim ~/.bashrc'
+alias refri='source ~/.bashrc'
