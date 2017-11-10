@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-source /home/bruno/.git-prompt.sh
+source ~/.git-prompt.sh
 #https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 source ~/.git-completion.bash
 
