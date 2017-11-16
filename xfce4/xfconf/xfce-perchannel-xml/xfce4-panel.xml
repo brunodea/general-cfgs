@@ -28,10 +28,8 @@
 				<value type="int" value="3"/>
 				<value type="int" value="4"/>
 				<value type="int" value="5"/>
-				<!--
 				<value type="int" value="6"/>
 				<value type="int" value="7"/>
-				-->
 				<value type="int" value="8"/>
 				<value type="int" value="9"/>
 				<value type="int" value="10"/>
@@ -65,7 +63,6 @@
 				<value type="string" value="terminal.desktop"/>
 			</property>
 		</property>
-		<!--
 		<property name="plugin-6" type="string" value="launcher">
 			<property name="items" type="array">
 				<value type="string" value="zeal.desktop"/>
@@ -76,7 +73,6 @@
 				<value type="string" value="hexchat.desktop"/>
 			</property>
 		</property>
-		-->
 		<property name="plugin-8" type="string" value="separator">
 			<property name="expand" type="bool" value="true"/>
 			<property name="style" type="uint" value="1"/>
@@ -101,7 +97,6 @@
 			<property name="command" type="string" value="xfce4-mixer"/>
 			<property name="enable-keyboard-shortcuts" type="bool" value="true"/>
 		</property>
-		<!--
 		<property name="plugin-12" type="string" value="systray">
 			<property name="names-visible" type="string" value="array">
 				<value type="string" value="thunar"/>
@@ -110,7 +105,6 @@
 				<value type="string" value="zeal"/>
 			</property>
 		</property>
-		-->
 		<property name="plugin-13" type="string" value="datetime"/>
 		<property name="plugin-14" type="string" value="actions">
 			<property name="appearance" type="uint" value="1"/>
