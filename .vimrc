@@ -114,6 +114,7 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 
 "YcmCompleter remaps
 nnoremap gd :YcmCompleter GoToDefinition<CR>
+let g:ycm_rust_src_path = $RUST_SRC_PATH
 
 "Window options
 set guioptions-=m "remove menu bar
