@@ -28,6 +28,8 @@ VAMActivate github:Yggdroot/indentLine
 VAMActivate github:scrooloose/nerdtree.git
 VAMActivate github:mhartington/oceanic-next
 VAMActivate github:rust-lang/rust.vim.git
+VAMActivate github:racer-rust/vim-racer
+VAMActivate github:honza/vim-snippets snipmate
 VAMActivate github:vim-airline/vim-airline
 VAMActivate github:Shougo/denite.nvim
 VAMActivate github:Chiel92/vim-autoformat
@@ -38,6 +40,7 @@ VAMActivate github:Shougo/vimproc.vim
 VAMActivate github:rdnetto/YCM-Generator
 VAMActivate github:Valloric/YouCompleteMe
 VAMActivate github:KabbAmine/zeavim.vim
+VAMActivate github:vim-syntastic/syntastic
 
 syntax enable
 
@@ -70,7 +73,8 @@ set guifont=DrodSansMonoForPowerlineFontMono\ 11
 "rust auto complete
 set hidden
 let g:racer_cmd = "/usr/bin/racer"
-let $RUST_SRC_PATH="/usr/src/rust/src/"
+" to show complete function definition
+let g:racer_experimental_completer = 1
 
 "zeal commands (for documentation)
 nmap gzz <Plug>Zeavim           " <leader>z (NORMAL mode)
@@ -121,3 +125,14 @@ autocmd InsertLeave * set iminsert=0
 
 " Set incremental search
 set is
+
+" Syntastic default settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_php_checkers = ["rust", "python", "shell"]

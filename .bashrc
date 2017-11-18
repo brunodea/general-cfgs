@@ -20,3 +20,5 @@ alias ll='ls -l -a --color=auto'
 
 alias upbash='vim ~/.bashrc'
 alias refri='source ~/.bashrc'
+# for racer
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
