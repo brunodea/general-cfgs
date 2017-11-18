@@ -25,20 +25,16 @@
 			<property name="plugin-ids" type="array">
 				<value type="int" value="1"/>
 				<value type="int" value="2"/>
-				<!--
 				<value type="int" value="3"/>
 				<value type="int" value="4"/>
 				<value type="int" value="5"/>
 				<value type="int" value="6"/>
 				<value type="int" value="7"/>
-				-->
 				<value type="int" value="8"/>
 				<value type="int" value="9"/>
 				<value type="int" value="10"/>
 				<value type="int" value="11"/>
-				<!--
 				<value type="int" value="12"/>
-				-->
 				<value type="int" value="13"/>
 				<value type="int" value="14"/>
 				<value type="int" value="15"/>
@@ -50,10 +46,9 @@
 		<property name="plugin-2" type="string" value="directorymenu">
 			<property name="base-directory" type="string" value="/home/$USER"/>
 		</property>
-		<!--
 		<property name="plugin-3" type="string" value="launcher">
 			<property name="items" type="array">
-				<value type="string" value="firefox.desktop"/>
+				<value type="string" value="firefox-nightly.desktop"/>
 			</property>
 		</property>
 		<property name="plugin-4" type="string" value="launcher">
@@ -76,9 +71,8 @@
 				<value type="string" value="hexchat.desktop"/>
 			</property>
 		</property>
-		-->
 		<property name="plugin-8" type="string" value="separator">
-			<property name="expand" type="bool" value="true"/>
+			<property name="expand" type="bool" value="false"/>
 			<property name="style" type="uint" value="1"/>
 		</property>
 		<property name="plugin-9" type="string" value="tasklist">
@@ -93,7 +87,7 @@
 		</property>
 		<property name="plugin-10" type="string" value="separator">
 			<property name="expand" type="bool" value="true"/>
-			<property name="style" type="uint" value="1"/>
+			<property name="style" type="uint" value="0"/>
 		</property>
 		<property name="plugin-11" type="string" value="mixer">
 			<property name="sound-card" type="string" value="HDAIntelAlsamixer"/>
@@ -101,7 +95,6 @@
 			<property name="command" type="string" value="xfce4-mixer"/>
 			<property name="enable-keyboard-shortcuts" type="bool" value="true"/>
 		</property>
-		<!--
 		<property name="plugin-12" type="string" value="systray">
 			<property name="names-visible" type="string" value="array">
 				<value type="string" value="thunar"/>
@@ -110,7 +103,6 @@
 				<value type="string" value="zeal"/>
 			</property>
 		</property>
-		-->
 		<property name="plugin-13" type="string" value="datetime"/>
 		<property name="plugin-14" type="string" value="actions">
 			<property name="appearance" type="uint" value="1"/>
