@@ -1,6 +1,45 @@
-execute pathogen#infect()
+" put this line first in ~/.vimrc
+set nocompatible | filetype indent plugin on | syn on
+
+fun! SetupVAM()
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+
+  " Force your ~/.vim/after directory to be last in &rtp always:
+  " let g:vim_addon_manager.rtp_list_hook = 'vam#ForceUsersAfterDirectoriesToBeLast'
+
+  " most used options you may want to use:
+  " let c.log_to_buf = 1
+  " let c.auto_install = 0
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+        \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+  endif
+
+  " This provides the VAMActivate command, you could be passing plugin names, too
+  call vam#ActivateAddons([], {})
+endfun
+call SetupVAM()
+
+VAMActivate github:mhartington/oceanic-next
+VAMActivate github:Yggdroot/indentLine
+VAMActivate github:scrooloose/nerdtree.git
+VAMActivate github:mhartington/oceanic-next
+VAMActivate github:rust-lang/rust.vim.git
+VAMActivate github:vim-airline/vim-airline
+VAMActivate github:Shougo/denite.nvim
+VAMActivate github:Chiel92/vim-autoformat
+VAMActivate github:ryanoasis/vim-devicons
+VAMActivate github:tpope/vim-fugitive
+VAMActivate github:jeffkreeftmeijer/vim-numbertoggle
+VAMActivate github:Shougo/vimproc.vim
+VAMActivate github:rdnetto/YCM-Generator
+VAMActivate github:Valloric/YouCompleteMe
+VAMActivate github:KabbAmine/zeavim.vim
+
 syntax enable
-filetype plugin indent on
 
 "As per :help 'expandtab
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
