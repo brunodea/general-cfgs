@@ -26,17 +26,21 @@ call SetupVAM()
 VAMActivate github:mhartington/oceanic-next
 VAMActivate github:Yggdroot/indentLine
 VAMActivate github:scrooloose/nerdtree.git
-VAMActivate github:mhartington/oceanic-next
 VAMActivate github:rust-lang/rust.vim.git
-VAMActivate github:racer-rust/vim-racer
-VAMActivate github:honza/vim-snippets snipmate
+" no need of vim-racer because of YCM?
+" Navigate to YouCompleteMe/third_party/ycmd/third_party/racerd
+" and run cargo build --release.
+" VAMActivate github:racer-rust/vim-racer
+VAMActivate github:honza/vim-snippets
+VAMActivate github:sirver/ultisnips
 VAMActivate github:vim-airline/vim-airline
-VAMActivate github:Shougo/denite.nvim
-VAMActivate github:Chiel92/vim-autoformat
+" Cool but perhaps make VIM slower?
+"VAMActivate github:Shougo/denite.nvim
+"VAMActivate github:Chiel92/vim-autoformat
+"VAMActivate github:Shougo/vimproc.vim
 VAMActivate github:ryanoasis/vim-devicons
 VAMActivate github:tpope/vim-fugitive
 VAMActivate github:jeffkreeftmeijer/vim-numbertoggle
-VAMActivate github:Shougo/vimproc.vim
 VAMActivate github:rdnetto/YCM-Generator
 VAMActivate github:Valloric/YouCompleteMe
 VAMActivate github:KabbAmine/zeavim.vim
@@ -137,3 +141,10 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_php_checkers = ["rust", "python", "shell"]
+
+let g:rustfmt_autosave = 1
+
+" Should not use <tab> for triggering snippets because of YCM.
+let g:UltiSnipsExpandTrigger="<C-Space>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"

@@ -20,6 +20,12 @@ alias ll='ls -l -a --color=auto'
 
 alias upbash='vim ~/.bashrc'
 alias refri='source ~/.bashrc'
+
+export CARGO_HOME="~/.rust/cargo"
+export RUSTUP_HOME="~/.rust/rustup"
+export PATH="$PATH:$CARGO_HOME/bin"
 # for racer
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+# default text editor
 export VISUAL="gvim"
