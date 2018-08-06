@@ -28,4 +28,4 @@ export PATH="$PATH:$CARGO_HOME/bin"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # default text editor
-export VISUAL="gvim"
+export VISUAL="vim"
