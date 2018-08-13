@@ -148,3 +148,6 @@ let g:rustfmt_autosave = 1
 let g:UltiSnipsExpandTrigger="<C-Space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Folding based on syntax
+set fdm=syntax
