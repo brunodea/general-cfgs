@@ -18,6 +18,7 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/denite.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --rust-completer' }
 call plug#end()
 
 " Theme
