@@ -46,7 +46,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:rustfmt_autosave = 1
 set hidden
-let g:racer_cmd = "/home/user/.cargo/bin/racer"
+let g:racer_cmd = "/home/bruno/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
