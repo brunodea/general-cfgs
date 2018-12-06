@@ -1,3 +1,4 @@
+"Do not forget to call :PlugInstall
 call plug#begin()
 Plug 'mhartington/oceanic-next'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -15,6 +16,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'KabbAmine/zeavim.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/denite.vim'
 call plug#end()
 
 " Theme
