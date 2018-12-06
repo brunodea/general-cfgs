@@ -17,7 +17,7 @@ Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'KabbAmine/zeavim.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Shougo/denite.vim'
+Plug 'https://github.com/Shougo/denite.nvim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --rust-completer' }
 call plug#end()
 
