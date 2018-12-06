@@ -21,6 +21,8 @@ alias ll='ls -l -a --color=auto'
 alias upbash='vim ~/.bashrc'
 alias refri='source ~/.bashrc'
 
+alias vim='nvim'
+
 export CARGO_HOME=~/.rust/cargo
 export RUSTUP_HOME=~/.rust/rustup
 export PATH="$PATH:$CARGO_HOME/bin"
