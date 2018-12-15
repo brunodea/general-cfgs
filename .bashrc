@@ -23,6 +23,8 @@ alias refri='source ~/.bashrc'
 
 alias vim='nvim'
 
+alias system-upgrade='yay -Syu --devel --timeupdate'
+
 export CARGO_HOME=~/.rust/cargo
 export RUSTUP_HOME=~/.rust/rustup
 export PATH="$PATH:$CARGO_HOME/bin"
