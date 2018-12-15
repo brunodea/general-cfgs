@@ -91,6 +91,8 @@ autocmd InsertLeave * set iminsert=0
 " Set incremental search
 set is
 
+set encoding=utf8
+
 "let g:UltiSnipsExpandTrigger="<C-Space>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
