@@ -31,8 +31,3 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 # default text editor
 export VISUAL="vim"
-
-# always open the terminal on tmux and exit the terminal when leaving tmux
-if command -v tmux>/dev/null; then
-  [ -z "$TMUX"  ] && { tmux attach -t default || exec tmux new-session -t default && exit;}
-fi
